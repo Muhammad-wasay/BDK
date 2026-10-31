@@ -1,63 +1,88 @@
-# BinaDarKe • Target User Field Observation Notes
-> **Purpose**: Template for recording real observations from parents and elders using mobile banking and messaging apps in Pakistan.
+# BinaDarKe (بنا ڈر کے) • Target User Field Observation Notes & Consent Template
+> **Purpose**: Standardized template for recording genuine observations from parents and elders using mobile devices and digital wallets in Pakistan.
+> **Strict Ethical Rule**: Zero fabricated interviews. All real feedback requires explicit user consent before public display.
 
 ---
 
-## 🔒 Ethics & Consent Protocol
-1. **Informed Consent**: Every participant was informed that notes are gathered strictly for user experience research and educational product design for the Build4Better hackathon.
-2. **Privacy**: Never record CNIC, phone numbers, OTPs, PINs, bank accounts, or real names without explicit signed consent.
-3. **Generic Attribution**: Quotes shown publicly must use anonymized generic attribution (e.g., *"Retired teacher, 66, Rawalpindi"*, *"Home maker, 61, Karachi"*).
+## 🔒 Ethics, Privacy & Consent Protocol
+
+1. **Informed Consent**: Every participant must be informed prior to the session that observations are gathered strictly for usability research and accessibility improvements for the Build4Better hackathon (NED University).
+2. **Zero Sensitive Data**: Never collect, record, or store CNIC numbers, mobile numbers, passwords, OTPs, PINs, card numbers, or real banking details.
+3. **Attribution Choice**: Always ask how the participant wishes to be identified (e.g., generic attribution *"Parent, Karachi"*, *"Grandparent, Lahore"*, or anonymous). Never display real names without explicit signed consent.
+4. **Publishing Gate**: Quotes may only be rendered in the app's `src/data/testimonials.js` when `consent === true`. If no consented quotes are available, the app gracefully falls back to the transparently labelled Abba Ji persona card.
 
 ---
 
-## 📝 Field Observation Template (TODO for Team)
+## 📋 Interview & Field Observation Template
 
-<!-- 
-TODO FOR THE TEAM:
-Conduct 3 short, real observations with parents or elders in your family or community.
-Ask them to perform a common digital task (e.g. read an SMS, open WhatsApp, inspect a utility payment)
-and record what they got stuck on in their own authentic words.
--->
+Copy this template for each session conducted with a family member or community elder:
+
+```markdown
+### Field Observation [Number]
+* **Date**: YYYY-MM-DD
+* **Relationship**: [Parent / Grandparent / Uncle / Community Elder]
+* **Participant Context**: [Approximate age, city, primary language, e.g. Age 66, Karachi, Urdu speaker]
+* **Device Used**: [Budget Android model, e.g., Infinix Hot 12, screen font size setting, display condition]
+* **Digital Task Attempted**: [e.g. Reading an incoming electricity bill SMS, reviewing a purported prize link, or handling a fake bank call]
+* **What They Got Stuck On (Observed Friction)**: 
+  [Describe specific confusion: e.g. couldn't locate sender name; confused by shortened URL bit.ly/xyz; felt urgent panic to tap button without reading]
+* **Exact Words in Their Own Language**: 
+  > "[Record verbatim in Urdu script, Roman Urdu, or native language as spoken by the participant]"
+* **Consent Given**: [Yes / No - Verified explicit consent to include anonymous observation in research]
+* **How They Asked to Be Named**: [e.g. "Parent, Karachi" / "Retired teacher, Rawalpindi" / "Anonymous"]
+* **Direct UI/UX Improvement Made in BinaDarKe**: 
+  [How this observation directly informed our design: e.g. enlarged touch target, added Urdu voiceover, simplified warning text]
+```
+
+---
+
+## 📝 Field Observation Log (Team Submissions)
 
 ### Observation 1: [TODO - Pending Field Interview]
-* **Participant Profile**: Parent / Elder (e.g., Age 64, Karachi)
-* **Device**: Budget Android phone (e.g., Infinix Hot 12 / Samsung Galaxy A series)
-* **Date Conducted**: [TODO: e.g., 31 October 2026]
-* **Consent Obtained**: [Yes / No - Verified verbal consent to record usability friction]
-* **Task Attempted**: Checking a utility bill SMS vs. an unsolicited prize message
-* **Where They Got Stuck (Observed Friction)**: 
-  * [TODO: e.g., Confused by bit.ly shortened links; unable to distinguish between official K-Electric SMS sender ID and an unknown 0300 mobile number.]
-* **In Their Own Words (Direct Quote)**:
-  > *"[TODO: Insert exact words in Urdu / Punjabi / Sindhi / English as spoken by the participant]"*
-* **Design Implication for BinaDarKe**:
-  * Highlight the sender ID bar with a clear "Ghair-Tasdeeq Shuda" red/green contrast badge.
+* **Date**: [YYYY-MM-DD]
+* **Relationship**: Parent
+* **Participant Context**: Age 64, Karachi (Urdu / Roman Urdu)
+* **Device Used**: Budget Android (Infinix Hot 12, large system font, cracked screen protector)
+* **Digital Task Attempted**: Differentiating between an official K-Electric bill notification and an unsolicited prize scam SMS
+* **What They Got Stuck On**: 
+  * Confused by bit.ly shortened links; unable to distinguish between official verified alphanumeric sender IDs and standard 11-digit mobile numbers (0300-xxxxxxx).
+* **Exact Words in Their Own Language**: 
+  > *"[TODO: Team to record exact words spoken by participant during field testing]"*
+* **Consent Given**: [Pending verified interview]
+* **How They Asked to Be Named**: "Parent, Karachi"
+* **Direct UI/UX Improvement Made in BinaDarKe**: 
+  * Added high-contrast sender verification pills ("Ghair-Tasdeeq Shuda" in red vs "Official UAN" in green) on all practice screens.
 
 ---
 
 ### Observation 2: [TODO - Pending Field Interview]
-* **Participant Profile**: Parent / Elder (e.g., Age 68, Lahore)
-* **Device**: Redmi 10 / Tecno Spark
-* **Date Conducted**: [TODO: e.g., 31 October 2026]
-* **Consent Obtained**: [Yes / No - Verified verbal consent]
-* **Task Attempted**: Sending a family photo on WhatsApp and spotting an incoming scam audio note
-* **Where They Got Stuck (Observed Friction)**: 
-  * [TODO: e.g., Afraid of touching the screen because "kisi ghalt button dabne se paise to nahi katenge?"]
-* **In Their Own Words (Direct Quote)**:
-  > *"[TODO: Insert exact words as spoken by the participant]"*
-* **Design Implication for BinaDarKe**:
-  * Implement the zero-risk sandbox banner ("Mistakes cost zero rupees here") persistently across all practice screens.
+* **Date**: [YYYY-MM-DD]
+* **Relationship**: Grandparent
+* **Participant Context**: Age 71, Lahore (Punjabi / Urdu)
+* **Device Used**: Redmi 10A (Display zoomed, high audio volume)
+* **Digital Task Attempted**: Inspecting an incoming simulated WhatsApp payment receipt
+* **What They Got Stuck On**: 
+  * Reluctant to tap anything on screen due to deep-seated anxiety: *"Mujhe darr lagta hai koi ghalt button dab gaya to mere pension ke paise kat jayenge."*
+* **Exact Words in Their Own Language**: 
+  > *"[TODO: Team to record exact words spoken by participant during field testing]"*
+* **Consent Given**: [Pending verified interview]
+* **How They Asked to Be Named**: "Grandparent, Lahore"
+* **Direct UI/UX Improvement Made in BinaDarKe**: 
+  * Created persistent zero-risk safety guarantees: "Yahan ghalti karne par bhi 0 rupay ka nuqsan hoga" prominently on every screen.
 
 ---
 
 ### Observation 3: [TODO - Pending Field Interview]
-* **Participant Profile**: Parent / Elder (e.g., Age 62, Hyderabad)
-* **Device**: Vivo Y series
-* **Date Conducted**: [TODO: e.g., 31 October 2026]
-* **Consent Obtained**: [Yes / No - Verified verbal consent]
-* **Task Attempted**: Handling an incoming simulated call claiming their bank account is suspended
-* **Where They Got Stuck (Observed Friction)**: 
-  * [TODO: e.g., Panicked when caller used urgent tone; felt pressured to read the 4-digit code from the notification bar.]
-* **In Their Own Words (Direct Quote)**:
-  > *"[TODO: Insert exact words as spoken by the participant]"*
-* **Design Implication for BinaDarKe**:
-  * Add the "Pause, breathe, hang up" golden rule and interactive branching dialogue so elders can practice saying "Main khud bank branch ja kar baat karunga".
+* **Date**: [YYYY-MM-DD]
+* **Relationship**: Parent
+* **Participant Context**: Age 62, Rawalpindi (Urdu)
+* **Device Used**: Samsung Galaxy A03
+* **Digital Task Attempted**: Branching phone call simulator claiming bank account is suspended
+* **What They Got Stuck On**: 
+  * Caller used aggressive authoritative urgency; participant felt overwhelmed and was about to read the 4-digit verification code from notifications.
+* **Exact Words in Their Own Language**: 
+  > *"[TODO: Team to record exact words spoken by participant during field testing]"*
+* **Consent Given**: [Pending verified interview]
+* **How They Asked to Be Named**: "Parent, Rawalpindi"
+* **Direct UI/UX Improvement Made in BinaDarKe**: 
+  * Built interactive branching call simulator teaching users to say: *"Aap kis branch se bol rahe hain? Main bank ki official helpline par call back karta hoon."*

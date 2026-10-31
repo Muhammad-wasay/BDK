@@ -1,17 +1,13 @@
 import { 
   HeartHandshake, 
-  ArrowLeft,
-  Smartphone,
-  AlertTriangle,
-  Volume2,
-  ShieldCheck
+  ArrowLeft
 } from 'lucide-react';
 import soundEffects from '../utils/soundEffects';
 import { BRAND } from '../data/brand';
+import Testimonials from '../components/Testimonials';
 
 export default function AboutScreen({ onGoHome, babaJiMode, language = 'roman' }) {
   const isUrdu = language === 'urdu';
-  const isEn = language === 'en';
 
   return (
     <div 
@@ -129,90 +125,8 @@ export default function AboutScreen({ onGoHome, babaJiMode, language = 'roman' }
         </div>
       </div>
 
-      {/* Target Persona Card: Meet Abba Ji (persona, not a real person) */}
-      {/* 
-        TODO FOR THE TEAM:
-        Field observations template is available at docs/INTERVIEW_NOTES.md.
-        Conduct 3 short observations with parents/elders in your community with consent.
-      */}
-      <div className="relative z-10 bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 sm:p-7 flex flex-col gap-4 shadow-[2px_2px_0px_#1B2440]">
-        <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#1B2440]/15">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">👴</span>
-            <div>
-              <h3 className="font-space font-extrabold text-lg text-[#1B2440]">
-                {isUrdu 
-                  ? "ابا جی سے ملیں (فرضی کردار، حقیقی شخص نہیں)" 
-                  : isEn 
-                    ? "Meet Abba Ji (Persona, not a real person)" 
-                    : "Meet Abba Ji (Persona, not a real person)"}
-              </h3>
-              <span className="text-xs font-bold text-[#1B2440]/65 uppercase tracking-wider block">
-                {isUrdu ? "ہم نے یہ پلیٹ فارم کس کے لیے بنایا؟" : "Who We Built This Platform For"}
-              </span>
-            </div>
-          </div>
-          <span className="text-xs font-space font-black px-3 py-1 rounded-full bg-[#FFF1A8] text-[#1B2440] border border-[#1B2440]">
-            {isUrdu ? "فرضی کردار" : "Persona Profile"}
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
-          <div className="bg-[#FFFBF5] border border-[#1B2440] rounded-xl p-3">
-            <span className="font-bold text-[#1B2440]/70 flex items-center gap-1.5 mb-1">
-              <Smartphone className="w-3.5 h-3.5 text-[#0F5A3E]" />
-              {isUrdu ? "ڈیوائس اور ایپس:" : "Device & Apps:"}
-            </span>
-            <p className="font-bold text-[#1B2440]">
-              {isUrdu 
-                ? "بجٹ اسمارٹ فون، واٹس ایپ وائس میسجز، ایزی پیسہ یوٹیلٹی بل، یوٹیوب۔" 
-                : "Budget Android, WhatsApp voice messages, EasyPaisa bills, YouTube."}
-            </p>
-          </div>
-
-          <div className="bg-[#FFE8E5] border border-[#BA1A1A] rounded-xl p-3">
-            <span className="font-bold text-[#BA1A1A] flex items-center gap-1.5 mb-1">
-              <AlertTriangle className="w-3.5 h-3.5" />
-              {isUrdu ? "بڑا خوف:" : "Deepest Fear:"}
-            </span>
-            <p className="font-bold text-[#1B2440]">
-              {isUrdu 
-                ? "غلطی سے کوئی بٹن دبنے سے پنشن ضائع ہونے کا ڈر اور بچوں سے جھجھک۔" 
-                : "Fear of losing pension through accidental taps and hesitation to admit confusion."}
-            </p>
-          </div>
-
-          <div className="bg-[#FFFBF5] border border-[#1B2440] rounded-xl p-3">
-            <span className="font-bold text-[#1B2440]/70 flex items-center gap-1.5 mb-1">
-              <Volume2 className="w-3.5 h-3.5 text-[#0F5A3E]" />
-              {isUrdu ? "زبان کی ترجیح:" : "Language Preference:"}
-            </span>
-            <p className="font-bold text-[#1B2440]">
-              {isUrdu 
-                ? "سادہ اردو بول چال، آڈیو گائیڈ کو ترجیح دیتے ہیں۔" 
-                : "Spoken Urdu/Roman Urdu, clear audio narration, no technical jargon."}
-            </p>
-          </div>
-
-          <div className="bg-[#B8F2D0]/40 border border-[#0F5A3E] rounded-xl p-3">
-            <span className="font-bold text-[#0F5A3E] flex items-center gap-1.5 mb-1">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              {isUrdu ? "مقصد:" : "The Goal:"}
-            </span>
-            <p className="font-bold text-[#1B2440]">
-              {isUrdu 
-                ? "موبائل کا محفوظ اور باوقار استعمال، بنا کسی کے آگے ہاتھ پھیلائے۔" 
-                : "Independent and dignified mobile usage with zero fear of scams."}
-            </p>
-          </div>
-        </div>
-
-        <p className="text-xs font-bold text-[#1B2440]/60 border-t border-[#1B2440]/15 pt-2">
-          {isUrdu 
-            ? "حقیقی فیلڈ نوٹس کا ٹیمپلیٹ docs/INTERVIEW_NOTES.md میں موجود ہے۔" 
-            : "See docs/INTERVIEW_NOTES.md for field interview templates and ethics protocol."}
-        </p>
-      </div>
+      {/* Target User Understanding & Community Testimonials */}
+      <Testimonials language={language} babaJiMode={babaJiMode} variant="about" />
     </div>
   );
 }

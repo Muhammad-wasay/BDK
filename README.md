@@ -30,6 +30,7 @@
 * **The Real Barrier**: It is not a lack of intelligence; it is **fear of financial loss** and **fear of scolding**:
   > *"Agar ghalti se koi button dab gaya to meri saari pension kat jayegi."*  
   > *"Bachon ko bataunga to wo daantein ge ke aap phone mat chhera karein."*
+* **Ethics & Field Feedback**: User testimonials are completely optional and consent-based (`consent === true` required to render in `src/data/testimonials.js`). When empty, the app displays this transparently labelled persona card rather than inventing feedback. The team's research protocol is documented in [`docs/INTERVIEW_NOTES.md`](docs/INTERVIEW_NOTES.md).
 
 ### Why Existing Approaches Fail
 1. **Advisories without practice**: Telling elders *"Never click links"* is useless when genuine bank alerts, utility bills, and courier notices also arrive via SMS. Elders become paralyzed with anxiety or blindly trust scammers using familiar brand names.
@@ -97,6 +98,7 @@ BinaDarKe eliminates the fear of technology with a core promise:
 * **Local Storage Safety (`src/utils/storage.js`)**: Preferences (language, Buzurg mode, test score) are stored purely in `window.localStorage` wrapped in defensive try/catch error handling.
 * **One-Tap Data Purge**: Learners can wipe all saved progress, scores, and preferences in one tap from the Settings or Privacy screen (`storage.clearAllProgress()`).
 * **First-Use Consent**: On first visit, learners are presented with a plain-language summary of these principles before practicing.
+* **Consent-Based Testimonials**: Testimonials are strictly optional and consent-based. The app never features fabricated reviews or invented identities. In the absence of signed user consent, the UI renders the labelled Abba Ji composite persona card.
 
 ---
 

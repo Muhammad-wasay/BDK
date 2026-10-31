@@ -9,13 +9,12 @@ import {
   Users,
   Phone,
   CreditCard,
-  Search,
-  Smartphone,
-  Heart
+  Search
 } from 'lucide-react';
 import { TRANSLATIONS } from '../data/translations';
 import { BRAND } from '../data/brand';
 import UrduVoiceoverBar from '../components/UrduVoiceoverBar';
+import Testimonials from '../components/Testimonials';
 import soundEffects from '../utils/soundEffects';
 import { EasyPaisaLogo, JazzCashLogo, WhatsAppLogo, HBLLogo } from '../components/BrandLogos';
 
@@ -29,7 +28,6 @@ export default function LandingScreen({
   const [simFeedback, setSimFeedback] = useState(null); // { text, isScam }
   const t = TRANSLATIONS[language] || TRANSLATIONS.roman;
   const isUrdu = language === 'urdu';
-  const isEn = language === 'en';
 
   const introAudioMap = {
     roman: `As-salamu alaykum! ${BRAND.roman} mein khush-aamdeed. Ye waldein aur buzurgon ke liye ek mehfooz jagah hai jahan aap bila kisi khauf ke fake WhatsApp messages aur bank scams pehchanna seekh sakte hain. Practice Shuru Karein button par click karke aazmayein!`,
@@ -377,106 +375,23 @@ export default function LandingScreen({
         </div>
       </section>
 
-      {/* 4. TARGET USER PERSONA CARD: Meet Abba Ji (persona, not a real person) */}
-      {/* 
-        TODO FOR THE TEAM:
-        Add 3 real parent/elder observations in docs/INTERVIEW_NOTES.md with consent.
-        If real feedback is displayed, present it only with explicit permission and generic attribution.
-      */}
-      <section className="max-w-4xl mx-auto px-4 py-12 md:py-16 w-full animate-fadeInUp">
-        <div className="bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 sm:p-8 flex flex-col gap-5 shadow-[3px_3px_0px_#1B2440]">
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b-[2px] border-[#1B2440]/15">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">👴</span>
-              <div>
-                <h3 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440]">
-                  {isUrdu 
-                    ? "ابا جی سے ملیں (فرضی کردار، حقیقی شخص نہیں)" 
-                    : isEn 
-                      ? "Meet Abba Ji (Persona, not a real person)" 
-                      : "Meet Abba Ji (Persona, not a real person)"}
-                </h3>
-                <span className="text-xs font-bold text-[#1B2440]/65 uppercase tracking-wider block">
-                  {isUrdu ? "ہمارے ڈیزائن کا مرکزی ہدف" : "Target User Profile for BinaDarKe"}
-                </span>
-              </div>
-            </div>
+      {/* 4. TARGET USER UNDERSTANDING & COMMUNITY TESTIMONIALS */}
+      <Testimonials language={language} babaJiMode={babaJiMode} variant="landing" />
 
-            <span className="text-xs font-space font-black bg-[#FFF1A8] text-[#1B2440] border border-[#1B2440] px-3 py-1 rounded-full">
-              {isUrdu ? "فرضی کردار" : "Persona Card"}
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
-            <div className="bg-[#FFFBF5] border-[1.5px] border-[#1B2440] rounded-2xl p-4 flex flex-col gap-1.5">
-              <span className="font-space font-black uppercase text-[#1B2440]/70 flex items-center gap-1.5">
-                <Smartphone className="w-4 h-4 text-[#0F5A3E]" />
-                {isUrdu ? "موبائل اور ایپس:" : "Device & Apps Used:"}
-              </span>
-              <p className="font-bold text-[#1B2440]">
-                {isUrdu 
-                  ? "بجٹ اینڈرائیڈ (بڑے فونٹس، اسکرین گلاس ٹوٹا ہوا) • واٹس ایپ وائس نوٹس، ایزی پیسہ بل، یوٹیوب۔" 
-                  : "Budget Android (Infinix/Redmi with large font) • WhatsApp voice notes, EasyPaisa bills, YouTube."}
-              </p>
-            </div>
-
-            <div className="bg-[#FFE8E5] border-[1.5px] border-[#BA1A1A] rounded-2xl p-4 flex flex-col gap-1.5">
-              <span className="font-space font-black uppercase text-[#BA1A1A] flex items-center gap-1.5">
-                <AlertTriangle className="w-4 h-4" />
-                {isUrdu ? "اصلی خوف:" : "Deepest Fear:"}
-              </span>
-              <p className="font-bold text-[#1B2440]">
-                {isUrdu 
-                  ? "”ڈر لگتا ہے کہیں غلط بٹن دبنے سے پنشن نہ کٹ جائے یا بچے نہ ڈانٹیں۔“" 
-                  : "“I worry that pressing a wrong button will drain my pension or make my kids upset with me.”"}
-              </p>
-            </div>
-
-            <div className="bg-[#FFFBF5] border-[1.5px] border-[#1B2440] rounded-2xl p-4 flex flex-col gap-1.5">
-              <span className="font-space font-black uppercase text-[#1B2440]/70 flex items-center gap-1.5">
-                <Volume2 className="w-4 h-4 text-[#0F5A3E]" />
-                {isUrdu ? "زبان کی عادت:" : "Language Habit:"}
-              </span>
-              <p className="font-bold text-[#1B2440]">
-                {isUrdu 
-                  ? "اردو بولتے ہیں؛ باریک انگریزی بینک اصطلاحات مشکل لگتی ہیں، صوتی رہنمائی ترجیح ہے۔" 
-                  : "Prefers Urdu audio; struggles with dense English banking jargon (OTP, phishing, dispute)."}
-              </p>
-            </div>
-
-            <div className="bg-[#B8F2D0]/40 border-[1.5px] border-[#0F5A3E] rounded-2xl p-4 flex flex-col gap-1.5">
-              <span className="font-space font-black uppercase text-[#0F5A3E] flex items-center gap-1.5">
-                <Heart className="w-4 h-4" />
-                {isUrdu ? "مقصد:" : "The Goal:"}
-              </span>
-              <p className="font-bold text-[#1B2440]">
-                {isUrdu 
-                  ? "بغیر کسی خوف، ہچکچاہٹ، یا مالی نقصان کے موبائل کا پراعتماد استعمال سیکھنا۔" 
-                  : "Navigate digital banking and messages with peace of mind and zero financial risk."}
-              </p>
-            </div>
-          </div>
-
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-xs font-semibold text-[#1B2440]/70">
-              {isUrdu 
-                ? "نوٹ: یہ فرضی کردار پاکستانی بزرگوں کی حقیقی مشکلات کے تجزیے کی بنیاد پر تیار کیا گیا ہے۔" 
-                : "Note: This composite persona is designed to address real digital friction faced by Pakistani elders."}
-            </p>
-            <button
-              onClick={() => {
-                soundEffects.playClick();
-                onStartPractice();
-              }}
-              type="button"
-              className="w-full sm:w-auto px-6 min-h-[48px] rounded-2xl bg-[#B8F2D0] hover:bg-[#a6e6bf] text-[#1B2440] border-[2px] border-[#1B2440] font-space font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 cursor-pointer active:scale-98 transition-all"
-            >
-              <span>{t.ctaStart}</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* Floating Quick Action CTA Banner */}
+      <div className="max-w-4xl mx-auto px-4 pb-12 w-full flex justify-center">
+        <button
+          onClick={() => {
+            soundEffects.playClick();
+            onStartPractice();
+          }}
+          type="button"
+          className="w-full sm:w-auto px-8 min-h-[52px] rounded-2xl bg-[#B8F2D0] hover:bg-[#a6e6bf] text-[#1B2440] border-[2.5px] border-[#1B2440] font-space font-extrabold text-base sm:text-lg flex items-center justify-center gap-3 cursor-pointer shadow-[3px_3px_0px_#1B2440] active:scale-98 transition-all"
+        >
+          <span>{t.ctaStart}</span>
+          <ArrowRight className="w-5 h-5" />
+        </button>
+      </div>
     </div>
   );
 }

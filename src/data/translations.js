@@ -42,7 +42,6 @@ export const TRANSLATIONS = {
     heroCardMessage2: "Fauran is link par click kar ke ATM PIN darj karein:",
     heroCardSimButton1: "Dhoka Hai",
     heroCardSimButton2: "Block Karein",
-    elderStory: 'Mujhe hamesha darr rehta tha ke phone par koi ghalt button dab gaya to paise kat jayenge. BinaDarKe ne mera darr hamesha ke liye nikal diya!',
 
     // Feature Bento
     featuresTitle: "BinaDarKe Kyun Zaroori Hai?",
@@ -169,7 +168,6 @@ export const TRANSLATIONS = {
     heroCardMessage2: "فوری طور پر اس لنک پر کلک کر کے اے ٹی ایم پن درج کریں:",
     heroCardSimButton1: "دھوکہ ہے",
     heroCardSimButton2: "بلاک کریں",
-    elderStory: `پہلے فون پر کوئی میسج آتا تھا تو ڈر لگتا تھا کہ کہیں کوئی غلط بٹن دبنے سے پیسے نہ کٹ جائیں۔ ${BRAND.urdu} نے سارا خوف ختم کر دیا۔`,
 
     // Feature Bento
     featuresTitle: `${BRAND.urdu} کیوں ضروری ہے؟`,
@@ -296,7 +294,6 @@ export const TRANSLATIONS = {
     heroCardMessage2: "Click this link immediately and enter your ATM PIN:",
     heroCardSimButton1: "It's a Scam",
     heroCardSimButton2: "Block It",
-    elderStory: 'I used to be scared that pressing the wrong button would cost me money. BinaDarKe has removed that fear forever!',
 
     // Feature Bento
     featuresTitle: "Why BinaDarKe Matters",
