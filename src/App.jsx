@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Settings, ShieldCheck, HeartHandshake, PhoneCall } from 'lucide-react';
 import AnnouncementBar from './components/AnnouncementBar';
 import Navbar from './components/Navbar';
 import HelplineModal from './components/HelplineModal';
@@ -111,19 +112,30 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen flex flex-col font-nunito text-[#1B2440] bg-[#FFF4E0] transition-all selection:bg-[#FFF1A8] selection:text-[#1B2440] overflow-x-hidden w-full max-w-full ${
+      className={`min-h-screen flex flex-col font-nunito text-[#1B2440] bg-[#FFF4E0] transition-all selection:bg-[#B8F2D0] selection:text-[#1B2440] overflow-x-hidden w-full max-w-full ${
         babaJiMode ? 'elder-active text-lg' : 'text-base'
       } ${isUrdu ? 'font-urdu-mode' : ''}`}
       dir={isUrdu ? 'rtl' : 'ltr'}
     >
-      {/* 1. TOP MARQUEE TICKER (Zero Emojis, Clean Bullet Dots) */}
+      {/* FIXED SETTINGS GEAR BUTTON (OUTSIDE NAVBAR AT TOP RIGHT) */}
+      <button
+        onClick={() => {
+          soundEffects.playClick();
+          setIsSettingsOpen(true);
+        }}
+        className="fixed top-2 sm:top-2.5 right-3 sm:right-4 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white hover:bg-[#FFFDF9] border-[2px] border-[#1B2440] flex items-center justify-center cursor-pointer active:scale-95 transition-all"
+        title="Settings (Language & Elder Mode)"
+      >
+        <Settings className="w-4 h-4 sm:w-5 sm:h-5 text-[#1B2440] hover:rotate-45 transition-transform" />
+      </button>
+
+      {/* 1. TOP MARQUEE TICKER (Matching Brand Emerald Green Theme) */}
       <AnnouncementBar language={language} />
 
-      {/* 2. SLEEK NAVBAR (No Helpline on top, Dedicated Settings button on right) */}
+      {/* 2. SLEEK NAVBAR (No clunky settings inside navbar) */}
       <Navbar
         currentScreen={currentScreen}
         setCurrentScreen={setCurrentScreen}
-        onOpenSettings={() => setIsSettingsOpen(true)}
       />
 
       {/* 3. ACTIVE SCREEN CONTENT */}
@@ -206,98 +218,171 @@ function App() {
         )}
       </main>
 
-      {/* 4. FOOTER WITH ROLLING TEXT FLIP ON LINKS */}
-      <footer className="w-full bg-[#FFFDF9] border-t-[2.5px] border-[#1B2440] py-10 px-4 mt-16 relative z-20">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
+      {/* 4. PROFESSIONAL FOOTER (GROUPED LINKS SHIFTED TOWARDS RIGHT) */}
+      <footer className="w-full bg-[#FFFDF9] border-t-[2.5px] border-[#1B2440] py-12 px-4 mt-16 relative z-20">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row justify-between gap-10">
+          
+          {/* Left Column: Brand & Mission */}
+          <div className="max-w-sm flex flex-col gap-3">
             <button
               onClick={() => {
                 soundEffects.playNav();
                 setCurrentScreen('landing');
               }}
-              className="cursor-pointer"
+              className="cursor-pointer text-left w-fit"
             >
               <img 
                 src="/official_logo.png" 
                 alt="BinaDarKe" 
-                className="h-10 w-auto object-contain"
+                className="h-10 sm:h-11 w-auto object-contain"
               />
             </button>
-          </div>
-
-          {/* Links with RollingText Kinetic Wave Effect */}
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-space font-extrabold text-[#1B2440]">
-            <button
-              onClick={() => {
-                soundEffects.playNav();
-                setCurrentScreen('landing');
-              }}
-              className="group cursor-pointer py-1 px-1.5"
-            >
-              <RollingText text={t.navHome || "Home"} />
-            </button>
-            <span>•</span>
-            <button
-              onClick={() => {
-                soundEffects.playNav();
-                setCurrentScreen('guided');
-              }}
-              className="group cursor-pointer py-1 px-1.5"
-            >
-              <RollingText text={t.navGuided || "Guided Practice"} />
-            </button>
-            <span>•</span>
-            <button
-              onClick={() => {
-                soundEffects.playNav();
-                setCurrentScreen('solo');
-              }}
-              className="group cursor-pointer py-1 px-1.5"
-            >
-              <RollingText text={t.navSolo || "Solo Test"} />
-            </button>
-            <span>•</span>
-            <button
-              onClick={() => {
-                soundEffects.playNav();
-                setCurrentScreen('about');
-              }}
-              className="group cursor-pointer py-1 px-1.5"
-            >
-              <RollingText text="About BinaDarKe" />
-            </button>
-            <span>•</span>
-            <button
-              onClick={() => {
-                soundEffects.playClick();
-                setIsPrivacyOpen(true);
-              }}
-              className="group cursor-pointer py-1 px-1.5 text-emerald-800"
-            >
-              <RollingText text="Privacy Guarantee" />
-            </button>
-            <span>•</span>
-            <button
-              onClick={() => {
-                soundEffects.playClick();
-                setIsHelplineOpen(true);
-              }}
-              className="group cursor-pointer py-1 px-1.5 text-[#BA1A1A]"
-            >
-              <RollingText text="Helplines & FIA 1991" />
-            </button>
-          </div>
-
-          {/* Educational Sandbox Badge */}
-          <div className="text-center md:text-right">
-            <span className="inline-block text-[11px] font-space font-black bg-[#FFF1A8] border-[1.5px] border-[#1B2440] px-3 py-0.5 rounded-full">
-              100% Free & Educational Sandbox
-            </span>
-            <p className="text-[10px] text-[#1B2440]/65 font-bold mt-1">
-              Zero Real Risk • Non-Profit Public Service
+            <p className="text-xs sm:text-sm font-bold text-[#1B2440]/75 leading-relaxed">
+              Pakistan's first fear-free anti-scam training sandbox designed for elders and families to practice digital safety without financial risk.
             </p>
+            <div className="pt-1">
+              <span className="inline-block text-[11px] font-space font-black bg-[#B8F2D0] border border-[#1B2440] px-3 py-0.5 rounded-full text-[#1B2440]">
+                100% Free & Educational Public Service
+              </span>
+            </div>
           </div>
+
+          {/* Right Area: Grouped Options Shifted Towards Right */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 text-xs font-space font-extrabold text-[#1B2440]">
+            
+            {/* Group 1: Practice Arena */}
+            <div className="flex flex-col gap-2.5">
+              <span className="text-[11px] uppercase tracking-wider text-[#1B2440]/60 font-black">
+                Practice Arena
+              </span>
+              <button
+                onClick={() => {
+                  soundEffects.playNav();
+                  setCurrentScreen('landing');
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text="Home" />
+              </button>
+              <button
+                onClick={() => {
+                  soundEffects.playNav();
+                  setCurrentScreen('guided');
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text="Guided Practice" />
+              </button>
+              <button
+                onClick={() => {
+                  soundEffects.playNav();
+                  setCurrentScreen('solo');
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text="Solo Test" />
+              </button>
+              <button
+                onClick={() => {
+                  soundEffects.playNav();
+                  setCurrentScreen('result');
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text="Results" />
+              </button>
+            </div>
+
+            {/* Group 2: Simulators */}
+            <div className="flex flex-col gap-2.5">
+              <span className="text-[11px] uppercase tracking-wider text-[#1B2440]/60 font-black">
+                Live Labs
+              </span>
+              <button
+                onClick={() => {
+                  soundEffects.playNav();
+                  setCurrentScreen('phone');
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text="Fake Bank Call" />
+              </button>
+              <button
+                onClick={() => {
+                  soundEffects.playNav();
+                  setCurrentScreen('payment');
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text="EasyPaisa Trap" />
+              </button>
+              <button
+                onClick={() => {
+                  soundEffects.playNav();
+                  setCurrentScreen('scanner');
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text="WhatsApp Scanner" />
+              </button>
+              <button
+                onClick={() => {
+                  soundEffects.playNav();
+                  setCurrentScreen('about');
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text="About Us" />
+              </button>
+            </div>
+
+            {/* Group 3: Emergency & Privacy */}
+            <div className="flex flex-col gap-2.5 col-span-2 sm:col-span-1">
+              <span className="text-[11px] uppercase tracking-wider text-[#1B2440]/60 font-black">
+                Help & Safety
+              </span>
+              <a
+                href="tel:1991"
+                className="group cursor-pointer text-left w-fit text-[#BA1A1A]"
+              >
+                <RollingText text="🚨 Call FIA (1991)" />
+              </a>
+              <button
+                onClick={() => {
+                  soundEffects.playClick();
+                  setIsHelplineOpen(true);
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text="Bank Helplines" />
+              </button>
+              <button
+                onClick={() => {
+                  soundEffects.playClick();
+                  setIsPrivacyOpen(true);
+                }}
+                className="group cursor-pointer text-left w-fit text-emerald-800"
+              >
+                <RollingText text="Privacy Guarantee" />
+              </button>
+              <button
+                onClick={() => {
+                  soundEffects.playClick();
+                  setIsSettingsOpen(true);
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text="Language / ترتیبات" />
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Bottom Micro Line */}
+        <div className="max-w-6xl mx-auto mt-10 pt-4 border-t border-[#1B2440]/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-bold text-[#1B2440]/60">
+          <span>© 2026 BinaDarKe • Pakistan Fear-Free Anti-Scam Training Sandbox</span>
+          <span>Zero Real Risk • Non-Profit Public Initiative</span>
         </div>
       </footer>
 

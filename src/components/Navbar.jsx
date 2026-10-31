@@ -11,17 +11,14 @@ import {
   Sparkles,
   Menu,
   X,
-  Settings,
   Info
 } from 'lucide-react';
 import RollingText from './RollingText';
-import { TRANSLATIONS } from '../data/translations';
 import soundEffects from '../utils/soundEffects';
 
 export default function Navbar({
   currentScreen,
-  setCurrentScreen,
-  onOpenSettings
+  setCurrentScreen
 }) {
   const [isSimulatorsOpen, setIsSimulatorsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -75,7 +72,7 @@ export default function Navbar({
   return (
     <header className="w-full px-3 sm:px-4 pt-3 pb-2 sticky top-0 z-40 bg-[#FFF4E0]/95 backdrop-blur-md transition-all">
       <div className="max-w-6xl mx-auto w-full">
-        {/* Main Navbar Bar - Pure Stitch flat 2.5px border, ZERO shadow */}
+        {/* Main Navbar Bar (Pure Flat 2.5px Border, Zero Shadow) */}
         <nav className="w-full bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-[22px] px-3 sm:px-5 py-2 flex items-center justify-between gap-3">
           
           {/* 1. Official Logo */}
@@ -91,7 +88,7 @@ export default function Navbar({
             />
           </button>
 
-          {/* 2. Desktop Nav Items */}
+          {/* 2. Desktop Nav Items (Direct in Navbar) */}
           <div className="hidden md:flex items-center gap-1 lg:gap-2">
             {/* Home */}
             <button
@@ -184,7 +181,7 @@ export default function Navbar({
               )}
             </div>
 
-            {/* Nateeja */}
+            {/* Results (Formerly Nateeja) */}
             <button
               onClick={() => handleNavClick('result')}
               className={`group relative flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-space font-extrabold transition-all cursor-pointer ${
@@ -194,7 +191,7 @@ export default function Navbar({
               }`}
             >
               <Trophy className="w-4 h-4 flex-shrink-0" />
-              <RollingText text="Nateeja" />
+              <RollingText text="Results" />
             </button>
 
             {/* About Page */}
@@ -211,24 +208,11 @@ export default function Navbar({
             </button>
           </div>
 
-          {/* 3. Right Action Controls: Dedicated Settings Button (Zero Clutter!) */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => {
-                soundEffects.playClick();
-                onOpenSettings();
-              }}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-[#1B2440] border-[2px] border-[#1B2440] text-xs font-space font-extrabold transition-all cursor-pointer select-none active:scale-95"
-              title="Settings (Language & Elder Mode)"
-            >
-              <Settings className="w-4 h-4 text-[#1B2440]" />
-              <span className="hidden sm:inline">Settings</span>
-            </button>
-
-            {/* Mobile Hamburger Toggle */}
+          {/* 3. Mobile Hamburger Toggle */}
+          <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-1.5 rounded-xl border-[2px] border-[#1B2440] bg-white cursor-pointer"
+              className="p-1.5 rounded-xl border-[2px] border-[#1B2440] bg-white cursor-pointer"
               title="Menu"
             >
               {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -274,7 +258,7 @@ export default function Navbar({
                 }`}
               >
                 <Trophy className="w-3.5 h-3.5" />
-                <span>Nateeja</span>
+                <span>Results</span>
               </button>
               <button
                 onClick={() => handleNavClick('about')}
