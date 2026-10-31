@@ -479,108 +479,116 @@ export const SOLO_SCENARIOS_DATA = {
 };
 
 export const PAKISTAN_HELPLINES_DATA = {
+  confirmationNote: {
+    roman: "Barah-e-karam call karne se pehle idaray ki official website se tasdeeq kar lein.",
+    urdu: "براہ کرم رابطہ کرنے سے پہلے متعلقہ ادارے کی سرکاری ویب سائٹ سے نمبر کی تصدیق کر لیں۔",
+    en: "Please confirm these contact channels on the official websites before calling."
+  },
   roman: [
     {
-      name: "FIA Cyber Crime Helpline",
+      name: "FIA NR3C Cyber Crime Wing",
       number: "1991",
       tel: "tel:1991",
-      desc: "Online fraud, fake calls, aur ATM scam report karne ke liye official sarkari helpline.",
-      badge: "Sarkari FIA",
-      color: "bg-emerald-50 text-emerald-800 border-emerald-200"
+      desc: "Online financial fraud, fake banking calls, aur identity theft report karne ke liye official sarkari helpline.",
+      badge: "Sarkari FIA NR3C",
+      color: "bg-emerald-50 text-emerald-800 border-emerald-200",
+      sourceUrl: "https://complaint.fia.gov.pk",
+      sourceLabel: "complaint.fia.gov.pk",
+      lastChecked: "October 2026"
     },
     {
-      name: "BinaDarKe Free Helpdesk",
-      number: "0800-BINA-DARR (0800-24623)",
-      tel: "tel:080024623",
-      desc: "Buzurgon aur waldein ke liye bila kisi darr ke scam mashwara aur rehnumai.",
-      badge: "24/7 Muft",
-      color: "bg-amber-50 text-amber-800 border-amber-200"
-    },
-    {
-      name: "State Bank of Pakistan (SBP) Consumer Portal",
-      number: "111-727-273",
+      name: "State Bank of Pakistan (SBP) Consumer Protection",
+      number: "111-727-273 / 1025",
       tel: "tel:111727273",
-      desc: "Agar kisi bank ne fraud ke baad taawun na kiya ho to State Bank ko shikayat darj karwayein.",
-      badge: "State Bank",
-      color: "bg-blue-50 text-blue-800 border-blue-200"
+      desc: "Bank dispute ya fraud report na sunnay par central regulator (SBP) shikayat darj karwayein.",
+      badge: "Central Bank SBP",
+      color: "bg-blue-50 text-blue-800 border-blue-200",
+      sourceUrl: "https://www.sbp.org.pk",
+      sourceLabel: "sbp.org.pk",
+      lastChecked: "October 2026"
     },
     {
-      name: "PTA Anti-Spam / Illegal Numbers",
+      name: "PTA Anti-Spam Complaint Cell",
       number: "SMS: 9000 / 0800-55055",
       tel: "tel:080055055",
-      desc: "Dhokay baaz mobile number aur jaali lottery messages ko block karwane ke liye.",
+      desc: "Dhokay baaz SIMs, fake lottery SMS, aur spam broadcasts ko block karwane ke liye.",
       badge: "PTA Telecom",
-      color: "bg-purple-50 text-purple-800 border-purple-200"
+      color: "bg-purple-50 text-purple-800 border-purple-200",
+      sourceUrl: "https://www.pta.gov.pk",
+      sourceLabel: "pta.gov.pk",
+      lastChecked: "October 2026"
     }
   ],
 
   urdu: [
     {
-      name: "ایف آئی اے سائبر کرائم ہیلپ لائن",
+      name: "ایف آئی اے این آر تھری سی سائبر کرائم",
       number: "1991",
       tel: "tel:1991",
-      desc: "آن لائن فراڈ، جعلی کالز اور بینک دھوکہ دہی کی فوری سرکاری رپورٹنگ۔",
+      desc: "آن لائن فراڈ، جعلی بینک کالز اور شناخت چوری کی سرکاری ہنگامی رپورٹنگ۔",
       badge: "سرکاری ایف آئی اے",
-      color: "bg-emerald-50 text-emerald-800 border-emerald-200"
+      color: "bg-emerald-50 text-emerald-800 border-emerald-200",
+      sourceUrl: "https://complaint.fia.gov.pk",
+      sourceLabel: "complaint.fia.gov.pk",
+      lastChecked: "اکتوبر ۲۰۲۶"
     },
     {
-      name: "بغیر ڈر کے مفت رہنمائی ڈیسک",
-      number: "0800-BINA-DARR (0800-24623)",
-      tel: "tel:080024623",
-      desc: "والدین اور بزرگوں کے لیے بغیر کسی جھجھک کے مفت مشاورت۔",
-      badge: "۲۴ گھنٹے مفت",
-      color: "bg-amber-50 text-amber-800 border-amber-200"
-    },
-    {
-      name: "اسٹیٹ بینک آف پاکستان شکایات سیل",
-      number: "111-727-273",
+      name: "اسٹیٹ بینک آف پاکستان شکایات و تحفظ",
+      number: "111-727-273 / 1025",
       tel: "tel:111727273",
-      desc: "اگر کوئی بینک فراڈ کے بعد تعاون نہ کرے تو مرکزی بینک کو شکایت درج کریں۔",
-      badge: "اسٹیٹ بینک",
-      color: "bg-blue-50 text-blue-800 border-blue-200"
+      desc: "اگر بینک فراڈ کے بعد شکایت نہ سنے تو مرکزی ریگولیٹر (SBP) کو رجوع کریں۔",
+      badge: "مرکزی بینک",
+      color: "bg-blue-50 text-blue-800 border-blue-200",
+      sourceUrl: "https://www.sbp.org.pk",
+      sourceLabel: "sbp.org.pk",
+      lastChecked: "اکتوبر ۲۰۲۶"
     },
     {
-      name: "پی ٹی اے اینٹی اسپام ہیلپ لائن",
+      name: "پی ٹی اے اینٹی اسپام و غیر قانونی سم سیل",
       number: "SMS: 9000 / 0800-55055",
       tel: "tel:080055055",
-      desc: "جعلی لاٹری پیغامات اور فراڈیوں کے موبائل سم بلاک کروانے کے لیے۔",
+      desc: "جعلی انعامی پیغامات اور فراڈیوں کی سم بلاک کروانے کا باضابطہ چینل۔",
       badge: "پی ٹی اے",
-      color: "bg-purple-50 text-purple-800 border-purple-200"
+      color: "bg-purple-50 text-purple-800 border-purple-200",
+      sourceUrl: "https://www.pta.gov.pk",
+      sourceLabel: "pta.gov.pk",
+      lastChecked: "اکتوبر ۲۰۲۶"
     }
   ],
 
   en: [
     {
-      name: "FIA Cyber Crime Helpline",
+      name: "FIA NR3C Cyber Crime Wing",
       number: "1991",
       tel: "tel:1991",
-      desc: "Official government hotline for reporting online fraud, fake banking calls, and identity theft.",
-      badge: "Govt FIA",
-      color: "bg-emerald-50 text-emerald-800 border-emerald-200"
+      desc: "Official federal helpline for reporting online fraud, unauthorized transfers, and social engineering.",
+      badge: "Govt FIA NR3C",
+      color: "bg-emerald-50 text-emerald-800 border-emerald-200",
+      sourceUrl: "https://complaint.fia.gov.pk",
+      sourceLabel: "complaint.fia.gov.pk",
+      lastChecked: "October 2026"
     },
     {
-      name: "BinaDarKe Free Helpdesk",
-      number: "0800-BINA-DARR (0800-24623)",
-      tel: "tel:080024623",
-      desc: "Compassionate, fear-free guidance tailored for elders and families.",
-      badge: "24/7 Toll-Free",
-      color: "bg-amber-50 text-amber-800 border-amber-200"
-    },
-    {
-      name: "State Bank of Pakistan (SBP) Consumer Portal",
-      number: "111-727-273",
+      name: "State Bank of Pakistan (SBP) Consumer Protection",
+      number: "111-727-273 / 1025",
       tel: "tel:111727273",
-      desc: "Escalate banking disputes or uncooperative fraud investigations to the regulator.",
-      badge: "State Bank",
-      color: "bg-blue-50 text-blue-800 border-blue-200"
+      desc: "Escalate unresolved bank disputes and unauthorized transactions to the banking ombudsman and central regulator.",
+      badge: "State Bank Regulatory",
+      color: "bg-blue-50 text-blue-800 border-blue-200",
+      sourceUrl: "https://www.sbp.org.pk",
+      sourceLabel: "sbp.org.pk",
+      lastChecked: "October 2026"
     },
     {
       name: "PTA Anti-Spam / Illegal Numbers",
       number: "SMS: 9000 / 0800-55055",
       tel: "tel:080055055",
-      desc: "Report and blacklist fraudulent SIMs and spam SMS broadcasts.",
+      desc: "Report and blacklist fraudulent SIM cards and deceptive SMS lottery campaigns directly to PTA.",
       badge: "PTA Telecom",
-      color: "bg-purple-50 text-purple-800 border-purple-200"
+      color: "bg-purple-50 text-purple-800 border-purple-200",
+      sourceUrl: "https://www.pta.gov.pk",
+      sourceLabel: "pta.gov.pk",
+      lastChecked: "October 2026"
     }
   ]
 };

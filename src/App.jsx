@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Settings, ShieldCheck, HeartHandshake, PhoneCall } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import AnnouncementBar from './components/AnnouncementBar';
 import Navbar from './components/Navbar';
 import HelplineModal from './components/HelplineModal';
@@ -18,7 +17,6 @@ import ScamScannerScreen from './screens/ScamScannerScreen';
 import AboutScreen from './screens/AboutScreen';
 
 import { SOLO_SCENARIOS_DATA } from './data/scenarios';
-import { TRANSLATIONS } from './data/translations';
 import soundEffects from './utils/soundEffects';
 
 function App() {
@@ -72,7 +70,6 @@ function App() {
     localStorage.setItem('binadarke_answers', JSON.stringify(soloAnswers));
   }, [soloAnswers]);
 
-  const t = TRANSLATIONS[language] || TRANSLATIONS.roman;
   const isUrdu = language === 'urdu';
   const totalQuestions = (SOLO_SCENARIOS_DATA[language] || SOLO_SCENARIOS_DATA.roman).length;
 
@@ -230,11 +227,11 @@ function App() {
               />
             </button>
             <p className="text-xs sm:text-sm font-bold text-[#1B2440]/75 leading-relaxed">
-              Pakistan's first fear-free anti-scam training sandbox designed for elders and families to practice digital safety without financial risk.
+              A free practice space for families and elders to practice digital safety without financial risk.
             </p>
             <div className="pt-1">
-              <span className="inline-block text-[11px] font-space font-black bg-[#B8F2D0] border border-[#1B2440] px-3 py-0.5 rounded-full text-[#1B2440]">
-                100% Free & Educational Public Service
+              <span className="inline-block text-xs font-space font-black bg-[#B8F2D0] border border-[#1B2440] px-3 py-1 rounded-full text-[#1B2440]">
+                Free & Educational Practice Tool
               </span>
             </div>
           </div>
@@ -329,9 +326,9 @@ function App() {
         </div>
 
         {/* Bottom Micro Line */}
-        <div className="max-w-6xl mx-auto mt-10 pt-4 border-t border-[#1B2440]/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-bold text-[#1B2440]/60">
-          <span>© 2026 BinaDarKe • Pakistan Fear-Free Anti-Scam Training Sandbox</span>
-          <span>Zero Real Risk • Non-Profit Public Initiative</span>
+        <div className="max-w-6xl mx-auto mt-10 pt-4 border-t border-[#1B2440]/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-bold text-[#1B2440]/60">
+          <span>© 2026 BinaDarKe • Free Anti-Scam Practice Space for Families</span>
+          <span>Practice only: nothing real is sent • Free educational tool</span>
         </div>
       </footer>
 

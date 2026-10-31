@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Award, Printer, Share2, X, Check, ShieldCheck } from 'lucide-react';
+import { useState } from 'react';
+import { Award, Printer, Share2, X, ShieldCheck } from 'lucide-react';
 
 export default function CertificateModal({ isOpen, onClose, score, totalQuestions, language = 'roman' }) {
   const [userName, setUserName] = useState('Abba Jan');
@@ -111,14 +111,14 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
               </span>
             </div>
             <div>
-              <span className="block text-[10px] text-slate-400 font-semibold uppercase">Date:</span>
-              <span className="font-space font-bold text-sm text-[#151E33]">
+              <span className="block text-xs text-slate-500 font-bold uppercase">{isUrdu ? 'تاریخ:' : 'Date:'}</span>
+              <span className="font-space font-bold text-sm sm:text-base text-[#151E33]">
                 {today}
               </span>
             </div>
-            <div className="flex items-center gap-1 text-emerald-700 font-bold bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full text-[11px]">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>VERIFIED</span>
+            <div className="flex items-center gap-1.5 text-emerald-800 font-extrabold bg-emerald-50 border border-emerald-300 px-3 py-1 rounded-full text-xs">
+              <ShieldCheck className="w-4 h-4" />
+              <span>{isUrdu ? 'مشق مکمل' : 'PRACTICE COMPLETED'}</span>
             </div>
           </div>
         </div>
