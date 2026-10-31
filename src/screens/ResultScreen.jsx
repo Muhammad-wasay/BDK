@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   Award, 
   CheckCircle2, 
-  AlertTriangle, 
-  Printer, 
   RefreshCw, 
   Share2, 
   ArrowRight, 
   Lock, 
-  ShieldCheck,
-  HeartHandshake
+  ShieldCheck, 
+  HeartHandshake 
 } from 'lucide-react';
 import { SOLO_SCENARIOS_DATA } from '../data/scenarios';
 import { TRANSLATIONS } from '../data/translations';

@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   ArrowLeft, 
   ArrowRight, 
   Lightbulb, 
   AlertTriangle, 
-  CheckCircle2, 
   ShieldCheck
 } from 'lucide-react';
 import { GUIDED_SCENARIOS_DATA } from '../data/scenarios';

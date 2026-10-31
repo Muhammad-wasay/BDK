@@ -1,6 +1,4 @@
-import React from 'react';
-
-// Actual Real Brand Logos uploaded by user in public/logos/
+// Actual Real Brand Logos in public/logos/
 
 export function EasyPaisaLogo({ className = "h-8 w-auto" }) {
   return (

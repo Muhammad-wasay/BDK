@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Phone,
   PhoneOff,
-  Volume2,
   Play,
   Pause,
   ArrowLeft,
@@ -10,7 +9,6 @@ import {
   CheckCircle2,
   ShieldCheck
 } from 'lucide-react';
-import { TRANSLATIONS } from '../data/translations';
 import soundEffects from '../utils/soundEffects';
 import { HBLLogo } from '../components/BrandLogos';
 
@@ -20,7 +18,6 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
   const [showFeedback, setShowFeedback] = useState(false);
   const [userDecision, setUserDecision] = useState(null);
 
-  const t = TRANSLATIONS[language] || TRANSLATIONS.roman;
   const isUrdu = language === 'urdu';
 
   const callScenarios = {

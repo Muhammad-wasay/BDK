@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -6,7 +6,6 @@ import {
   AlertTriangle,
   Lightbulb,
   Lock,
-  ShieldCheck,
   X
 } from 'lucide-react';
 import { SOLO_SCENARIOS_DATA } from '../data/scenarios';

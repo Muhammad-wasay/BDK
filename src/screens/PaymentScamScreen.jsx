@@ -1,25 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   ArrowLeft,
   AlertTriangle,
   CheckCircle2,
   ShieldCheck,
-  Smartphone,
-  CreditCard,
-  Copy,
-  Eye,
-  EyeOff
+  CreditCard
 } from 'lucide-react';
-import { TRANSLATIONS } from '../data/translations';
 import soundEffects from '../utils/soundEffects';
-import { EasyPaisaLogo, JazzCashLogo } from '../components/BrandLogos';
+import { EasyPaisaLogo } from '../components/BrandLogos';
 
 export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'roman' }) {
-  const [showDetails, setShowDetails] = useState(false);
   const [userChoice, setUserChoice] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
 
-  const t = TRANSLATIONS[language] || TRANSLATIONS.roman;
   const isUrdu = language === 'urdu';
 
   const paymentScenarios = {
