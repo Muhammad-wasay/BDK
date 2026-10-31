@@ -1,252 +1,296 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   ArrowLeft,
   Search,
   AlertTriangle,
+  RotateCcw,
+  ShieldAlert,
+  Info,
   CheckCircle2,
-  ShieldCheck,
-  Copy,
-  Sparkles
+  Lock
 } from 'lucide-react';
-import { TRANSLATIONS } from '../data/translations';
+import { analyzeMessage } from '../utils/scamScannerHeuristics';
 import soundEffects from '../utils/soundEffects';
 
 export default function ScamScannerScreen({ onGoHome, babaJiMode, language = 'roman' }) {
   const [inputText, setInputText] = useState('');
-  const [scanResult, setScanResult] = useState(null);
-  const [isScanning, setIsScanning] = useState(false);
+  const [analysis, setAnalysis] = useState(null);
 
-  const t = TRANSLATIONS[language] || TRANSLATIONS.roman;
   const isUrdu = language === 'urdu';
-
-  const scamKeywords = {
-    roman: [
-      'otp', 'atm pin', 'account block', 'lottery', 'prize', 'winner',
-      'easy paisa', 'jazz cash', 'bit.ly', 'urgent', 'immediately',
-      'suspicious activity', 'verify now', 'click here', 'bank manager',
-      'inaam', 'jeeto', 'delivery tax', 'courier', 'parcel', '0300'
-    ],
-    urdu: [
-      'او ٹی پی', 'اے ٹی ایم پن', 'اکاؤنٹ بلاک', 'لاٹری', 'انعام',
-      'ایزی پیسہ', 'جاز کیش', 'فوری', 'جلدی', 'مشکوک سرگرمی',
-      'تصدیق کریں', 'کلک کریں', 'بینک مینیجر', 'ڈلیوری ٹیکس',
-      'پارسل', 'کیورر', 'ٹی سی ایس'
-    ],
-    en: [
-      'otp', 'atm pin', 'account block', 'lottery', 'prize', 'winner',
-      'easypaisa', 'jazzcash', 'bit.ly', 'urgent', 'immediately',
-      'suspicious activity', 'verify now', 'click here', 'bank manager',
-      'delivery tax', 'courier', 'parcel'
-    ]
-  };
+  const isEn = language === 'en';
 
   const handleScan = () => {
     if (!inputText.trim()) return;
 
     soundEffects.playClick();
-    setIsScanning(true);
+    const result = analyzeMessage(inputText);
+    setAnalysis(result);
 
-    // Simulate scanning process
-    setTimeout(() => {
-      const keywords = scamKeywords[language] || scamKeywords.roman;
-      const lowerText = inputText.toLowerCase();
-      const foundKeywords = keywords.filter(kw => lowerText.includes(kw.toLowerCase()));
-
-      const scamScore = Math.min(foundKeywords.length * 20, 95);
-
-      let result = {
-        score: scamScore,
-        riskLevel: scamScore >= 60 ? 'high' : scamScore >= 30 ? 'medium' : 'low',
-        foundKeywords: foundKeywords,
-        recommendation: scamScore >= 60
-          ? (isUrdu ? 'اس میسج میں فراڈ کے مضبوط نشانات ہیں۔ بچوں یا بینک سے مشورہ کریں۔' : 'This message has strong scam indicators. Consult your children or bank.')
-          : (isUrdu ? 'یہ میسج نسبتاً محفوظ لگتا ہے، لیکن احتیاط برتیں۔' : 'This message appears relatively safe, but stay cautious.')
-      };
-
-      setScanResult(result);
-      setIsScanning(false);
-
-      if (scamScore >= 60) {
-        soundEffects.playError();
-      } else {
-        soundEffects.playSuccess();
-      }
-    }, 1500);
+    if (result.redFlagCount > 0) {
+      soundEffects.playError();
+    } else {
+      soundEffects.playSuccess();
+    }
   };
 
   const handleClear = () => {
     soundEffects.playClick();
     setInputText('');
-    setScanResult(null);
+    setAnalysis(null);
   };
+
+  const sampleMessages = [
+    {
+      label: isUrdu ? "احساس / بے نظیر انعام" : isEn ? "Ehsaas Prize Lure" : "Ehsaas Inaam Scam",
+      text: "Mubarak ho! Aapka Ehsaas Scheme mein Rs. 50,000 inaam nikla hai. Abhi foran is link par click kar ke ATM PIN darj karein warna cancel ho jayega: http://bit.ly/ehsaas-claim-2026 Rabta: 03001234567"
+    },
+    {
+      label: isUrdu ? "بینک اکاؤنٹ بلاک" : isEn ? "Bank Account Block" : "Bank Block Threat",
+      text: "HBL Alert: Aapka account suspicious activity ki wajah se freeze ho raha hai. Fauran OTP code 8492 batayein warna permanent block ho jayega. Call manager: 03219876543"
+    },
+    {
+      label: isUrdu ? "بجلی کا بل الرٹ (عام پیغام)" : isEn ? "Electricity Bill (Normal)" : "Utility Notice (Normal)",
+      text: "K-Electric Notice: Dear Consumer, your electricity bill for Account # 04000123456 is due on 15 Nov. Please pay through authorized bank branches or official banking apps. Thank you."
+    }
+  ];
 
   return (
     <div
-      className={`max-w-2xl mx-auto px-4 py-6 md:py-8 w-full flex-1 flex flex-col ${
+      className={`max-w-4xl mx-auto px-4 py-6 md:py-10 w-full flex-1 flex flex-col gap-6 animate-fadeIn ${
         babaJiMode ? 'elder-active' : ''
       } ${isUrdu ? 'font-urdu-mode' : ''}`}
       dir={isUrdu ? 'rtl' : 'ltr'}
     >
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      {/* Top Navigation */}
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b-[2px] border-[#1B2440]/15">
         <button
-          onClick={onGoHome}
-          className="w-10 h-10 rounded-2xl bg-white border-[2px] border-[#1B2440] hover:bg-[#FFF4E0] flex items-center justify-center text-[#1B2440] cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
+          onClick={() => {
+            soundEffects.playNav();
+            onGoHome();
+          }}
+          className="inline-flex items-center gap-2 px-5 min-h-[48px] rounded-2xl bg-white border-[2px] border-[#1B2440] font-space font-extrabold text-sm text-[#1B2440] hover:bg-slate-50 cursor-pointer active:scale-95 transition-all"
         >
           <ArrowLeft className="w-4 h-4" />
+          <span>{isUrdu ? "ہوم پر واپس" : "Back to Home"}</span>
         </button>
-        <div className="text-center">
-          <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#D4C5F9] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5">
-            {isUrdu ? 'اسکام اسکینر' : 'Scam Scanner'}
+
+        <span className="text-xs font-space font-black uppercase px-3.5 py-1.5 rounded-full bg-[#FFF1A8] text-[#1B2440] border-[2px] border-[#1B2440]">
+          {isUrdu ? "قواعد پر مبنی میسج اسکینر" : "Rule-Based Message Checker"}
+        </span>
+      </div>
+
+      {/* Mandatory Honest Rule-Based Badge & Privacy Notice */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="bg-[#FFF4E0] border-[2px] border-[#1B2440] rounded-2xl p-3.5 flex items-start gap-2.5 text-xs sm:text-sm font-bold text-[#1B2440]">
+          <Info className="w-5 h-5 text-[#BA1A1A] flex-shrink-0 mt-0.5" />
+          <span>
+            {isUrdu
+              ? "اہم نوٹ: یہ قواعد پر مبنی جانچ کار ہے (Rule-based checker)۔ یہ حفاظت کی ضمانت نہیں دے سکتا۔"
+              : "Rule-based checker. It searches known scam patterns and cannot guarantee safety."}
           </span>
         </div>
-        <div className="w-10"></div>
+
+        <div className="bg-white border-[2px] border-[#1B2440] rounded-2xl p-3.5 flex items-start gap-2.5 text-xs sm:text-sm font-bold text-[#1B2440]">
+          <Lock className="w-5 h-5 text-[#0F5A3E] flex-shrink-0 mt-0.5" />
+          <span>
+            {isUrdu
+              ? "آپ کا پیسٹ کیا گیا متن صرف اسی ڈیوائس پر رہتا ہے، کسی سرور پر نہیں جاتا۔"
+              : "Your text stays strictly on this device. Nothing is sent to any server or external API."}
+          </span>
+        </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col gap-6">
-        {/* Scanner Card */}
-        <div className="bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Sparkles className="w-5 h-5 text-[#1B2440]" />
-            <h2 className="font-space font-extrabold text-lg text-[#1B2440]">
-              {isUrdu ? 'مشکوک میسج پیسٹ کریں' : 'Paste Suspicious Message'}
-            </h2>
-          </div>
+      {/* Main Scanner Card */}
+      <div className="bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 sm:p-8 flex flex-col gap-5 shadow-[3px_3px_0px_#1B2440]">
+        <div>
+          <h1 className="font-space font-extrabold text-2xl sm:text-3xl text-[#1B2440]">
+            {isUrdu ? "مشکوک میسج یہاں پیسٹ کریں" : "Paste Suspicious Message Here"}
+          </h1>
+          <p className="text-sm font-bold text-[#1B2440]/75 mt-1">
+            {isUrdu 
+              ? "واٹس ایپ، ایس ایم ایس، یا فیس بک کا کوئی بھی پیغام یہاں ڈال کر جانچیں کہ آیا اس میں معلوم دھوکہ دہی کے نشانات ہیں۔" 
+              : "Analyze any SMS, WhatsApp forward, or payment message for known red flags like OTP demands, urgent threats, and fake links."}
+          </p>
+        </div>
 
-          <textarea
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            placeholder={isUrdu ? 'یہاں SMS یا واٹس ایپ میسج پیسٹ کریں...' : 'Paste SMS or WhatsApp message here...'}
-            className="w-full h-40 p-4 rounded-2xl border-[2px] border-[#1B2440] bg-[#FFF4E0] text-[#1B2440] font-bold text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#1B2440]"
-            dir={isUrdu ? 'rtl' : 'ltr'}
-          />
+        {/* Text Area */}
+        <textarea
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          placeholder={
+            isUrdu
+              ? "میسج یہاں پیسٹ کریں (مثال: مبارک ہو! آپ کا انعام نکلا ہے، او ٹی پی بتائیں)..."
+              : "Paste message here (e.g., Mubarak ho! Aapka inaam nikla hai, ATM PIN darj karein)..."
+          }
+          className="w-full h-36 p-4 rounded-2xl border-[2px] border-[#1B2440] bg-[#FFFBF5] text-[#1B2440] font-bold text-base resize-none focus:outline-none focus:ring-2 focus:ring-[#1B2440]"
+          dir={isUrdu ? 'rtl' : 'ltr'}
+          aria-label={isUrdu ? "مشکوک میسج ان پٹ" : "Suspicious message input"}
+        />
 
-          <div className="flex gap-3 mt-4">
-            <button
-              onClick={handleScan}
-              disabled={isScanning || !inputText.trim()}
-              className="flex-1 py-3 rounded-xl bg-[#1B2440] hover:bg-slate-800 text-white font-space font-black text-sm flex items-center justify-center gap-2 cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isScanning ? (
-                <>
-                  <span className="animate-spin">⏳</span>
-                  <span>{isUrdu ? 'اسکین ہو رہا ہے...' : 'Scanning...'}</span>
-                </>
-              ) : (
-                <>
-                  <Search className="w-4 h-4" />
-                  <span>{isUrdu ? 'اسکین کریں' : 'Scan Message'}</span>
-                </>
-              )}
-            </button>
-
-            <button
-              onClick={handleClear}
-              className="px-6 py-3 rounded-xl bg-white border-[2px] border-[#1B2440] text-[#1B2440] font-space font-black text-sm cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
-            >
-              {isUrdu ? 'صاف' : 'Clear'}
-            </button>
+        {/* Quick Sample Buttons */}
+        <div className="flex flex-col gap-2">
+          <span className="text-xs font-space font-bold uppercase tracking-wider text-[#1B2440]/70">
+            {isUrdu ? "یا نمونہ میسج سے ٹیسٹ کریں:" : "Or test with a sample message:"}
+          </span>
+          <div className="flex flex-wrap gap-2">
+            {sampleMessages.map((sample, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => {
+                  soundEffects.playClick();
+                  setInputText(sample.text);
+                  setAnalysis(null);
+                }}
+                className="px-3.5 py-2 rounded-xl bg-[#FFFBF5] hover:bg-[#FFF1A8] border-[1.5px] border-[#1B2440] text-xs sm:text-sm font-space font-extrabold text-[#1B2440] cursor-pointer transition-all active:scale-95"
+              >
+                {sample.label}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Scan Result */}
-        {scanResult && (
-          <div className={`rounded-3xl p-6 border-[2.5px] border-[#1B2440] animate-fadeIn ${
-            scanResult.riskLevel === 'high'
-              ? 'bg-[#FFE8E5]'
-              : scanResult.riskLevel === 'medium'
-              ? 'bg-[#FFF1A8]'
-              : 'bg-[#B8F2D0]'
-          }`}>
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                {scanResult.riskLevel === 'high' ? (
-                  <AlertTriangle className="w-6 h-6 text-[#BA1A1A]" />
-                ) : scanResult.riskLevel === 'medium' ? (
-                  <AlertTriangle className="w-6 h-6 text-[#FF8C00]" />
-                ) : (
-                  <CheckCircle2 className="w-6 h-6 text-[#2B7A4B]" />
-                )}
-                <h3 className="font-space font-black text-lg text-[#1B2440]">
-                  {isUrdu ? 'اسکین کا نتیجہ' : 'Scan Result'}
-                </h3>
-              </div>
-              <div className={`px-3 py-1 rounded-full text-xs font-black ${
-                scanResult.riskLevel === 'high'
-                  ? 'bg-[#BA1A1A] text-white'
-                  : scanResult.riskLevel === 'medium'
-                  ? 'bg-[#FF8C00] text-white'
-                  : 'bg-[#2B7A4B] text-white'
-              }`}>
-                {scanResult.score}% {isUrdu ? 'خطرہ' : 'Risk'}
-              </div>
-            </div>
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-3 pt-2">
+          <button
+            onClick={handleScan}
+            disabled={!inputText.trim()}
+            className="flex-1 min-h-[48px] px-6 rounded-2xl bg-[#1B2440] hover:bg-slate-800 text-white font-space font-black text-base flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            <Search className="w-5 h-5" />
+            <span>{isUrdu ? "میسج کی جانچ کریں" : "Analyze Message"}</span>
+          </button>
 
-            {/* Risk Meter */}
-            <div className="mb-4">
-              <div className="w-full h-4 bg-white/50 rounded-full overflow-hidden border border-[#1B2440]">
-                <div
-                  className={`h-full transition-all duration-500 ${
-                    scanResult.riskLevel === 'high'
-                      ? 'bg-[#BA1A1A]'
-                      : scanResult.riskLevel === 'medium'
-                      ? 'bg-[#FF8C00]'
-                      : 'bg-[#2B7A4B]'
-                  }`}
-                  style={{ width: `${scanResult.score}%` }}
-                ></div>
-              </div>
-            </div>
+          <button
+            onClick={handleClear}
+            className="px-6 min-h-[48px] rounded-2xl bg-white hover:bg-slate-100 border-[2px] border-[#1B2440] text-[#1B2440] font-space font-extrabold text-base flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-95"
+          >
+            <RotateCcw className="w-4 h-4" />
+            <span>{isUrdu ? "تمام مٹائیں" : "Clear Text"}</span>
+          </button>
+        </div>
+      </div>
 
-            {/* Found Keywords */}
-            {scanResult.foundKeywords.length > 0 && (
-              <div className="mb-4">
-                <p className="text-xs font-black text-[#1B2440] uppercase mb-2">
-                  {isUrdu ? 'پائے گئے نشانات:' : 'Found Indicators:'}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {scanResult.foundKeywords.map((keyword, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 rounded-lg bg-white border border-[#1B2440] text-xs font-bold text-[#1B2440]"
-                    >
-                      {keyword}
-                    </span>
-                  ))}
+      {/* Results Section */}
+      {analysis && (
+        <div className="bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 sm:p-8 flex flex-col gap-6 shadow-[3px_3px_0px_#1B2440] animate-fadeIn">
+          {analysis.redFlagCount > 0 ? (
+            <div className="flex flex-col gap-4">
+              <div className="flex items-start gap-3 p-4 bg-[#FFE8E5] border-[2px] border-[#BA1A1A] rounded-2xl text-[#BA1A1A]">
+                <ShieldAlert className="w-6 h-6 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h2 className="font-space font-black text-lg sm:text-xl">
+                    {isUrdu 
+                      ? `${analysis.redFlagCount} خطرناک نشانات ملے ہیں!` 
+                      : `${analysis.redFlagCount} Red Flags Detected!`}
+                  </h2>
+                  <p className="text-sm font-bold text-[#1B2440] mt-1 leading-relaxed">
+                    {isUrdu
+                      ? "اس پیغام میں جعل سازی اور دھوکہ دہی کے واضح ہتھکنڈے موجود ہیں۔ کسی بھی لنک پر کلک نہ کریں اور کوئی معلومات نہ دیں۔"
+                      : "This message matches patterns commonly used in financial fraud. Do not click links or send credentials."}
+                  </p>
                 </div>
               </div>
-            )}
 
-            {/* Recommendation */}
-            <div className="bg-white/50 rounded-xl p-4 border border-[#1B2440]/30">
-              <div className="flex items-start gap-2">
-                <ShieldCheck className="w-5 h-5 text-[#1B2440] flex-shrink-0 mt-0.5" />
-                <p className="text-sm font-bold text-[#1B2440] leading-relaxed">
-                  {scanResult.recommendation}
-                </p>
+              {/* Breakdown of Triggered Rules */}
+              <div className="flex flex-col gap-3">
+                <h3 className="font-space font-extrabold text-base text-[#1B2440]">
+                  {isUrdu ? "میسج میں پائے گئے ریڈ فلیگز کی وضاحت:" : "Detailed Rule Breakdown:"}
+                </h3>
+
+                {analysis.flagsFound.map((flag) => {
+                  const title = flag.title[language] || flag.title.roman;
+                  const desc = flag.description[language] || flag.description.roman;
+
+                  return (
+                    <div 
+                      key={flag.id}
+                      className="bg-[#FFFBF5] border-[2px] border-[#1B2440] rounded-2xl p-4 flex flex-col gap-2"
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <AlertTriangle className="w-4 h-4 text-[#BA1A1A]" />
+                          <h4 className="font-space font-extrabold text-base text-[#1B2440]">
+                            {title}
+                          </h4>
+                        </div>
+                        <span className="text-xs font-space font-black uppercase px-2.5 py-0.5 rounded-full bg-[#FFE8E5] text-[#BA1A1A] border border-[#BA1A1A]">
+                          {flag.severity}
+                        </span>
+                      </div>
+
+                      <p className="text-sm font-bold text-[#1B2440]/80 leading-relaxed">
+                        {desc}
+                      </p>
+
+                      {flag.triggers.length > 0 && (
+                        <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                          <span className="text-xs font-bold text-[#1B2440]/60">
+                            {isUrdu ? "پکڑے گئے الفاظ:" : "Triggered words:"}
+                          </span>
+                          {flag.triggers.map((t, idx) => (
+                            <span 
+                              key={idx}
+                              className="px-2 py-0.5 rounded-md bg-[#FFE8E5] text-[#BA1A1A] border border-[#BA1A1A]/40 text-xs font-black"
+                            >
+                              "{t}"
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* What to do next */}
+              <div className="bg-[#B8F2D0]/40 border-[2px] border-[#0F5A3E] rounded-2xl p-4 flex flex-col gap-2 text-[#1B2440]">
+                <h4 className="font-space font-black text-base text-[#0F5A3E]">
+                  {isUrdu ? "اب آپ کو کیا کرنا چاہیے؟" : "What Should You Do Now?"}
+                </h4>
+                <ul className="list-disc list-inside space-y-1 text-sm font-bold leading-relaxed">
+                  <li>
+                    {isUrdu 
+                      ? "اس نمبر کو فوراً واٹس ایپ یا موبائل پر بلاک کر دیں۔" 
+                      : "Block this sender immediately on WhatsApp or SMS."}
+                  </li>
+                  <li>
+                    {isUrdu 
+                      ? "اگر کسی نے بینک کے نام سے کال کی ہے، تو فون کاٹ کر بینک کی ہیلپ لائن پر خود کال کریں۔" 
+                      : "If someone called pretending to be a bank, hang up and call the official bank hotline."}
+                  </li>
+                  <li>
+                    {isUrdu 
+                      ? "کوئی مالی نقصان ہوا ہو تو فوراً ایف آئی اے سائبر کرائم 1991 پر کال کریں۔" 
+                      : "If unauthorized transactions occurred, dial FIA Cyber Crime at 1991."}
+                  </li>
+                </ul>
               </div>
             </div>
-          </div>
-        )}
-
-        {/* Safety Tips */}
-        <div className="bg-[#B8F2D0] border-[2px] border-[#1B2440] rounded-2xl p-4">
-          <div className="flex items-start gap-3">
-            <ShieldCheck className="w-5 h-5 text-[#1B2440] flex-shrink-0 mt-0.5" />
-            <div>
-              <span className="font-space font-black text-xs text-[#1B2440] block uppercase mb-1">
-                {isUrdu ? 'محفوظ رہنے کے طریقے' : 'Safety Tips'}
-              </span>
-              <ul className="text-xs text-[#1B2440] font-bold space-y-1 leading-relaxed">
-                <li>• {isUrdu ? 'کبھی بھی او ٹی پی کسی کو نہیں بتائیں' : 'Never share OTP with anyone'}</li>
-                <li>• {isUrdu ? 'کسی انجانے لنک پر کلک نہ کریں' : 'Don\'t click on unknown links'}</li>
-                <li>• {isUrdu ? 'مشکوک میسج ہو تو بچوں سے پوچھیں' : 'Ask your children about suspicious messages'}</li>
-              </ul>
+          ) : (
+            /* Low Score / Zero flags found -> MUST NEVER say safe */
+            <div className="p-5 bg-[#FFF4E0] border-[2px] border-[#1B2440] rounded-2xl flex flex-col gap-3 text-[#1B2440]">
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-6 h-6 text-[#0F5A3E] flex-shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="font-space font-black text-lg text-[#1B2440]">
+                    {isUrdu 
+                      ? "کوئی معلوم خطرہ نہیں ملا" 
+                      : isEn 
+                        ? "No Known Red Flags Found" 
+                        : "Koi Maloom Khatra Nahi Mila"}
+                  </h3>
+                  <p className="text-sm font-bold text-[#1B2440]/80 mt-1 leading-relaxed">
+                    {isUrdu
+                      ? "یہ حفاظت کی ضمانت نہیں ہے۔ نئے فراڈ نت نئے طریقے اپناتے ہیں۔ کبھی بھی اپنا او ٹی پی یا پن کسی سے شیئر نہ کریں۔ شک کی صورت میں بچوں سے پوچھیں یا 1991 پر کال کریں۔"
+                      : "No known red flags found. This is not a guarantee. Never share OTP or PIN. When unsure, ask family or call 1991."}
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
-      </div>
+      )}
     </div>
   );
 }

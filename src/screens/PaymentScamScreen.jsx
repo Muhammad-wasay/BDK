@@ -1,25 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   ArrowLeft,
   AlertTriangle,
   CheckCircle2,
   ShieldCheck,
-  Smartphone,
-  CreditCard,
-  Copy,
-  Eye,
-  EyeOff
+  CreditCard
 } from 'lucide-react';
-import { TRANSLATIONS } from '../data/translations';
 import soundEffects from '../utils/soundEffects';
-import { EasyPaisaLogo, JazzCashLogo } from '../components/BrandLogos';
+import { EasyPaisaLogo } from '../components/BrandLogos';
 
 export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'roman' }) {
-  const [showDetails, setShowDetails] = useState(false);
   const [userChoice, setUserChoice] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
 
-  const t = TRANSLATIONS[language] || TRANSLATIONS.roman;
   const isUrdu = language === 'urdu';
 
   const paymentScenarios = {
@@ -117,7 +110,7 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
           <ArrowLeft className="w-4 h-4" />
         </button>
         <div className="text-center">
-          <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#FFD3B6] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5">
+          <span className="text-xs font-space font-extrabold uppercase tracking-wider bg-[#FFD3B6] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-3 py-1">
             Level 3 • Payment Scam Detection
           </span>
         </div>
@@ -130,7 +123,7 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
           {/* Header */}
           <div className="bg-[#00A651] p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <EasyPaisaLogo className="h-7 w-auto bg-white/95 p-1 rounded-lg" />
+              <EasyPaisaLogo className="h-7 w-auto" />
               <span className="font-space font-black text-white">{scenario.sender}</span>
             </div>
             <span className="text-xs font-bold text-white/80">
@@ -308,6 +301,13 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
           </p>
         </div>
       </div>
+
+      {/* Trademark Disclaimer */}
+      <p className="mt-4 text-center text-xs font-bold text-[#1B2440]/65">
+        {isUrdu
+          ? "پریکٹس کی مثال۔ یہ پلیٹ فارم ان کمپنیوں سے باضابطہ طور پر منسلک یا تصدیق شدہ نہیں ہے۔"
+          : "Practice example. Not affiliated with or endorsed by these companies."}
+      </p>
     </div>
   );
 }

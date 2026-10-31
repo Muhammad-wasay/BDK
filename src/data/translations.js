@@ -1,14 +1,16 @@
 // BinaDarKe - Multi-Language Content System (Pure Roman Urdu, Urdu Script, and English)
+import { BRAND } from './brand';
 
 export const TRANSLATIONS = {
   roman: {
     langName: "Roman Urdu",
     banner: "Yahan ghalti karne par koi paisa nahi katega. Bilkul be-khauf seekhein!",
-    safeBadge: "100% Mehfooz Sandbox",
+    safeBadge: "Practice Space: Zero Financial Risk",
     navHome: "Home",
     navGuided: "Guided Practice",
     navSolo: "Solo Test",
     navAbout: "About",
+    navPrivacy: "Privacy",
     navSimulators: "Simulators",
     navResult: "Results",
     navPhone: "Phone Call",
@@ -35,17 +37,16 @@ export const TRANSLATIONS = {
     heroCardTitle: "WhatsApp Fraud Sandbox",
     heroCardSender: "Ghair-Tasdeeq Shuda Contact",
     heroCardAlert: "Bank kabhi bhi achanak lottery ka link ya ATM PIN nahi maangta!",
-    heroSafeNote: "100% Mehfooz Sandbox • Asli Bank se koi taluq nahi",
+    heroSafeNote: "Practice only: nothing real is sent • Asli Bank se koi taluq nahi",
     heroCardMessage1: "Mubarak! Aapka 50,000 Inaam Nikla Hai!",
     heroCardMessage2: "Fauran is link par click kar ke ATM PIN darj karein:",
     heroCardSimButton1: "Dhoka Hai",
     heroCardSimButton2: "Block Karein",
-    elderStory: 'Mujhe hamesha darr rehta tha ke phone par koi ghalt button dab gaya to paise kat jayenge. BinaDarKe ne mera darr hamesha ke liye nikal diya!',
 
     // Feature Bento
     featuresTitle: "BinaDarKe Kyun Zaroori Hai?",
     featuresSubtitle: "Waldein aur buzurg technology se darr kar nahi, balke fakhar se chala sakein.",
-    feat1Title: "Zero Real Money Nuqsan",
+    feat1Title: "Ghalti Par Zero Nuqsan",
     feat1Desc: "Yahan aap jitni marzi practice karein, aapka ek rupya bhi zaya nahi hoga. Ghalti se hi seekha jata hai.",
     feat2Title: "Aasan Zubaan aur Audio Guide",
     feat2Desc: "Agar parhne mein mushkil ho to har baat aawaz mein suniye. Har sawal rozmarra ke aasan alfaz mein hai.",
@@ -86,7 +87,7 @@ export const TRANSLATIONS = {
     resultSubheading: "Bina kisi darr ke aapne scams ko behtareen tareeqay se pehchana.",
     resultTotalScore: "Aapka Kul Score",
     resultScoreDesc: "messages bilkul sahi pehchane!",
-    resultZeroRisk: "Zero Real Money Nuqsan",
+    resultZeroRisk: "Practice Only: Zero Financial Risk",
     resultConfidenceTitle: "Scam Pehchan Confidence Level",
     resultAvatarQuote: "Shabash! Aapne Bank OTP, Fake Lottery, aur Courier fraud ko pehchan liya. Ab aap be-khauf mobile chala saktay hain.",
     resultBreakdownTitle: "Aapki Practice Ka Tafseeli Jaiza",
@@ -130,10 +131,11 @@ export const TRANSLATIONS = {
   urdu: {
     langName: "اردو",
     banner: "یہاں غلطی کرنے پر کوئی پیسہ نہیں کٹے گا۔ بالکل بے خوف ہو کر سیکھیں!",
-    safeBadge: "۱۰۰٪ محفوظ سینڈ باکس",
+    safeBadge: "محفوظ پریکٹس گراؤنڈ — کوئی حقیقی رقم نہیں",
     navHome: "ہوم",
     navGuided: "رہنمائی مشق",
     navAbout: "تعارف",
+    navPrivacy: "پرائیویسی",
     navSimulators: "سمیولیشنز",
     navSolo: "ٹیسٹ",
     navResult: "نتیجہ",
@@ -148,11 +150,11 @@ export const TRANSLATIONS = {
       "کسی انجانے لنک پر کلک نہ کریں",
       "بینک کبھی فون پر پاس ورڈ نہیں مانگتا",
       "جلد بازی میں فیصلہ مت کریں",
-      "۱۰۰٪ محفوظ تعلیمی ماحول"
+      "تعلیمی مشق — زیرو رسک"
     ],
     heroTag: "والدین اور بزرگوں کے لیے مکمل محفوظ ماحول",
     heroTitle1: "فراڈ پہچانیں،",
-    heroTitleAccent: "بغیر ڈر",
+    heroTitleAccent: "بنا ڈر",
     heroTitle2: " کے۔",
     heroSubtitle: "جعلی واٹس ایپ پیغامات، لاٹری فراڈ، اور او ٹی پی چوروں سے ہوشیار رہیں۔ یہاں غلطی کرنے پر بھی ایک روپے کا نقصان نہیں ہوگا۔",
     ctaStart: "مشق شروع کریں",
@@ -161,15 +163,14 @@ export const TRANSLATIONS = {
     heroCardTitle: "واٹس ایپ فراڈ نمونہ",
     heroCardSender: "غیر تصدیق شدہ رابطہ",
     heroCardAlert: "بینک کبھی بھی اچانک لاٹری کا لنک یا اے ٹی ایم پن نہیں مانگتا!",
-    heroSafeNote: "مکمل محفوظ سینڈ باکس • اصلی بینک سے کوئی تعلق نہیں",
+    heroSafeNote: "صرف مشق کے لیے: کوئی حقیقی رقم نہیں جاتی • اصلی بینک سے کوئی تعلق نہیں",
     heroCardMessage1: "مبارک ہو! آپ کا ۵۰،۰۰۰ روپے انعام نکلا ہے۔",
     heroCardMessage2: "فوری طور پر اس لنک پر کلک کر کے اے ٹی ایم پن درج کریں:",
     heroCardSimButton1: "دھوکہ ہے",
     heroCardSimButton2: "بلاک کریں",
-    elderStory: 'پہلے فون پر کوئی میسج آتا تھا تو ڈر لگتا تھا کہ کہیں کوئی غلط بٹن دبنے سے پیسے نہ کٹ جائیں۔ بغیر ڈر کے نے سارا خوف ختم کر دیا۔',
 
     // Feature Bento
-    featuresTitle: "بغیر ڈر کے کیوں ضروری ہے؟",
+    featuresTitle: `${BRAND.urdu} کیوں ضروری ہے؟`,
     featuresSubtitle: "والدین اور بزرگ ٹیکنالوجی سے خوفزدہ ہوئے بغیر فخر سے موبائل استعمال کر سکیں۔",
     feat1Title: "صفر مالی نقصان",
     feat1Desc: "یہاں آپ جتنی چاہیں غلطیاں کریں، آپ کا کوئی پیسہ ضائع نہیں ہوگا۔ غلطی کر کے ہی انسان سیکھتا ہے۔",
@@ -185,7 +186,7 @@ export const TRANSLATIONS = {
     guidedNextBtn: "خود ٹیسٹ کی طرف چلیں",
     guidedAdviceTitle: "استاد کی نصیحت",
     guidedAdviceSubtitle: "فراڈ کرنے والے اکثر یہ ۴ ہتھکنڈے استعمال کرتے ہیں:",
-    guidedRuleTitle: "بغیر ڈر کے اصول:",
+    guidedRuleTitle: `${BRAND.urdu} اصول:`,
     guidedRuleDesc: "جب بھی ایسا کوئی پیغام آئے: پہلے رکیں، سانس لیں، اور بچوں یا بینک ہیلپ لائن سے تصدیق کریں۔",
 
     // Solo Practice
@@ -240,9 +241,9 @@ export const TRANSLATIONS = {
 
     // About Platform Section
     aboutTag: "ہمارا مقصد",
-    aboutTitle: "بغیر ڈر کے کیوں بنایا گیا؟",
+    aboutTitle: `${BRAND.urdu} کیوں بنایا گیا؟`,
     aboutP1: "پاکستان میں ڈیجیٹل بینکنگ عام ہونے کے بعد ہمارے بزرگ سب سے زیادہ نشانہ بن رہے ہیں۔ اکثر بچے ڈانٹنے کے ڈر سے بزرگ غلطی بتاتے ہی نہیں۔",
-    aboutP2: "بغیر ڈر کے کا مقصد اس خوف کو ختم کرنا ہے تاکہ ہر فرد عزت اور اعتماد کے ساتھ موبائل چلا سکے۔",
+    aboutP2: `${BRAND.urdu} کا مقصد اس خوف کو ختم کرنا ہے تاکہ ہر فرد عزت اور اعتماد کے ساتھ موبائل چلا سکے۔`,
 
     // Data Privacy Guarantee
     privacyTag: "ڈیٹا کی مکمل حفاظت",
@@ -256,10 +257,11 @@ export const TRANSLATIONS = {
   en: {
     langName: "English",
     banner: "Safe space to learn: Mistakes cost nothing. Explore freely without any fear!",
-    safeBadge: "100% Safe Sandbox",
+    safeBadge: "Practice Space: Zero Financial Risk",
     navHome: "Home",
     navGuided: "Guided Practice",
     navAbout: "About",
+    navPrivacy: "Privacy",
     navSimulators: "Simulators",
     navSolo: "Solo Test",
     navResult: "Results",
@@ -274,7 +276,7 @@ export const TRANSLATIONS = {
       "Do not click on unknown links",
       "Banks never ask for your password on phone calls",
       "Never rush into decisions under pressure",
-      "100% Educational Sandbox"
+      "Educational Practice Space"
     ],
     heroTag: "Safe Scam Sandbox for Families & Elders",
     heroTitle1: "Spot Scams.",
@@ -287,12 +289,11 @@ export const TRANSLATIONS = {
     heroCardTitle: "WhatsApp Scam Simulator",
     heroCardSender: "Unverified Contact",
     heroCardAlert: "Banks will never ask for your ATM PIN or sudden lottery links!",
-    heroSafeNote: "100% Educational Sandbox • No Real Bank Connection",
+    heroSafeNote: "Practice only: nothing real is sent • No Real Bank Connection",
     heroCardMessage1: "Congratulations! You've won PKR 50,000!",
     heroCardMessage2: "Click this link immediately and enter your ATM PIN:",
     heroCardSimButton1: "It's a Scam",
     heroCardSimButton2: "Block It",
-    elderStory: 'I used to be scared that pressing the wrong button would cost me money. BinaDarKe has removed that fear forever!',
 
     // Feature Bento
     featuresTitle: "Why BinaDarKe Matters",
@@ -338,7 +339,7 @@ export const TRANSLATIONS = {
     resultSubheading: "You identified digital scams confidently and without hesitation.",
     resultTotalScore: "Your Total Score",
     resultScoreDesc: "scam alerts correctly identified!",
-    resultZeroRisk: "Zero Real Money Lost Guarantee",
+    resultZeroRisk: "Practice Only: Zero Financial Risk",
     resultConfidenceTitle: "Scam Detection Confidence Level",
     resultAvatarQuote: "Well done! You successfully identified Bank OTP, Fake Lottery, and Courier traps. You are ready to use your phone with peace of mind.",
     resultBreakdownTitle: "Detailed Scenario Breakdown",

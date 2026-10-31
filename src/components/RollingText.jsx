@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * RollingText:
  * Kinetic wave text-flip animation on hover.

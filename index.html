@@ -1,18 +1,31 @@
 <!doctype html>
-<html lang="ur-PK" translate="no" class="notranslate">
+<html lang="ur-PK" translate="no" class="notranslate" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="google" content="notranslate" />
     <link rel="icon" type="image/png" href="/favicon-logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BinaDarKe | Anti-Scam Training</title>
+    <meta name="description" content="BinaDarKe (بنا ڈر کے) - A free interactive practice space for Pakistani families and elders to recognize digital scams without financial risk." />
+    <meta name="theme-color" content="#FFF4E0" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <title>BinaDarKe (بنا ڈر کے) • Free Anti-Scam Practice Space</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Noto+Sans+Arabic:wght@400;600;700;800&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
   </head>
-  <body class="min-h-screen">
+  <body class="min-h-screen bg-[#FFF4E0]">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.log('[SW registration failed]:', err);
+          });
+        });
+      }
+    </script>
   </body>
 </html>

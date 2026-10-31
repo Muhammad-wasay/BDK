@@ -19,20 +19,67 @@ export default function UrduVoiceoverBar({
   const words = text ? text.split(/\s+/) : [];
 
   // Match text to ElevenLabs recorded audio files in public/audio/
+  // Works for both Roman Urdu and Urdu script!
   const getAudioFile = (t) => {
     if (!t) return null;
     const s = t.toLowerCase();
-    if (s.includes('khush-aamdeed') || s.includes('خوش آمدید') || s.includes('welcome to binadarke')) return '/audio/welcome_intro.mp3';
-    if (s.includes('4 ahem nishan') || s.includes('۴ اہم نشانات') || s.includes('4 critical red flags') || s.includes('ghor se dekhein')) return '/audio/guided_intro.mp3';
-    if (s.includes('pehli nishani') || s.includes('پہلی نشانی') || s.includes('first red flag') || s.includes('ghair mamooli')) return '/audio/redflag_1.mp3';
-    if (s.includes('doosri nishani') || s.includes('دوسری نشانی') || s.includes('second red flag') || s.includes('khufia pin')) return '/audio/redflag_2.mp3';
-    if (s.includes('teesri nishani') || s.includes('تیسری نشانی') || s.includes('third red flag') || s.includes('jaldbazi')) return '/audio/redflag_3.mp3';
-    if (s.includes('chouthi nishani') || s.includes('چوتھی نشانی') || s.includes('fourth red flag') || s.includes('mashkook link')) return '/audio/redflag_4.mp3';
-    if (s.includes('sawal number aik') || s.includes('سوال نمبر ایک') || s.includes('question 1') || s.includes('solo-1')) return '/audio/solo_1.mp3';
-    if (s.includes('sawal number do') || s.includes('سوال نمبر دو') || s.includes('question 2') || s.includes('solo-2')) return '/audio/solo_2.mp3';
-    if (s.includes('sawal number teen') || s.includes('سوال نمبر تین') || s.includes('question 3') || s.includes('solo-3')) return '/audio/solo_3.mp3';
-    if (s.includes('hbl') || s.includes('bank manager') || s.includes('بینک مینیجر')) return '/audio/bank_call.mp3';
-    if (s.includes('yaad rakhain') || s.includes('یاد رکھیں') || s.includes('golden rule')) return '/audio/golden_rule.mp3';
+    
+    // 1. Landing Welcome Intro (User's custom uploaded audio)
+    if (
+      s.includes('khush-aamdeed') || 
+      s.includes('خوش آمدید') || 
+      s.includes('welcome to binadarke') || 
+      s.includes('assalamu alaykum') || 
+      s.includes('assalam-o-alaikum') || 
+      s.includes('السلام علیکم')
+    ) {
+      return '/audio/welcome_intro.mp3';
+    }
+
+    // 2. Guided Practice Intro
+    if (
+      s.includes('4 ahem nishan') || 
+      s.includes('۴ اہم نشانات') || 
+      s.includes('4 critical red flags') || 
+      s.includes('ghor se dekhein') ||
+      s.includes('غور سے دیکھیں')
+    ) {
+      return '/audio/guided_intro.mp3';
+    }
+
+    // 3. Guided Practice Red Flags 1 to 4
+    if (s.includes('pehli nishani') || s.includes('پہلی نشانی') || s.includes('first red flag') || s.includes('ghair mamooli') || s.includes('غیر معمولی')) {
+      return '/audio/redflag_1.mp3';
+    }
+    if (s.includes('doosri nishani') || s.includes('دوسری نشانی') || s.includes('second red flag') || s.includes('khufia pin') || s.includes('خفیہ پن') || s.includes('خفیہ پاس ورڈ')) {
+      return '/audio/redflag_2.mp3';
+    }
+    if (s.includes('teesri nishani') || s.includes('تیسری نشانی') || s.includes('third red flag') || s.includes('jaldbazi') || s.includes('جلد بازی')) {
+      return '/audio/redflag_3.mp3';
+    }
+    if (s.includes('chouthi nishani') || s.includes('چوتھی نشانی') || s.includes('fourth red flag') || s.includes('mashkook link') || s.includes('مشکوک لنک')) {
+      return '/audio/redflag_4.mp3';
+    }
+
+    // 4. Solo Practice Scenarios 1 to 3
+    if (s.includes('sawal number aik') || s.includes('سوال نمبر ایک') || s.includes('question 1') || s.includes('solo-1')) {
+      return '/audio/solo_1.mp3';
+    }
+    if (s.includes('sawal number do') || s.includes('سوال نمبر دو') || s.includes('question 2') || s.includes('solo-2')) {
+      return '/audio/solo_2.mp3';
+    }
+    if (s.includes('sawal number teen') || s.includes('سوال نمبر تین') || s.includes('question 3') || s.includes('solo-3')) {
+      return '/audio/solo_3.mp3';
+    }
+
+    // 5. Bank Manager Call & Golden Rule
+    if (s.includes('hbl') || s.includes('bank manager') || s.includes('بینک مینیجر')) {
+      return '/audio/bank_call.mp3';
+    }
+    if (s.includes('yaad rakhain') || s.includes('یاد رکھیں') || s.includes('golden rule') || s.includes('سنہری اصول')) {
+      return '/audio/golden_rule.mp3';
+    }
+
     return null;
   };
 
@@ -46,7 +93,7 @@ export default function UrduVoiceoverBar({
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-    if ('speechSynthesis' in window) {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
     setIsPlaying(false);
@@ -76,7 +123,7 @@ export default function UrduVoiceoverBar({
     const audioSrc = getAudioFile(text);
 
     if (audioSrc) {
-      // 1. PLAY ACTUAL ELEVENLABS MP3 RECORDING
+      // 1. PLAY ACTUAL ELEVENLABS MP3 RECORDING (Both Urdu & Roman Urdu)
       const audio = new Audio(audioSrc);
       audioRef.current = audio;
 
@@ -114,7 +161,7 @@ export default function UrduVoiceoverBar({
   };
 
   const fallbackToBrowserSpeech = () => {
-    if (!('speechSynthesis' in window)) return;
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
@@ -165,7 +212,7 @@ export default function UrduVoiceoverBar({
               {label}
             </span>
             <span className="text-[11px] font-bold text-[#1B2440]/60">
-              {isPlaying ? (isEn ? "Playing studio voice..." : "اصلی آواز چل رہی ہے...") : (isEn ? "Click listen for spoken guidance" : "سننے کے لیے بٹن دبائیں")}
+              {isPlaying ? (isEn ? "Playing voice..." : "آواز چل رہی ہے...") : (isEn ? "Click listen for spoken guidance" : "سننے کے لیے بٹن دبائیں")}
             </span>
           </div>
         </div>
@@ -173,7 +220,7 @@ export default function UrduVoiceoverBar({
         {/* Play/Stop Button */}
         <div className="flex items-center gap-2">
           <span className="px-2.5 py-1 rounded-xl bg-[#B8F2D0] border border-[#1B2440] text-[11px] font-space font-extrabold text-[#1B2440]">
-            {isEn ? "English Voice" : "ElevenLabs اردو"}
+            {isEn ? "English Voice" : "اردو آواز (ElevenLabs)"}
           </span>
 
           <button

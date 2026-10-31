@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Award, Printer, Share2, X, Check, ShieldCheck } from 'lucide-react';
+import { useState } from 'react';
+import { Award, Printer, Share2, X, ShieldCheck } from 'lucide-react';
+import { BRAND } from '../data/brand';
 
 export default function CertificateModal({ isOpen, onClose, score, totalQuestions, language = 'roman' }) {
   const [userName, setUserName] = useState('Abba Jan');
@@ -21,13 +22,17 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
   };
 
   const handleShareWhatsApp = () => {
-    const text = `🎉 Assalamu Alaikum! Maine BinaDarKe Anti-Scam Sandbox par ${score}/${totalQuestions} (${percentage}%) score hasil kiya hai aur 'Safe Citizen Certificate' hasil kiya hai! Check karein: https://binadarke.pk`;
+    const text = isUrdu
+      ? `🎉 السلام علیکم! میں نے ${BRAND.urdu} (${BRAND.roman}) پلیٹ فارم پر ${score}/${totalQuestions} (${percentage}%) اسکور حاصل کیا اور 'محفوظ شہری سند' حاصل کی! چیک کریں: https://binadarke.web.app`
+      : `🎉 Assalamu Alaikum! Maine ${BRAND.roman} Anti-Scam Sandbox par ${score}/${totalQuestions} (${percentage}%) score hasil kiya hai aur 'Safe Citizen Certificate' hasil kiya hai! Check karein: https://binadarke.web.app`;
     const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
 
   const handleCopy = () => {
-    const text = `🎉 Maine BinaDarKe Anti-Scam Sandbox par ${score}/${totalQuestions} score kiya!`;
+    const text = isUrdu
+      ? `🎉 میں نے ${BRAND.urdu} اینٹی اسکیم پلیٹ فارم پر ${score}/${totalQuestions} اسکور حاصل کیا!`
+      : `🎉 Maine ${BRAND.roman} Anti-Scam Sandbox par ${score}/${totalQuestions} score kiya!`;
     navigator.clipboard.writeText(text);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
@@ -50,7 +55,7 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
         </button>
 
         <div className="text-center mb-4">
-          <span className="text-[11px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full px-3 py-1">
+          <span className="text-xs font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full px-3 py-1">
             {isUrdu ? 'سرکاری اعزازی سند' : 'Safe Citizen Certificate'}
           </span>
           <h2 className="font-space font-bold text-2xl text-[#151E33] mt-2">
@@ -86,8 +91,8 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
             </div>
           </div>
 
-          <p className="font-space font-bold text-[11px] uppercase tracking-widest text-slate-500">
-            BinaDarKe Anti-Scam Training Platform
+          <p className="font-space font-bold text-xs uppercase tracking-widest text-slate-500">
+            {isUrdu ? `${BRAND.urdu} اینٹی اسکیم ٹریننگ پلیٹ فارم` : `${BRAND.en} Anti-Scam Training Platform`}
           </p>
           <h3 className="font-space font-bold text-xl sm:text-2xl text-[#151E33] mt-1">
             CERTIFICATE OF DIGITAL RESILIENCE
@@ -105,20 +110,20 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
 
           <div className="flex items-center justify-around gap-2 text-left text-xs">
             <div>
-              <span className="block text-[10px] text-slate-400 font-semibold uppercase">Score:</span>
+              <span className="block text-xs text-slate-500 font-bold uppercase">Score:</span>
               <span className="font-space font-bold text-sm text-[#151E33]">
                 {score} / {totalQuestions} ({percentage}%)
               </span>
             </div>
             <div>
-              <span className="block text-[10px] text-slate-400 font-semibold uppercase">Date:</span>
-              <span className="font-space font-bold text-sm text-[#151E33]">
+              <span className="block text-xs text-slate-500 font-bold uppercase">{isUrdu ? 'تاریخ:' : 'Date:'}</span>
+              <span className="font-space font-bold text-sm sm:text-base text-[#151E33]">
                 {today}
               </span>
             </div>
-            <div className="flex items-center gap-1 text-emerald-700 font-bold bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full text-[11px]">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>VERIFIED</span>
+            <div className="flex items-center gap-1.5 text-emerald-800 font-extrabold bg-emerald-50 border border-emerald-300 px-3 py-1 rounded-full text-xs">
+              <ShieldCheck className="w-4 h-4" />
+              <span>{isUrdu ? 'مشق مکمل' : 'PRACTICE COMPLETED'}</span>
             </div>
           </div>
         </div>

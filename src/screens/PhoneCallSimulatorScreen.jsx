@@ -2,13 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   Phone,
   PhoneOff,
-  Volume2,
   Play,
   Pause,
   ArrowLeft,
   AlertTriangle,
-  CheckCircle2,
-  ShieldCheck
+  CheckCircle2
 } from 'lucide-react';
 import { TRANSLATIONS } from '../data/translations';
 import soundEffects from '../utils/soundEffects';
@@ -21,7 +19,6 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
   const [userDecision, setUserDecision] = useState(null);
   const callAudioRef = useRef(null);
 
-  const t = TRANSLATIONS[language] || TRANSLATIONS.roman;
   const isUrdu = language === 'urdu';
 
   useEffect(() => {

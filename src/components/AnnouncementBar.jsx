@@ -1,4 +1,3 @@
-import React from 'react';
 import { TRANSLATIONS } from '../data/translations';
 
 export default function AnnouncementBar({ language = 'roman' }) {

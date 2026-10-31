@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   ShieldCheck, 
   ArrowRight, 
@@ -12,25 +12,27 @@ import {
   Search
 } from 'lucide-react';
 import { TRANSLATIONS } from '../data/translations';
+import { BRAND } from '../data/brand';
 import UrduVoiceoverBar from '../components/UrduVoiceoverBar';
+import Testimonials from '../components/Testimonials';
 import soundEffects from '../utils/soundEffects';
 import { EasyPaisaLogo, JazzCashLogo, WhatsAppLogo, HBLLogo } from '../components/BrandLogos';
 
 export default function LandingScreen({ 
   onStartPractice, 
-  onOpenHelpline, 
   onGoToScreen,
   babaJiMode, 
   language = 'roman' 
 }) {
   const [showAudioIntro, setShowAudioIntro] = useState(false);
+  const [simFeedback, setSimFeedback] = useState(null); // { text, isScam }
   const t = TRANSLATIONS[language] || TRANSLATIONS.roman;
   const isUrdu = language === 'urdu';
 
   const introAudioMap = {
-    roman: "As-salamu alaykum! BinaDarKe mein khush-aamdeed. Ye waldein aur buzurgon ke liye ek mehfooz jagah hai jahan aap bila kisi khauf ke fake WhatsApp messages aur bank scams pehchanna seekh sakte hain. Practice Shuru Karein button par click karke aazmayein!",
-    urdu: "السلام علیکم! بغیر ڈر کے پلیٹ فارم پر خوش آمدید۔ یہ والدین اور بزرگوں کے لیے مکمل محفوظ ماحول ہے جہاں آپ بغیر کسی خوف کے ڈیجیٹل دھوکہ دہی اور فراڈ پہچاننا سیکھ سکتے ہیں۔ نیچے دیے گئے بٹن پر کلک کر کے مشق شروع کریں۔",
-    en: "Welcome to BinaDarKe! A safe, fear-free training sandbox designed for elders and families to recognize everyday online scams and phishing threats without any financial risk. Click Start Practice to begin."
+    roman: `As-salamu alaykum! ${BRAND.roman} mein khush-aamdeed. Ye waldein aur buzurgon ke liye ek mehfooz jagah hai jahan aap bila kisi khauf ke fake WhatsApp messages aur bank scams pehchanna seekh sakte hain. Practice Shuru Karein button par click karke aazmayein!`,
+    urdu: `السلام علیکم! ${BRAND.urdu} پلیٹ فارم پر خوش آمدید۔ یہ والدین اور بزرگوں کے لیے مکمل محفوظ ماحول ہے جہاں آپ بغیر کسی خوف کے ڈیجیٹل دھوکہ دہی اور فراڈ پہچاننا سیکھ سکتے ہیں۔ نیچے دیے گئے بٹن پر کلک کر کے مشق شروع کریں۔`,
+    en: `Welcome to ${BRAND.en}! A free practice space for families and elders to recognize everyday online scams and phishing threats without any financial risk. Click Start Practice to begin.`
   };
 
   const introAudioText = introAudioMap[language] || introAudioMap.roman;
@@ -52,7 +54,7 @@ export default function LandingScreen({
       }`}
       dir={isUrdu ? 'rtl' : 'ltr'}
     >
-      {/* 1. CLEAN HERO SECTION (Restrained Palette, Crisp Typography) */}
+      {/* 1. CLEAN HERO SECTION */}
       <section className="max-w-6xl mx-auto px-4 pt-8 pb-10 md:py-14 w-full animate-fadeInUp">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
@@ -78,7 +80,7 @@ export default function LandingScreen({
               {t.heroSubtitle}
             </p>
 
-            {/* Primary Action Buttons (Mint Brand Theme) */}
+            {/* Primary Action Buttons */}
             <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
               <button
                 onClick={() => {
@@ -86,7 +88,7 @@ export default function LandingScreen({
                   onStartPractice();
                 }}
                 type="button"
-                className="cursor-pointer flex items-center justify-center gap-3 px-8 h-13 rounded-2xl bg-[#B8F2D0] hover:bg-[#a6e6bf] text-[#1B2440] font-space font-black text-base sm:text-lg border-[2.5px] border-[#1B2440] active:scale-98 transition-all group"
+                className="cursor-pointer flex items-center justify-center gap-3 px-8 min-h-[48px] rounded-2xl bg-[#B8F2D0] hover:bg-[#a6e6bf] text-[#1B2440] font-space font-black text-base sm:text-lg border-[2.5px] border-[#1B2440] active:scale-98 transition-all group"
               >
                 <span>{t.ctaStart}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -98,9 +100,9 @@ export default function LandingScreen({
                   setShowAudioIntro(!showAudioIntro);
                 }}
                 type="button"
-                className="cursor-pointer flex items-center justify-center gap-2 px-5 h-13 rounded-2xl bg-white hover:bg-slate-50 text-[#1B2440] font-space font-bold text-sm border-[2px] border-[#1B2440] active:scale-98 transition-all"
+                className="cursor-pointer flex items-center justify-center gap-2 px-5 min-h-[48px] rounded-2xl bg-white hover:bg-slate-50 text-[#1B2440] font-space font-bold text-sm sm:text-base border-[2px] border-[#1B2440] active:scale-98 transition-all"
               >
-                <Volume2 className="w-4 h-4 text-[#1B2440]" />
+                <Volume2 className="w-5 h-5 text-[#1B2440]" />
                 <span>{showAudioIntro ? t.ctaAudioStop : t.ctaAudio}</span>
               </button>
             </div>
@@ -115,10 +117,10 @@ export default function LandingScreen({
 
           {/* Right Phone Sandbox Preview (5 cols) */}
           <div className="lg:col-span-5 relative flex items-center justify-center">
-            <div className="relative w-full max-w-[320px] sm:max-w-[340px]">
+            <div className="relative w-full max-w-[340px]">
               
-              {/* Phone Container (Pure White) */}
-              <div className="w-full bg-white rounded-[36px] border-[3px] border-[#1B2440] p-4 flex flex-col gap-3">
+              {/* Phone Container */}
+              <div className="w-full bg-white rounded-[36px] border-[3px] border-[#1B2440] p-4 flex flex-col gap-3 shadow-[3px_3px_0px_#1B2440]">
                 {/* Header with WhatsApp Logo */}
                 <div className="flex items-center justify-between pb-2 border-b-[2px] border-[#1B2440]/15">
                   <div className="flex items-center gap-1.5">
@@ -126,9 +128,9 @@ export default function LandingScreen({
                     <div className="w-2.5 h-2.5 rounded-full bg-[#B8F2D0] border border-[#1B2440]"></div>
                     <div className="w-2.5 h-2.5 rounded-full bg-[#1B2440] border border-[#1B2440]"></div>
                   </div>
-                  <div className="flex items-center gap-1.5 bg-[#B8F2D0] border border-[#1B2440] px-2.5 py-0.5 rounded-full">
-                    <WhatsAppLogo className="w-3.5 h-3.5" />
-                    <span className="text-[11px] font-space font-extrabold text-[#1B2440]">
+                  <div className="flex items-center gap-1.5 bg-[#B8F2D0] border border-[#1B2440] px-3 py-1 rounded-full">
+                    <WhatsAppLogo className="w-4 h-4" />
+                    <span className="text-xs font-space font-extrabold text-[#1B2440]">
                       WhatsApp Trap
                     </span>
                   </div>
@@ -145,7 +147,7 @@ export default function LandingScreen({
                     {t.heroCardMessage1 || "Mubarak! Aapka 50,000 Inaam Nikla Hai!"}
                   </p>
 
-                  <p className="text-xs font-bold text-[#1B2440]/80 leading-relaxed">
+                  <p className="text-xs sm:text-sm font-bold text-[#1B2440]/80 leading-relaxed">
                     {t.heroCardMessage2 || "Fauran is link par click kar ke ATM PIN darj karein:"}
                   </p>
 
@@ -155,38 +157,65 @@ export default function LandingScreen({
                 </div>
 
                 {/* Safe Advice Callout */}
-                <div className="bg-[#B8F2D0]/60 border-[2px] border-[#1B2440] rounded-xl p-2.5 text-xs font-bold text-[#1B2440] flex items-start gap-2">
+                <div className="bg-[#B8F2D0]/60 border-[2px] border-[#1B2440] rounded-xl p-3 text-xs sm:text-sm font-bold text-[#1B2440] flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#1B2440] flex-shrink-0 mt-0.5" />
                   <span>{t.heroCardAlert}</span>
                 </div>
+
+                {/* Simulated Feedback Banner (in-place instead of browser alert) */}
+                {simFeedback && (
+                  <div className={`p-3 rounded-xl border-[2px] border-[#1B2440] text-xs sm:text-sm font-bold animate-fadeIn ${
+                    simFeedback.isScam 
+                      ? 'bg-[#B8F2D0] text-[#0F5A3E]' 
+                      : 'bg-[#FFE8E5] text-[#BA1A1A]'
+                  }`}>
+                    {simFeedback.text}
+                  </div>
+                )}
 
                 {/* Simulated Decision Buttons */}
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   <button 
                     onClick={() => {
                       soundEffects.playError();
-                      alert("Trap! Click karne se pehle sochein! Bank kabhi phone par PIN nahi mangta.");
+                      setSimFeedback({
+                        isScam: false,
+                        text: isUrdu 
+                          ? "خبردار! یہ ایک ٹریپ ہے۔ بینک کبھی بھی فون یا میسج پر پن یا او ٹی پی نہیں مانگتا۔" 
+                          : "Trap! Real banks will never demand an ATM PIN or OTP over SMS or WhatsApp."
+                      });
                     }}
-                    className="bg-[#FFE8E5] border-[2px] border-[#1B2440] rounded-xl py-2 px-2 text-center text-xs font-space font-extrabold text-[#BA1A1A] hover:bg-[#ffd5d0] cursor-pointer active:scale-95"
+                    className="min-h-[48px] bg-[#FFE8E5] border-[2px] border-[#1B2440] rounded-xl py-2 px-2 text-center text-xs sm:text-sm font-space font-extrabold text-[#BA1A1A] hover:bg-[#ffd5d0] cursor-pointer active:scale-95"
                   >
                     {t.heroCardSimButton1 || "Link Kholiye"}
                   </button>
                   <button 
                     onClick={() => {
                       soundEffects.playSuccess();
-                      alert("Shabash! Yeh 100% scam tha. Block karna hi sahi faisla hai.");
+                      setSimFeedback({
+                        isScam: true,
+                        text: isUrdu 
+                          ? "شاباش! یہ ۱۰۰٪ فراڈ تھا۔ ایسے پیغامات کو فوراً بلاک کر دینا ہی درست فیصلہ ہے۔" 
+                          : "Well done! Blocking unknown lottery claims immediately is the correct safe response."
+                      });
                     }}
-                    className="bg-[#B8F2D0] border-[2px] border-[#1B2440] text-[#1B2440] rounded-xl py-2 px-2 text-center text-xs font-space font-extrabold hover:bg-[#a5e9c0] cursor-pointer active:scale-95"
+                    className="min-h-[48px] bg-[#B8F2D0] border-[2px] border-[#1B2440] text-[#1B2440] rounded-xl py-2 px-2 text-center text-xs sm:text-sm font-space font-extrabold hover:bg-[#a5e9c0] cursor-pointer active:scale-95"
                   >
                     {t.heroCardSimButton2 || "Block Karein"}
                   </button>
                 </div>
+
+                <p className="text-center text-xs font-bold text-[#1B2440]/60 pt-1">
+                  {isUrdu 
+                    ? "پریکٹس مثال: کچھ بھی اصل نہیں بھیجا جاتا۔" 
+                    : "Practice only: nothing real is sent."}
+                </p>
               </div>
 
               {/* Floating Badge */}
               <div className="absolute -top-3 -left-3 bg-[#B8F2D0] border-[2px] border-[#1B2440] rounded-xl px-3 py-1 flex items-center gap-1.5 text-xs font-space font-black text-[#1B2440] -rotate-6">
                 <ShieldCheck className="w-3.5 h-3.5" />
-                <span>100% Mehfooz</span>
+                <span>Practice Space</span>
               </div>
             </div>
           </div>
@@ -194,23 +223,23 @@ export default function LandingScreen({
         </div>
       </section>
 
-      {/* 2. MINIMALIST TRUST BAR (ZERO EMOJIS, CLEAN SVG ICONS) */}
-      <section className="max-w-4xl mx-auto px-4 pb-8 w-full flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-space font-extrabold text-[#1B2440]">
-        <div className="inline-flex items-center gap-2 bg-white border-[1.5px] border-[#1B2440] rounded-full px-4 py-1.5">
-          <Users className="w-3.5 h-3.5 text-[#0F5A3E]" />
+      {/* 2. MINIMALIST TRUST BAR */}
+      <section className="max-w-4xl mx-auto px-4 pb-8 w-full flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm font-space font-extrabold text-[#1B2440]">
+        <div className="inline-flex items-center gap-2 bg-white border-[1.5px] border-[#1B2440] rounded-full px-4 py-2">
+          <Users className="w-4 h-4 text-[#0F5A3E]" />
           <span>{isUrdu ? "پاکستانی خاندانوں کے لیے" : "Built for Pakistani Families"}</span>
         </div>
-        <div className="inline-flex items-center gap-2 bg-white border-[1.5px] border-[#1B2440] rounded-full px-4 py-1.5">
-          <ShieldCheck className="w-3.5 h-3.5 text-[#0F5A3E]" />
-          <span>{isUrdu ? "مکمل بے خوف سینڈ باکس" : "100% Fear-Free Sandbox"}</span>
+        <div className="inline-flex items-center gap-2 bg-white border-[1.5px] border-[#1B2440] rounded-full px-4 py-2">
+          <ShieldCheck className="w-4 h-4 text-[#0F5A3E]" />
+          <span>{isUrdu ? "پریکٹس سینڈ باکس — صفر مالی خطرہ" : "Practice Only: Zero Financial Risk"}</span>
         </div>
-        <div className="inline-flex items-center gap-2 bg-white border-[1.5px] border-[#1B2440] rounded-full px-4 py-1.5">
-          <Lock className="w-3.5 h-3.5 text-[#0F5A3E]" />
+        <div className="inline-flex items-center gap-2 bg-white border-[1.5px] border-[#1B2440] rounded-full px-4 py-2">
+          <Lock className="w-4 h-4 text-[#0F5A3E]" />
           <span>{isUrdu ? "بغیر کسی لاگ ان یا پاس ورڈ کے" : "No Account or Login Required"}</span>
         </div>
       </section>
 
-      {/* 3. PRACTICE MODULES (PURE WHITE CARDS, NO LASER BEAMS, CLEAN HOVER) */}
+      {/* 3. PRACTICE MODULES */}
       <section className="w-full bg-[#FFF4E0] border-y-[2px] border-[#1B2440]/15 py-12 md:py-16 animate-fadeInUp">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center max-w-xl mx-auto mb-10">
@@ -220,17 +249,17 @@ export default function LandingScreen({
             <h2 className="font-space font-extrabold text-2xl sm:text-3xl text-[#1B2440] mt-2.5">
               {isUrdu ? "روزمرہ کے ۳ خطرناک ترین فراڈ پہچانیں" : "Test Everyday Scam Scenarios"}
             </h2>
-            <p className="text-xs sm:text-sm font-semibold text-[#1B2440]/75 mt-1.5">
+            <p className="text-sm font-semibold text-[#1B2440]/75 mt-1.5">
               {isUrdu ? "کسی بھی ماڈیول پر کلک کر کے پریکٹس شروع کریں۔" : "Select any interactive simulation below to test your reflexes."}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            {/* Card 1: Fake Bank Manager Call (Pure White Background, Seamless Logo) */}
+            {/* Card 1: Fake Bank Manager Call */}
             <div 
               onClick={() => navigateTo('phone')}
-              className="group cursor-pointer bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all"
+              className="group cursor-pointer bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all shadow-[2px_2px_0px_#1B2440]"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -241,7 +270,7 @@ export default function LandingScreen({
                 </div>
 
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-[10px] font-space font-black uppercase px-2 py-0.5 rounded-full bg-[#FFE8E5] text-[#BA1A1A] border border-[#BA1A1A]">
+                  <span className="text-xs font-space font-black uppercase px-2.5 py-0.5 rounded-full bg-[#FFE8E5] text-[#BA1A1A] border border-[#BA1A1A]">
                     Live Call Simulation
                   </span>
                 </div>
@@ -249,23 +278,23 @@ export default function LandingScreen({
                 <h3 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440] group-hover:text-[#BA1A1A] transition-colors">
                   {isUrdu ? "جعلی بینک مینیجر کال" : "Fake Bank Manager Call"}
                 </h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#1B2440]/80 mt-1.5 leading-relaxed">
+                <p className="text-sm font-semibold text-[#1B2440]/80 mt-1.5 leading-relaxed">
                   {isUrdu 
                     ? "بینک مینیجر بن کر کال اور او ٹی پی یا پن چوری کا دباؤ۔" 
                     : "Simulated incoming aggressive bank call demanding your OTP. Learn to decline."}
                 </p>
               </div>
 
-              <div className="mt-5 pt-3 border-t-[1.5px] border-[#1B2440]/15 flex items-center justify-between text-xs font-space font-black text-[#1B2440]">
+              <div className="mt-5 pt-3 border-t-[1.5px] border-[#1B2440]/15 flex items-center justify-between text-xs sm:text-sm font-space font-black text-[#1B2440]">
                 <span className="text-[#BA1A1A]">Start Call Test</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
 
-            {/* Card 2: Fake Payment / EasyPaisa / JazzCash Trap (Pure White Background, Seamless Logo) */}
+            {/* Card 2: Fake Payment / EasyPaisa / JazzCash Trap */}
             <div 
               onClick={() => navigateTo('payment')}
-              className="group cursor-pointer bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all"
+              className="group cursor-pointer bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all shadow-[2px_2px_0px_#1B2440]"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -280,7 +309,7 @@ export default function LandingScreen({
                 </div>
 
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-[10px] font-space font-black uppercase px-2 py-0.5 rounded-full bg-[#B8F2D0] text-[#1B2440] border border-[#1B2440]">
+                  <span className="text-xs font-space font-black uppercase px-2.5 py-0.5 rounded-full bg-[#B8F2D0] text-[#1B2440] border border-[#1B2440]">
                     EasyPaisa & JazzCash
                   </span>
                 </div>
@@ -288,23 +317,23 @@ export default function LandingScreen({
                 <h3 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440] group-hover:text-[#0F5A3E] transition-colors">
                   {isUrdu ? "ادائیگی اور اسکرین شاٹ فراڈ" : "Payment & Screenshot Scam"}
                 </h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#1B2440]/80 mt-1.5 leading-relaxed">
+                <p className="text-sm font-semibold text-[#1B2440]/80 mt-1.5 leading-relaxed">
                   {isUrdu 
                     ? "ایزی پیسہ کی جعلی رسیدیں اور ریورس پیمنٹ کا جال پہچانیں۔" 
                     : "Spot doctored payment receipts and fake reverse-transfer entrapment."}
                 </p>
               </div>
 
-              <div className="mt-5 pt-3 border-t-[1.5px] border-[#1B2440]/15 flex items-center justify-between text-xs font-space font-black text-[#1B2440]">
+              <div className="mt-5 pt-3 border-t-[1.5px] border-[#1B2440]/15 flex items-center justify-between text-xs sm:text-sm font-space font-black text-[#1B2440]">
                 <span className="text-[#0F5A3E]">Inspect Screenshots</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
 
-            {/* Card 3: WhatsApp & SMS Link Scanner (Pure White Background, Seamless Logo) */}
+            {/* Card 3: WhatsApp & SMS Link Scanner */}
             <div 
               onClick={() => navigateTo('scanner')}
-              className="group cursor-pointer bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all"
+              className="group cursor-pointer bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all shadow-[2px_2px_0px_#1B2440]"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -315,7 +344,7 @@ export default function LandingScreen({
                 </div>
 
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-[10px] font-space font-black uppercase px-2 py-0.5 rounded-full bg-[#B8F2D0] text-[#1B2440] border border-[#1B2440]">
+                  <span className="text-xs font-space font-black uppercase px-2.5 py-0.5 rounded-full bg-[#B8F2D0] text-[#1B2440] border border-[#1B2440]">
                     WhatsApp & SMS Tool
                   </span>
                 </div>
@@ -323,51 +352,46 @@ export default function LandingScreen({
                 <h3 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440] group-hover:text-[#0F5A3E] transition-colors">
                   {isUrdu ? "مشکوک میسج اور لنک اسکینر" : "Scam Message & Link Scanner"}
                 </h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#1B2440]/80 mt-1.5 leading-relaxed">
+                <p className="text-sm font-semibold text-[#1B2440]/80 mt-1.5 leading-relaxed">
                   {isUrdu 
                     ? "کوئی بھی واٹس ایپ میسج پیسٹ کریں اور ریڈ فلیگز چیک کریں۔" 
                     : "Paste any suspicious SMS, lottery link, or message for instant analysis."}
                 </p>
               </div>
 
-              <div className="mt-5 pt-3 border-t-[1.5px] border-[#1B2440]/15 flex items-center justify-between text-xs font-space font-black text-[#1B2440]">
+              <div className="mt-5 pt-3 border-t-[1.5px] border-[#1B2440]/15 flex items-center justify-between text-xs sm:text-sm font-space font-black text-[#1B2440]">
                 <span className="text-[#0F5A3E]">Open Text Scanner</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
           </div>
+
+          {/* Trademark Disclaimer */}
+          <div className="mt-6 text-center text-xs font-bold text-[#1B2440]/65">
+            {isUrdu 
+              ? "پریکٹس کی مثال۔ یہ پلیٹ فارم ان کمپنیوں (EasyPaisa, JazzCash, HBL, WhatsApp) سے باضابطہ طور پر منسلک یا تصدیق شدہ نہیں ہے۔"
+              : "Practice example. BinaDarKe is an independent educational tool, not affiliated with or endorsed by EasyPaisa, JazzCash, HBL, or WhatsApp."}
+          </div>
         </div>
       </section>
 
-      {/* 4. COMPACT ELDER TESTIMONIAL BANNER (Pure White Card) */}
-      <section className="max-w-4xl mx-auto px-4 py-12 md:py-16 w-full animate-fadeInUp">
-        <div className="bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 sm:p-7 flex flex-col md:flex-row items-center gap-5">
-          <div className="w-14 h-14 rounded-2xl bg-[#FFFBF5] border-[2px] border-[#1B2440] text-[#1B2440] flex items-center justify-center text-2xl flex-shrink-0">
-            👴
-          </div>
-          <div className="text-left flex-1">
-            <p className="font-space font-bold text-sm sm:text-base text-[#1B2440] leading-snug">
-              {isUrdu 
-                ? '”پہلے فون پر کوئی میسج آتا تھا تو ڈر لگتا تھا کہ کہیں کوئی غلط بٹن دبنے سے پیسے نہ کٹ جائیں۔ بغیر ڈر کے نے سارا خوف ختم کر دیا۔“'
-                : '“Mujhe hamesha darr rehta tha ke phone par koi ghalt button dab gaya to paise kat jayenge. BinaDarKe ne mera darr hamesha ke liye nikal diya!”'}
-            </p>
-            <span className="block text-xs font-bold text-[#1B2440]/65 mt-1 uppercase tracking-wider">
-              — Haji Abdul Rasheed, Lahore (Age: 68)
-            </span>
-          </div>
-          <button
-            onClick={() => {
-              soundEffects.playClick();
-              onStartPractice();
-            }}
-            type="button"
-            className="w-full md:w-auto px-5 py-3 rounded-2xl bg-[#B8F2D0] hover:bg-[#a6e6bf] text-[#1B2440] border-[2px] border-[#1B2440] font-space font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer active:scale-98 transition-all"
-          >
-            <span>{t.ctaStart}</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
-      </section>
+      {/* 4. TARGET USER UNDERSTANDING & COMMUNITY TESTIMONIALS */}
+      <Testimonials language={language} babaJiMode={babaJiMode} variant="landing" />
+
+      {/* Floating Quick Action CTA Banner */}
+      <div className="max-w-4xl mx-auto px-4 pb-12 w-full flex justify-center">
+        <button
+          onClick={() => {
+            soundEffects.playClick();
+            onStartPractice();
+          }}
+          type="button"
+          className="w-full sm:w-auto px-8 min-h-[52px] rounded-2xl bg-[#B8F2D0] hover:bg-[#a6e6bf] text-[#1B2440] border-[2.5px] border-[#1B2440] font-space font-extrabold text-base sm:text-lg flex items-center justify-center gap-3 cursor-pointer shadow-[3px_3px_0px_#1B2440] active:scale-98 transition-all"
+        >
+          <span>{t.ctaStart}</span>
+          <ArrowRight className="w-5 h-5" />
+        </button>
+      </div>
     </div>
   );
 }

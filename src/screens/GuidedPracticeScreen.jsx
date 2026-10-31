@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   ArrowLeft, 
   ArrowRight, 
   Lightbulb, 
   AlertTriangle, 
-  CheckCircle2, 
   ShieldCheck
 } from 'lucide-react';
 import { GUIDED_SCENARIOS_DATA } from '../data/scenarios';
@@ -54,10 +53,10 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#FFF1A8] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5">
+              <span className="text-xs font-space font-extrabold uppercase tracking-wider bg-[#FFF1A8] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-3 py-1">
                 {t.guidedTag}
               </span>
-              <span className="text-xs text-[#1B2440]/70 font-bold">Step 1 of 2</span>
+              <span className="text-xs sm:text-sm text-[#1B2440]/75 font-bold">Step 1 of 2</span>
             </div>
             <h1 className="font-space font-extrabold text-2xl sm:text-3xl text-[#1B2440] mt-0.5">
               {t.guidedTitle}
@@ -91,7 +90,7 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
                 <div className="w-2.5 h-2.5 rounded-full bg-[#FFF1A8] border border-[#1B2440]"></div>
                 <div className="w-2.5 h-2.5 rounded-full bg-[#B8F2D0] border border-[#1B2440]"></div>
               </div>
-              <span className="text-[11px] font-space font-extrabold bg-[#FFF1A8] border-[1.5px] border-[#1B2440] text-[#1B2440] rounded-full px-2.5 py-0.5">
+              <span className="text-xs font-space font-extrabold bg-[#FFF1A8] border-[1.5px] border-[#1B2440] text-[#1B2440] rounded-full px-3 py-1">
                 WhatsApp Simulator
               </span>
             </div>
@@ -102,10 +101,10 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
                 👤
               </div>
               <div className="flex flex-col">
-                <span className="font-space font-extrabold text-xs text-[#1B2440] leading-none">
+                <span className="font-space font-extrabold text-xs sm:text-sm text-[#1B2440] leading-none">
                   {scenario.sender}
                 </span>
-                <span className="text-[10px] font-bold text-[#FF6B6B] mt-0.5">
+                <span className="text-xs font-bold text-[#FF6B6B] mt-0.5">
                   {scenario.senderStatus}
                 </span>
               </div>
@@ -168,13 +167,13 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
                   <span className="font-space font-extrabold text-xs text-[#FF6B6B] block underline break-all">
                     {scenario.rawMessage.fakeLink}
                   </span>
-                  <span className="block text-[11px] text-[#1B2440] font-black mt-1">
+                  <span className="block text-xs text-[#1B2440] font-black mt-1">
                     {scenario.rawMessage.linkText}
                   </span>
                 </button>
               </div>
 
-              <div className="flex justify-end text-[10px] text-[#1B2440]/60 font-bold pt-0.5">
+              <div className="flex justify-end text-xs text-[#1B2440]/70 font-bold pt-0.5">
                 <span>{scenario.simInfo}</span>
               </div>
             </div>
@@ -190,8 +189,8 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
                     </span>
                     <p className="text-xs text-[#1B2440] font-bold leading-snug mt-0.5">
                       {isUrdu 
-                        ? 'اصلی زندگی میں اس لنک پر کلک کرنے سے آپ کا موبائل ڈیٹا یا پاس ورڈ چوری ہو سکتا تھا!'
-                        : 'Asli zindagi mein is link par click karne se mobile hack ya password chori ho sakta tha! Lekin yahan aap 100% mehfooz hain.'}
+                        ? 'اصلی زندگی میں اس لنک پر کلک کرنے سے آپ کا موبائل ڈیٹا یا پاس ورڈ چوری ہو سکتا تھا! لیکن یہاں یہ صرف مشق ہے اور کوئی نقصان نہیں ہوگا۔'
+                        : 'Asli zindagi mein is link par click karne se mobile hack ya password chori ho sakta tha! Lekin yahan ye sirf practice hai aur koi nuqsan nahi hoga.'}
                     </p>
                   </div>
                 </div>
@@ -243,7 +242,7 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
                           <span className="font-space font-extrabold text-sm text-[#1B2440]">
                             {flag.title}
                           </span>
-                          <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-[#FFF4E0] text-[#1B2440] border-[1.5px] border-[#1B2440]">
+                          <span className="text-xs font-black px-2.5 py-0.5 rounded-full bg-[#FFF4E0] text-[#1B2440] border-[1.5px] border-[#1B2440]">
                             {flag.tag}
                           </span>
                         </div>
