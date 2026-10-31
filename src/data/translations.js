@@ -16,11 +16,11 @@ export const TRANSLATIONS = {
     babaMode: "Buzurg Mode",
     babaModeActive: "Buzurg Mode: ON",
     ticker: [
-      "🚨 OTP kisi ko nahi dena",
-      "🔗 Anjanay link par click na karein",
-      "📞 Bank kabhi phone par password ya PIN nahi maangta",
-      "🛑 Jaldbazi mein koi faisla na karein",
-      "💡 Ghar mein kisi bachay ya dost se mashwara karein"
+      "Apna bank OTP ya ATM PIN kisi ko na dein",
+      "Anjanay link par kabhi click na karein",
+      "Bank phone par password ya PIN nahi maangta",
+      "Jaldbazi mein koi maali faisla na karein",
+      "Har anjanay message ko pehle BinaDarKe par test karein"
     ],
     heroTag: "Waldein aur Buzurgon ke liye Khauf-Mukt Sikhnay ki Jagah",
     heroTitle1: "Scam pehchano.",

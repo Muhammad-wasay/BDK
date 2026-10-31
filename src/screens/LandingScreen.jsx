@@ -58,7 +58,7 @@ export default function LandingScreen({
       dir={isUrdu ? 'rtl' : 'ltr'}
     >
       {/* 1. HERO SECTION */}
-      <section className="max-w-6xl mx-auto px-4 pt-8 pb-14 md:py-16 w-full">
+      <section className="max-w-6xl mx-auto px-4 pt-8 pb-14 md:py-16 w-full animate-fadeInUp">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
           {/* Left Hero Content (7 cols) */}
@@ -208,7 +208,7 @@ export default function LandingScreen({
       </section>
 
       {/* 2. INTERACTIVE SIMULATORS & PRACTICE MODULES (FRIEND'S FEATURES INTEGRATION) */}
-      <section className="max-w-6xl mx-auto px-4 py-12 md:py-16 w-full border-t-[2.5px] border-[#1B2440]/20">
+      <section className="max-w-6xl mx-auto px-4 py-12 md:py-16 w-full border-t-[2.5px] border-[#1B2440]/20 animate-fadeInUp">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <span className="text-xs font-space font-black uppercase tracking-wider bg-[#FFF1A8] text-[#1B2440] border-[2px] border-[#1B2440] rounded-full px-3.5 py-1">
             {isUrdu ? "عملی تربیتی ماڈیولز" : "Interactive Practice Modules"}

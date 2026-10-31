@@ -104,7 +104,7 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen flex flex-col font-nunito text-[#1B2440] bg-[#FFF4E0] transition-all selection:bg-[#FFF1A8] selection:text-[#1B2440] ${
+      className={`min-h-screen flex flex-col font-nunito text-[#1B2440] bg-[#FFF4E0] transition-all selection:bg-[#FFF1A8] selection:text-[#1B2440] overflow-x-hidden w-full max-w-full ${
         babaJiMode ? 'elder-active text-lg' : 'text-base'
       } ${isUrdu ? 'font-urdu-mode' : ''}`}
       dir={isUrdu ? 'rtl' : 'ltr'}
@@ -124,7 +124,7 @@ function App() {
       />
 
       {/* 3. ACTIVE SCREEN CONTENT */}
-      <main className="w-full flex-1 flex flex-col">
+      <main className="w-full flex-1 flex flex-col overflow-x-hidden">
         {currentScreen === 'landing' && (
           <LandingScreen
             onStartPractice={handleStartPractice}
