@@ -123,7 +123,7 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
           {/* Header */}
           <div className="bg-[#00A651] p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <EasyPaisaLogo className="h-7 w-auto bg-white/95 p-1 rounded-lg" />
+              <EasyPaisaLogo className="h-7 w-auto" />
               <span className="font-space font-black text-white">{scenario.sender}</span>
             </div>
             <span className="text-xs font-bold text-white/80">
@@ -301,6 +301,13 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
           </p>
         </div>
       </div>
+
+      {/* Trademark Disclaimer */}
+      <p className="mt-4 text-center text-xs font-bold text-[#1B2440]/65">
+        {isUrdu
+          ? "پریکٹس کی مثال۔ یہ پلیٹ فارم ان کمپنیوں سے باضابطہ طور پر منسلک یا تصدیق شدہ نہیں ہے۔"
+          : "Practice example. Not affiliated with or endorsed by these companies."}
+      </p>
     </div>
   );
 }

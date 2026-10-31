@@ -317,7 +317,7 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
                 👨‍💼
               </div>
               <div className="mb-2">
-                <HBLLogo className="h-6 w-auto bg-white px-2.5 py-1 rounded-lg inline-block" />
+                <HBLLogo className="h-7 w-auto inline-block" />
               </div>
               <h2 className="font-space font-extrabold text-xl text-white">
                 {currentDialogue.callerName}
@@ -507,6 +507,13 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
           </p>
         </div>
       </div>
+
+      {/* Trademark Disclaimer */}
+      <p className="mt-4 text-center text-xs font-bold text-[#1B2440]/65">
+        {isUrdu
+          ? "پریکٹس کی مثال۔ یہ پلیٹ فارم ان کمپنیوں سے باضابطہ طور پر منسلک یا تصدیق شدہ نہیں ہے۔"
+          : "Practice example. Not affiliated with or endorsed by these companies."}
+      </p>
     </div>
   );
 }
