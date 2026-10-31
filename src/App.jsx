@@ -109,10 +109,10 @@ function App() {
       } ${isUrdu ? 'font-urdu-mode' : ''}`}
       dir={isUrdu ? 'rtl' : 'ltr'}
     >
-      {/* 1. TOP MOVING MICRO-LINE TICKER AT TOP OF NAVBAR */}
+      {/* 1. TOP MARQUEE TICKER (No blocking sandbox badge) */}
       <AnnouncementBar language={language} />
 
-      {/* 2. SLEEK FLOATING NAVBAR WITH STITCH BORDERS */}
+      {/* 2. MAIN NAVBAR (Clean flat 2.5px borders, rolling text on nav links, clean action buttons) */}
       <Navbar
         currentScreen={currentScreen}
         setCurrentScreen={setCurrentScreen}
@@ -129,6 +129,11 @@ function App() {
           <LandingScreen
             onStartPractice={handleStartPractice}
             onOpenHelpline={() => setIsHelplineOpen(true)}
+            onGoToScreen={(screenId) => {
+              soundEffects.playNav();
+              setCurrentScreen(screenId);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             babaJiMode={babaJiMode}
             language={language}
           />
@@ -190,53 +195,98 @@ function App() {
         )}
       </main>
 
-      {/* 4. FOOTER WITH STITCH BORDERS */}
-      <footer className="w-full bg-[#FFFDF9] border-t-[2.5px] border-[#1B2440] py-8 px-4 mt-12 relative z-20">
+      {/* 4. CLEAN, BEAUTIFUL SINGLE FOOTER (NO overlapping floating bar) */}
+      <footer className="w-full bg-[#FFFDF9] border-t-[2.5px] border-[#1B2440] py-10 px-4 mt-16 relative z-20">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Logo & Platform Info */}
           <div className="flex items-center gap-3">
             <img 
               src="/official_logo.png" 
               alt="BinaDarKe" 
-              className="h-10 w-auto object-contain"
+              className="h-11 w-auto object-contain"
             />
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-space font-extrabold text-[#1B2440]">
+          {/* Nav Links & Emergency Shortcuts */}
+          <div className="flex flex-wrap items-center justify-center gap-3.5 text-xs font-space font-extrabold text-[#1B2440]">
             <button
-              onClick={() => setCurrentScreen('landing')}
+              onClick={() => {
+                soundEffects.playNav();
+                setCurrentScreen('landing');
+              }}
               className="hover:underline cursor-pointer"
             >
               {t.navHome}
             </button>
             <span>•</span>
             <button
-              onClick={() => setCurrentScreen('guided')}
+              onClick={() => {
+                soundEffects.playNav();
+                setCurrentScreen('guided');
+              }}
               className="hover:underline cursor-pointer"
             >
               {t.navGuided}
             </button>
             <span>•</span>
             <button
-              onClick={() => setCurrentScreen('solo')}
+              onClick={() => {
+                soundEffects.playNav();
+                setCurrentScreen('solo');
+              }}
               className="hover:underline cursor-pointer"
             >
               {t.navSolo}
             </button>
             <span>•</span>
-            <button
-              onClick={() => setIsHelplineOpen(true)}
-              className="text-[#FF6B6B] hover:underline cursor-pointer"
+            <a
+              href="tel:1991"
+              className="inline-flex items-center gap-1 bg-[#FFE8E5] text-[#BA1A1A] border border-[#BA1A1A]/40 px-2.5 py-0.5 rounded-full font-black hover:bg-[#ffd5d0] transition-colors"
             >
-              FIA Helpline (1991)
-            </button>
+              <span>🚨 FIA Helpline: 1991</span>
+            </a>
+            <span>•</span>
+            {/* Language Switcher */}
+            <div className="inline-flex items-center gap-1.5 bg-[#FFF4E0] border border-[#1B2440] px-2 py-0.5 rounded-lg text-[11px]">
+              <button 
+                onClick={() => {
+                  soundEffects.playClick();
+                  setLanguage('roman');
+                }}
+                className={`cursor-pointer ${language === 'roman' ? 'font-black underline text-[#1B2440]' : 'text-[#1B2440]/60'}`}
+              >
+                Roman
+              </button>
+              <span>/</span>
+              <button 
+                onClick={() => {
+                  soundEffects.playClick();
+                  setLanguage('urdu');
+                }}
+                className={`cursor-pointer font-urdu-mode ${language === 'urdu' ? 'font-black underline text-[#1B2440]' : 'text-[#1B2440]/60'}`}
+              >
+                اردو
+              </button>
+              <span>/</span>
+              <button 
+                onClick={() => {
+                  soundEffects.playClick();
+                  setLanguage('en');
+                }}
+                className={`cursor-pointer ${language === 'en' ? 'font-black underline text-[#1B2440]' : 'text-[#1B2440]/60'}`}
+              >
+                ENG
+              </button>
+            </div>
           </div>
 
+          {/* Safe Note Badge */}
           <div className="text-center md:text-right">
-            <span className="inline-block text-[11px] font-space font-black bg-[#FFF1A8] border-[1.5px] border-[#1B2440] px-2.5 py-0.5 rounded-full shadow-[1px_1px_0px_#1B2440]">
+            <span className="inline-block text-[11px] font-space font-black bg-[#FFF1A8] border-[1.5px] border-[#1B2440] px-3 py-0.5 rounded-full">
               100% Free & Educational Sandbox
             </span>
-            <p className="text-[10px] text-[#1B2440]/60 font-bold mt-1">
-              Zero real financial risk • Strictly non-profit
+            <p className="text-[10px] text-[#1B2440]/65 font-bold mt-1">
+              Zero Real Risk • Non-Profit Public Service
             </p>
           </div>
         </div>

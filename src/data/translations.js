@@ -16,16 +16,16 @@ export const TRANSLATIONS = {
     babaMode: "Buzurg Mode",
     babaModeActive: "Buzurg Mode: ON",
     ticker: [
-      "OTP kisi ko nahi dena",
-      "Anjanay link par click na karein",
-      "Bank kabhi phone par password nahi maangta",
-      "Jaldbazi mein faisla na karein",
-      "100% Mehfooz Sandbox"
+      "🚨 OTP kisi ko nahi dena",
+      "🔗 Anjanay link par click na karein",
+      "📞 Bank kabhi phone par password ya PIN nahi maangta",
+      "🛑 Jaldbazi mein koi faisla na karein",
+      "💡 Ghar mein kisi bachay ya dost se mashwara karein"
     ],
-    heroTag: "Waldein aur Buzurgon ke liye Mehfooz Sandbox",
+    heroTag: "Waldein aur Buzurgon ke liye Khauf-Mukt Sikhnay ki Jagah",
     heroTitle1: "Scam pehchano.",
-    heroTitleAccent: "Bina darr",
-    heroTitle2: " ke.",
+    heroTitleAccent: "Bina darr ke.",
+    heroTitle2: "",
     heroSubtitle: "Fake WhatsApp messages, bank lottery fraud, aur OTP choron se hoshiyar rahain. Yahan ghalti karne par bhi koi nuqsan nahi hoga.",
     ctaStart: "Practice Shuru Karein",
     ctaAudio: "Aawaz Mein Suniye",
@@ -95,7 +95,34 @@ export const TRANSLATIONS = {
     resultBtnHome: "Home Par Wapis Jayein",
     resultFamilyCardTitle: "Apne bachon ko apna score WhatsApp karein",
     resultFamilyCardDesc: "Unhein batayein ke ab aap digital scams ke jhanse mein nahi aane walay!",
-    resultWhatsAppBtn: "WhatsApp Par Bhejein"
+    resultWhatsAppBtn: "WhatsApp Par Bhejein",
+
+    // FIA Emergency Support Section
+    fiaBadge: "Sarkari Rabta & Madad",
+    fiaTitle: "FIA Cyber Crime Emergency Support",
+    fiaDesc: "Agar aap ya aapke kisi azeez ke sath koi online fraud ya OTP chori ho jaye, to fauran ye 3 kaam karein:",
+    fiaStep1Title: "Bank Card / Account Block Karein",
+    fiaStep1Desc: "Fauran apne bank ki official UAN helpline par call karke card ya net banking freeze karwayein.",
+    fiaStep2Title: "FIA Helpline 1991 Par Call Karein",
+    fiaStep2Desc: "Hukumat-e-Pakistan ki official FIA Cyber Crime Wing (1991) par complaint darj karwayein.",
+    fiaStep3Title: "EasyPaisa / JazzCash Block Karein",
+    fiaStep3Desc: "Agar mobile wallet se transaction hui ho to 3737 ya 4444 par call karke fraud report karein.",
+    fiaCallBtn: "Call FIA Helpline (1991)",
+    fiaPortalBtn: "FIA Online Complaint Portal",
+
+    // About Platform Section
+    aboutTag: "Hamara Maqsad",
+    aboutTitle: "BinaDarKe Kyun Banaya Gaya?",
+    aboutP1: "Pakistan mein digital banking aur WhatsApp aam hone ke baad hamare waldein aur buzurg sab se aasan nishana ban rahe hain. Aksar bachon ke daantnay ke darr se buzurg ghalti batate hi nahi.",
+    aboutP2: "BinaDarKe ka maqsad is darr aur sharam ko khatam karna hai. Yahan har buzurg azaadi aur fakhar ke sath practice kar ke digital dunya ka bahadur shehri ban sakta hai.",
+
+    // Data Privacy Guarantee
+    privacyTag: "100% Data Hifazat",
+    privacyTitle: "Zero Data Collection & Privacy Guarantee",
+    privacyP1: "Hum aapka koi bhi zaati data, phone number, ya bank maloomat mehfooz ya collect nahi karte.",
+    privacyPoint1: "Zero Account Required — Kisi registration ya password ki zaroorat nahi.",
+    privacyPoint2: "100% Client-Side Simulation — Saari practice aapke browser ke andar hoti hai, kisi server par nahi jati.",
+    privacyPoint3: "Zero Real Bank Access — Ye sirf educational training sandbox hai jahan kisi real bank se taluq nahi."
   },
 
   urdu: {
@@ -192,7 +219,34 @@ export const TRANSLATIONS = {
     resultBtnHome: "مرکزی صفحہ پر جائیں",
     resultFamilyCardTitle: "اپنے بچوں کو اپنا اسکور واٹس ایپ کریں",
     resultFamilyCardDesc: "انہیں بتائیں کہ اب آپ ڈیجیٹل دنیا میں کسی کے بہکاوے میں نہیں آئیں گے!",
-    resultWhatsAppBtn: "واٹس ایپ پر بھیجیں"
+    resultWhatsAppBtn: "واٹس ایپ پر بھیجیں",
+
+    // FIA Emergency Support Section
+    fiaBadge: "سرکاری رابطہ اور مدد",
+    fiaTitle: "ایف آئی اے سائبر کرائم ہنگامی مدد",
+    fiaDesc: "اگر آپ یا آپ کے کسی عزیز کے ساتھ آن لائن فراڈ یا پاس ورڈ چوری ہو جائے، تو فوری یہ ۳ کام کریں:",
+    fiaStep1Title: "بینک کارڈ / اکاؤنٹ فوری بلاک کریں",
+    fiaStep1Desc: "فوری اپنے بینک کی ہیلپ لائن پر کال کر کے کارڈ یا اکاؤنٹ عارضی بند کروائیں۔",
+    fiaStep2Title: "ایف آئی اے ۱۹۹۱ پر فوری کال کریں",
+    fiaStep2Desc: "حکومت پاکستان کی آفیشل سائبر کرائم ونگ ۱۹۹۱ پر شکایت درج کروائیں۔",
+    fiaStep3Title: "ایزی پیسہ / جاز کیش بند کروائیں",
+    fiaStep3Desc: "اگر موبائل والٹ سے پیسے گئے ہوں تو ۳۷۳۷ یا ۴۴۴۴ پر فوری رابطہ کریں۔",
+    fiaCallBtn: "ایف آئی اے ہیلپ لائن کال کریں (1991)",
+    fiaPortalBtn: "آن لائن پورٹل پر شکایت درج کریں",
+
+    // About Platform Section
+    aboutTag: "ہمارا مقصد",
+    aboutTitle: "بغیر ڈر کے کیوں بنایا گیا؟",
+    aboutP1: "پاکستان میں ڈیجیٹل بینکنگ عام ہونے کے بعد ہمارے بزرگ سب سے زیادہ نشانہ بن رہے ہیں۔ اکثر بچے ڈانٹنے کے ڈر سے بزرگ غلطی بتاتے ہی نہیں۔",
+    aboutP2: "بغیر ڈر کے کا مقصد اس خوف کو ختم کرنا ہے تاکہ ہر فرد عزت اور اعتماد کے ساتھ موبائل چلا سکے۔",
+
+    // Data Privacy Guarantee
+    privacyTag: "ڈیٹا کی مکمل حفاظت",
+    privacyTitle: "صفر ڈیٹا کلیکشن اور پرائیویسی گارنٹی",
+    privacyP1: "ہم آپ کا کوئی بھی ذاتی ڈیٹا، موبائل نمبر یا بینک تفصیلات محفوظ نہیں کرتے۔",
+    privacyPoint1: "اکاؤنٹ بنانے کی کوئی ضرورت نہیں — بغیر لاگ ان کے استعمال کریں۔",
+    privacyPoint2: "مکمل مقامی سمیولیشن — تمام مشق آپ کے اپنے موبائل براؤزر میں ہوتی ہے۔",
+    privacyPoint3: "اصلی بینک سے کوئی کنکشن نہیں — یہ خالصتاً تعلیمی پلیٹ فارم ہے۔"
   },
 
   en: {
@@ -289,6 +343,33 @@ export const TRANSLATIONS = {
     resultBtnHome: "Return to Home",
     resultFamilyCardTitle: "Share your score with your children on WhatsApp",
     resultFamilyCardDesc: "Let them know that you can now navigate digital messages safely and fearlessly!",
-    resultWhatsAppBtn: "Share via WhatsApp"
+    resultWhatsAppBtn: "Share via WhatsApp",
+
+    // FIA Emergency Support Section
+    fiaBadge: "Official Government Hotline",
+    fiaTitle: "FIA Cyber Crime Emergency Support",
+    fiaDesc: "If you or an elder has encountered online fraud, follow these 3 critical emergency steps immediately:",
+    fiaStep1Title: "Block Bank Cards / Net Banking",
+    fiaStep1Desc: "Instantly call your bank's official 24/7 UAN helpline to freeze accounts and debit cards.",
+    fiaStep2Title: "Call FIA Cyber Crime (1991)",
+    fiaStep2Desc: "Report the fraud incident directly to the Government of Pakistan's Cyber Crime Wing via 1991.",
+    fiaStep3Title: "Freeze Mobile Wallet Accounts",
+    fiaStep3Desc: "If EasyPaisa or JazzCash was targeted, call 3737 or 4444 to report fraudulent transfers.",
+    fiaCallBtn: "Call FIA Hotline (1991)",
+    fiaPortalBtn: "FIA Online Complaint Portal",
+
+    // About Platform Section
+    aboutTag: "Our Mission",
+    aboutTitle: "Why We Created BinaDarKe",
+    aboutP1: "Pakistani parents and elders are disproportionately targeted by aggressive social engineering and lottery scams. Many remain silent out of fear of being scolded by younger family members.",
+    aboutP2: "BinaDarKe replaces fear with digital empowerment. Here, every elder can practice safely and become a confident digital citizen.",
+
+    // Data Privacy Guarantee
+    privacyTag: "100% Data Protection",
+    privacyTitle: "Zero Data Collection & Privacy Guarantee",
+    privacyP1: "We do not store, track, or collect your personal credentials or phone numbers.",
+    privacyPoint1: "Zero Account Required — No registration or passwords needed.",
+    privacyPoint2: "100% Client-Side Simulation — All tests execute securely within your browser.",
+    privacyPoint3: "No Real Bank Integration — Strictly an educational sandbox."
   }
 };
