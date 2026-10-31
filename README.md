@@ -182,4 +182,4 @@ To verify the exact commit submitted for hackathon evaluation:
 git rev-parse --short HEAD
 ```
 
-**Submitted Commit**: `1c2471a` (or current HEAD)
+**Submitted Commit**: `8e0443d` (or latest HEAD)
