@@ -2,7 +2,7 @@ import React from 'react';
 
 // Actual Real Brand Logos uploaded by user in public/logos/
 
-export function EasyPaisaLogo({ className = "h-6 w-auto" }) {
+export function EasyPaisaLogo({ className = "h-8 w-auto" }) {
   return (
     <img 
       src="/logos/easypaisa.png" 
@@ -12,7 +12,7 @@ export function EasyPaisaLogo({ className = "h-6 w-auto" }) {
   );
 }
 
-export function JazzCashLogo({ className = "h-6 w-auto" }) {
+export function JazzCashLogo({ className = "h-8 w-auto" }) {
   return (
     <img 
       src="/logos/jazzcash.png" 
@@ -22,7 +22,7 @@ export function JazzCashLogo({ className = "h-6 w-auto" }) {
   );
 }
 
-export function WhatsAppLogo({ className = "w-6 h-6" }) {
+export function WhatsAppLogo({ className = "h-8 w-8" }) {
   return (
     <img 
       src="/logos/whatsapp.png" 
@@ -32,7 +32,7 @@ export function WhatsAppLogo({ className = "w-6 h-6" }) {
   );
 }
 
-export function HBLLogo({ className = "h-6 w-auto" }) {
+export function HBLLogo({ className = "h-8 w-auto" }) {
   return (
     <img 
       src="/logos/hbl.png" 
@@ -42,7 +42,7 @@ export function HBLLogo({ className = "h-6 w-auto" }) {
   );
 }
 
-export function MeezanLogo({ className = "h-6 w-auto" }) {
+export function MeezanLogo({ className = "h-8 w-auto" }) {
   return (
     <img 
       src="/logos/meezan.png" 
@@ -52,7 +52,7 @@ export function MeezanLogo({ className = "h-6 w-auto" }) {
   );
 }
 
-export function StateBankLogo({ className = "h-6 w-auto" }) {
+export function StateBankLogo({ className = "h-8 w-auto" }) {
   return (
     <img 
       src="/logos/sbp.png" 

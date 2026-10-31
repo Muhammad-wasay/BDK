@@ -76,13 +76,13 @@ export default function Navbar({
   ];
 
   return (
-    <header className="w-full px-3 sm:px-4 pt-3 pb-2 sticky top-0 z-40 bg-[#FFFBF5]/95 backdrop-blur-md transition-all">
+    <header className="w-full px-3 sm:px-4 pt-3 pb-2 sticky top-0 z-40 bg-[#FFF4E0]/95 backdrop-blur-md transition-all">
       <div className="max-w-6xl mx-auto w-full flex items-center gap-2 sm:gap-3">
         
         {/* Main Navbar Bar (Crisp White, 2.5px Solid Border, Zero Shadow) */}
         <nav className="flex-1 bg-white border-[2.5px] border-[#1B2440] rounded-[22px] px-3 sm:px-4 py-2 flex items-center justify-between gap-3">
           
-          {/* 1. Official Logo */}
+          {/* 1. Official Logo (Crisp & High-Res) */}
           <button
             onClick={() => handleNavClick('landing')}
             className="flex items-center text-left cursor-pointer group flex-shrink-0"
@@ -91,7 +91,7 @@ export default function Navbar({
             <img 
               src="/official_logo.png" 
               alt="BinaDarKe" 
-              className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform group-hover:scale-102"
+              className="h-9 sm:h-10 md:h-11 w-auto object-contain transition-transform group-hover:scale-102"
             />
           </button>
 

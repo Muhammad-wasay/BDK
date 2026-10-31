@@ -211,7 +211,7 @@ export default function LandingScreen({
       </section>
 
       {/* 3. PRACTICE MODULES (PURE WHITE CARDS, NO LASER BEAMS, CLEAN HOVER) */}
-      <section className="w-full bg-[#FFFBF5] border-y-[2px] border-[#1B2440]/15 py-12 md:py-16 animate-fadeInUp">
+      <section className="w-full bg-[#FFF4E0] border-y-[2px] border-[#1B2440]/15 py-12 md:py-16 animate-fadeInUp">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center max-w-xl mx-auto mb-10">
             <span className="text-xs font-space font-black uppercase tracking-wider bg-[#B8F2D0] text-[#1B2440] border-[2px] border-[#1B2440] rounded-full px-3.5 py-1 inline-block">
@@ -237,7 +237,7 @@ export default function LandingScreen({
                   <div className="w-11 h-11 rounded-2xl bg-[#FFE8E5] border-[2px] border-[#1B2440] text-[#BA1A1A] flex items-center justify-center">
                     <Phone className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                   </div>
-                  <HBLLogo className="h-5 w-auto object-contain" />
+                  <HBLLogo className="h-7 sm:h-8 w-auto object-contain" />
                 </div>
 
                 <div className="flex items-center gap-2 mb-2">
@@ -273,9 +273,9 @@ export default function LandingScreen({
                     <CreditCard className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <EasyPaisaLogo className="h-5 w-auto" />
+                    <EasyPaisaLogo className="h-7 sm:h-8 w-auto" />
                     <span className="text-xs font-black text-slate-400">&</span>
-                    <JazzCashLogo className="h-5 w-auto" />
+                    <JazzCashLogo className="h-7 sm:h-8 w-auto" />
                   </div>
                 </div>
 
@@ -311,7 +311,7 @@ export default function LandingScreen({
                   <div className="w-11 h-11 rounded-2xl bg-[#B8F2D0] border-[2px] border-[#1B2440] text-[#1B2440] flex items-center justify-center">
                     <Search className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   </div>
-                  <WhatsAppLogo className="w-6 h-6" />
+                  <WhatsAppLogo className="w-8 h-8 object-contain" />
                 </div>
 
                 <div className="flex items-center gap-2 mb-2">
