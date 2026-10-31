@@ -113,7 +113,7 @@ export const GUIDED_SCENARIOS_DATA = {
       highlightPin: "enter your ATM PIN",
       highlightUrgency: "or your prize will be cancelled:",
       fakeLink: "http://bit.ly/ehsaas-inam-claim-2026",
-      linkText: "Click here to test (100% Safe Sandbox)"
+      linkText: "Click here to test (Practice Simulation Only)"
     },
     redFlags: [
       {

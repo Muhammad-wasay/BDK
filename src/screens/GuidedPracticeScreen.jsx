@@ -189,8 +189,8 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
                     </span>
                     <p className="text-xs text-[#1B2440] font-bold leading-snug mt-0.5">
                       {isUrdu 
-                        ? 'اصلی زندگی میں اس لنک پر کلک کرنے سے آپ کا موبائل ڈیٹا یا پاس ورڈ چوری ہو سکتا تھا!'
-                        : 'Asli zindagi mein is link par click karne se mobile hack ya password chori ho sakta tha! Lekin yahan aap 100% mehfooz hain.'}
+                        ? 'اصلی زندگی میں اس لنک پر کلک کرنے سے آپ کا موبائل ڈیٹا یا پاس ورڈ چوری ہو سکتا تھا! لیکن یہاں یہ صرف مشق ہے اور کوئی نقصان نہیں ہوگا۔'
+                        : 'Asli zindagi mein is link par click karne se mobile hack ya password chori ho sakta tha! Lekin yahan ye sirf practice hai aur koi nuqsan nahi hoga.'}
                     </p>
                   </div>
                 </div>

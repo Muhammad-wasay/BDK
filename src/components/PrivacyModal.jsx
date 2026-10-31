@@ -24,7 +24,7 @@ export default function PrivacyModal({ isOpen, onClose, language = 'roman' }) {
                 {isUrdu ? "ڈیٹا پرائیویسی اور گارنٹی" : isEn ? "Privacy & Safety Guarantee" : "Data Privacy Guarantee"}
               </h3>
               <span className="text-xs font-bold text-[#1B2440]/70">
-                100% Client-Side Sandbox • Zero Data Collection
+                Client-Side Practice Sandbox • Zero Data Collection
               </span>
             </div>
           </div>

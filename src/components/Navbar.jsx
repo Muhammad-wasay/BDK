@@ -12,7 +12,8 @@ import {
   X,
   Info,
   Settings,
-  Smartphone
+  Smartphone,
+  Lock
 } from 'lucide-react';
 import RollingText from './RollingText';
 import { TRANSLATIONS } from '../data/translations';
@@ -223,6 +224,19 @@ export default function Navbar({
               <Trophy className="w-4 h-4 flex-shrink-0" />
               {isUrdu ? <span>{t.navResult || "نتیجہ"}</span> : <RollingText text={t.navResult || "Results"} />}
             </button>
+
+            {/* 7. Privacy & Safety Policy */}
+            <button
+              onClick={() => handleNavClick('privacy')}
+              className={`group relative flex items-center gap-1.5 px-3 py-2 min-h-[48px] rounded-xl text-xs sm:text-sm font-space font-extrabold transition-all cursor-pointer ${
+                currentScreen === 'privacy'
+                  ? 'bg-[#B8F2D0] text-[#1B2440] border-[2px] border-[#1B2440]'
+                  : 'text-[#1B2440]/80 hover:text-[#1B2440] hover:bg-slate-50 border-[2px] border-transparent hover:border-[#1B2440]'
+              }`}
+            >
+              <Lock className="w-4 h-4 flex-shrink-0" />
+              {isUrdu ? <span>پرائیویسی</span> : <RollingText text="Privacy" />}
+            </button>
           </div>
 
           {/* Mobile Hamburger Toggle */}
@@ -319,6 +333,13 @@ export default function Navbar({
             >
               <Trophy className="w-4 h-4" />
               <span>{isUrdu ? "نتائج و سند" : "Results & Certificate"}</span>
+            </button>
+            <button
+              onClick={() => handleNavClick('privacy')}
+              className="flex items-center gap-2 p-2.5 rounded-xl hover:bg-slate-50 min-h-[48px] text-[#0F5A3E]"
+            >
+              <Lock className="w-4 h-4" />
+              <span>{isUrdu ? "پرائیویسی و ڈیٹا سیفٹی" : "Privacy & Safety Policy"}</span>
             </button>
           </div>
         </div>

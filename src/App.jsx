@@ -5,6 +5,7 @@ import HelplineModal from './components/HelplineModal';
 import CertificateModal from './components/CertificateModal';
 import SettingsModal from './components/SettingsModal';
 import PrivacyModal from './components/PrivacyModal';
+import FirstUseConsentModal from './components/FirstUseConsentModal';
 import RollingText from './components/RollingText';
 import ErrorBoundary from './components/ErrorBoundary';
 import CalmLoadingState from './components/CalmLoadingState';
@@ -23,6 +24,7 @@ const PaymentScamScreen = lazy(() => import('./screens/PaymentScamScreen'));
 const ScamScannerScreen = lazy(() => import('./screens/ScamScannerScreen'));
 const AboutScreen = lazy(() => import('./screens/AboutScreen'));
 const PracticePhoneScreen = lazy(() => import('./screens/PracticePhoneScreen'));
+const PrivacyScreen = lazy(() => import('./screens/PrivacyScreen'));
 
 function App() {
   // Always start at landing page (do not persist current screen)
@@ -233,6 +235,14 @@ function App() {
                 language={language}
               />
             )}
+
+            {currentScreen === 'privacy' && (
+              <PrivacyScreen
+                onGoHome={handleGoHome}
+                babaJiMode={babaJiMode}
+                language={language}
+              />
+            )}
           </Suspense>
         </main>
 
@@ -342,12 +352,13 @@ function App() {
                 </button>
                 <button
                   onClick={() => {
-                    soundEffects.playClick();
-                    setIsPrivacyOpen(true);
+                    soundEffects.playNav();
+                    setCurrentScreen('privacy');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="group cursor-pointer text-left w-fit min-h-[40px] flex items-center text-[#0F5A3E]"
                 >
-                  <RollingText text={isUrdu ? "پرائیویسی گارنٹی" : "Privacy Guarantee"} />
+                  <RollingText text={isUrdu ? "پرائیویسی و ڈیٹا سیفٹی" : "Privacy & Safety Policy"} />
                 </button>
               </div>
 
@@ -360,6 +371,9 @@ function App() {
             <span>Practice only: nothing real is sent • Free educational tool</span>
           </div>
         </footer>
+
+        {/* First-Use Consent Modal */}
+        <FirstUseConsentModal language={language} />
 
         {/* 5. HELPLINE SUPPORT MODAL */}
         <HelplineModal
