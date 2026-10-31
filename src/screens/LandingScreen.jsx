@@ -6,7 +6,7 @@ import {
   Lock, 
   CheckCircle2, 
   AlertTriangle, 
-  Sparkles, 
+  Users,
   Phone,
   CreditCard,
   Search
@@ -52,22 +52,22 @@ export default function LandingScreen({
       }`}
       dir={isUrdu ? 'rtl' : 'ltr'}
     >
-      {/* 1. CLEAN HERO SECTION (Uncluttered & Airy) */}
-      <section className="max-w-6xl mx-auto px-4 pt-8 pb-12 md:py-16 w-full animate-fadeInUp">
+      {/* 1. CLEAN HERO SECTION (Restrained Palette, Crisp Typography) */}
+      <section className="max-w-6xl mx-auto px-4 pt-8 pb-10 md:py-14 w-full animate-fadeInUp">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Content (7 cols) */}
           <div className="lg:col-span-7 flex flex-col items-start gap-4 sm:gap-5">
-            {/* Pill Badge */}
+            {/* Clean Pill Badge */}
             <div className="inline-flex items-center gap-2 bg-[#B8F2D0] text-[#1B2440] border-[2px] border-[#1B2440] rounded-full px-3.5 py-1 text-xs font-space font-extrabold uppercase tracking-wide">
               <ShieldCheck className="w-4 h-4 text-[#1B2440]" />
               <span>{t.heroTag}</span>
             </div>
 
             {/* Main Title */}
-            <h1 className="font-space font-extrabold text-[38px] sm:text-[48px] md:text-[56px] text-[#1B2440] tracking-tight leading-[1.1]">
+            <h1 className="font-space font-extrabold text-[36px] sm:text-[46px] md:text-[54px] text-[#1B2440] tracking-tight leading-[1.15]">
               {t.heroTitle1}{' '}
-              <span className="font-caveat text-5xl sm:text-6xl md:text-7xl text-[#FF6B6B] underline decoration-[#FFF1A8] decoration-wavy underline-offset-8 inline-block">
+              <span className="font-caveat text-5xl sm:text-6xl md:text-7xl text-[#BA1A1A] underline decoration-[#B8F2D0] decoration-wavy underline-offset-8 inline-block">
                 {t.heroTitleAccent}
               </span>
               {t.heroTitle2}
@@ -78,7 +78,7 @@ export default function LandingScreen({
               {t.heroSubtitle}
             </p>
 
-            {/* Primary Action Buttons */}
+            {/* Primary Action Buttons (Mint Brand Theme) */}
             <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
               <button
                 onClick={() => {
@@ -86,7 +86,7 @@ export default function LandingScreen({
                   onStartPractice();
                 }}
                 type="button"
-                className="cursor-pointer flex items-center justify-center gap-3 px-8 h-13 rounded-2xl bg-[#FFF1A8] hover:bg-[#ffe769] text-[#1B2440] font-space font-black text-base sm:text-lg border-[2.5px] border-[#1B2440] active:scale-98 transition-all group"
+                className="cursor-pointer flex items-center justify-center gap-3 px-8 h-13 rounded-2xl bg-[#B8F2D0] hover:bg-[#a6e6bf] text-[#1B2440] font-space font-black text-base sm:text-lg border-[2.5px] border-[#1B2440] active:scale-98 transition-all group"
               >
                 <span>{t.ctaStart}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -117,16 +117,16 @@ export default function LandingScreen({
           <div className="lg:col-span-5 relative flex items-center justify-center">
             <div className="relative w-full max-w-[320px] sm:max-w-[340px]">
               
-              {/* Phone Container */}
-              <div className="w-full bg-[#FFFDF9] rounded-[36px] border-[3px] border-[#1B2440] p-4 flex flex-col gap-3">
+              {/* Phone Container (Pure White) */}
+              <div className="w-full bg-white rounded-[36px] border-[3px] border-[#1B2440] p-4 flex flex-col gap-3">
                 {/* Header with WhatsApp Logo */}
-                <div className="flex items-center justify-between pb-2 border-b-[2px] border-[#1B2440]/20">
+                <div className="flex items-center justify-between pb-2 border-b-[2px] border-[#1B2440]/15">
                   <div className="flex items-center gap-1.5">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#FF6B6B] border border-[#1B2440]"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#FFF1A8] border border-[#1B2440]"></div>
                     <div className="w-2.5 h-2.5 rounded-full bg-[#B8F2D0] border border-[#1B2440]"></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#1B2440] border border-[#1B2440]"></div>
                   </div>
-                  <div className="flex items-center gap-1.5 bg-[#FFF1A8] border border-[#1B2440] px-2.5 py-0.5 rounded-full">
+                  <div className="flex items-center gap-1.5 bg-[#B8F2D0] border border-[#1B2440] px-2.5 py-0.5 rounded-full">
                     <WhatsAppLogo className="w-3.5 h-3.5" />
                     <span className="text-[11px] font-space font-extrabold text-[#1B2440]">
                       WhatsApp Trap
@@ -135,8 +135,8 @@ export default function LandingScreen({
                 </div>
 
                 {/* Simulated Message Bubble */}
-                <div className="bg-[#FFF4E0] border-[2px] border-[#1B2440] rounded-2xl p-4 flex flex-col gap-2">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-[#FF6B6B] bg-[#FFE8E5] border border-[#FF6B6B]/50 rounded-md px-2 py-0.5 w-fit">
+                <div className="bg-[#FFFBF5] border-[2px] border-[#1B2440] rounded-2xl p-4 flex flex-col gap-2">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-[#BA1A1A] bg-[#FFE8E5] border border-[#BA1A1A]/30 rounded-md px-2 py-0.5 w-fit">
                     <AlertTriangle className="w-3.5 h-3.5" />
                     <span>{t.heroCardSender}</span>
                   </div>
@@ -183,7 +183,7 @@ export default function LandingScreen({
                 </div>
               </div>
 
-              {/* Floating Badges */}
+              {/* Floating Badge */}
               <div className="absolute -top-3 -left-3 bg-[#B8F2D0] border-[2px] border-[#1B2440] rounded-xl px-3 py-1 flex items-center gap-1.5 text-xs font-space font-black text-[#1B2440] -rotate-6">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>100% Mehfooz</span>
@@ -194,27 +194,27 @@ export default function LandingScreen({
         </div>
       </section>
 
-      {/* 2. MINIMALIST TRUST BAR (Simple, Peaceful, Like Digital Ustaad) */}
+      {/* 2. MINIMALIST TRUST BAR (ZERO EMOJIS, CLEAN SVG ICONS) */}
       <section className="max-w-4xl mx-auto px-4 pb-8 w-full flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-space font-extrabold text-[#1B2440]">
-        <div className="inline-flex items-center gap-2 bg-white border-[1.5px] border-[#1B2440] rounded-full px-3.5 py-1.5">
-          <span>🇵🇰</span>
+        <div className="inline-flex items-center gap-2 bg-white border-[1.5px] border-[#1B2440] rounded-full px-4 py-1.5">
+          <Users className="w-3.5 h-3.5 text-[#0F5A3E]" />
           <span>{isUrdu ? "پاکستانی خاندانوں کے لیے" : "Built for Pakistani Families"}</span>
         </div>
-        <div className="inline-flex items-center gap-2 bg-white border-[1.5px] border-[#1B2440] rounded-full px-3.5 py-1.5">
-          <span>🛡️</span>
+        <div className="inline-flex items-center gap-2 bg-white border-[1.5px] border-[#1B2440] rounded-full px-4 py-1.5">
+          <ShieldCheck className="w-3.5 h-3.5 text-[#0F5A3E]" />
           <span>{isUrdu ? "مکمل بے خوف سینڈ باکس" : "100% Fear-Free Sandbox"}</span>
         </div>
-        <div className="inline-flex items-center gap-2 bg-white border-[1.5px] border-[#1B2440] rounded-full px-3.5 py-1.5">
-          <span>🔓</span>
+        <div className="inline-flex items-center gap-2 bg-white border-[1.5px] border-[#1B2440] rounded-full px-4 py-1.5">
+          <Lock className="w-3.5 h-3.5 text-[#0F5A3E]" />
           <span>{isUrdu ? "بغیر کسی لاگ ان یا پاس ورڈ کے" : "No Account or Login Required"}</span>
         </div>
       </section>
 
-      {/* 3. PRACTICE MODULES (CLEAN WHITE BACKGROUND + SOLID MOVING BEAM HOVER) */}
-      <section className="w-full bg-white border-y-[2.5px] border-[#1B2440] py-12 md:py-16 animate-fadeInUp">
+      {/* 3. PRACTICE MODULES (PURE WHITE CARDS, NO LASER BEAMS, CLEAN HOVER) */}
+      <section className="w-full bg-[#FFFBF5] border-y-[2px] border-[#1B2440]/15 py-12 md:py-16 animate-fadeInUp">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center max-w-xl mx-auto mb-10">
-            <span className="text-xs font-space font-black uppercase tracking-wider bg-[#FFF1A8] text-[#1B2440] border-[2px] border-[#1B2440] rounded-full px-3.5 py-1 inline-block">
+            <span className="text-xs font-space font-black uppercase tracking-wider bg-[#B8F2D0] text-[#1B2440] border-[2px] border-[#1B2440] rounded-full px-3.5 py-1 inline-block">
               {isUrdu ? "عملی لیب ماڈیولز" : "Practice Modules"}
             </span>
             <h2 className="font-space font-extrabold text-2xl sm:text-3xl text-[#1B2440] mt-2.5">
@@ -226,28 +226,12 @@ export default function LandingScreen({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Card 1: Fake Bank Manager Call (Solid Moving Beam on Hover) */}
+            
+            {/* Card 1: Fake Bank Manager Call (Pure White Background, Seamless Logo) */}
             <div 
               onClick={() => navigateTo('phone')}
-              className="group relative cursor-pointer bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1 transition-all overflow-hidden"
+              className="group cursor-pointer bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all"
             >
-              {/* Single Solid Traveling Border Beam (NO dots) */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <rect 
-                  x="1.5" 
-                  y="1.5" 
-                  width="calc(100% - 3px)" 
-                  height="calc(100% - 3px)" 
-                  rx="22" 
-                  fill="none" 
-                  stroke="#BA1A1A" 
-                  strokeWidth="3.5" 
-                  strokeDasharray="160 1120" 
-                  strokeLinecap="round"
-                  className="animate-solid-beam" 
-                />
-              </svg>
-
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-11 h-11 rounded-2xl bg-[#FFE8E5] border-[2px] border-[#1B2440] text-[#BA1A1A] flex items-center justify-center">
@@ -278,47 +262,30 @@ export default function LandingScreen({
               </div>
             </div>
 
-            {/* Card 2: Fake Payment / EasyPaisa / JazzCash Trap */}
+            {/* Card 2: Fake Payment / EasyPaisa / JazzCash Trap (Pure White Background, Seamless Logo) */}
             <div 
               onClick={() => navigateTo('payment')}
-              className="group relative cursor-pointer bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1 transition-all overflow-hidden"
+              className="group cursor-pointer bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all"
             >
-              {/* Single Solid Traveling Border Beam (NO dots) */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <rect 
-                  x="1.5" 
-                  y="1.5" 
-                  width="calc(100% - 3px)" 
-                  height="calc(100% - 3px)" 
-                  rx="22" 
-                  fill="none" 
-                  stroke="#00A859" 
-                  strokeWidth="3.5" 
-                  strokeDasharray="160 1120" 
-                  strokeLinecap="round"
-                  className="animate-solid-beam" 
-                />
-              </svg>
-
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-2xl bg-[#FFF1A8] border-[2px] border-[#1B2440] text-[#1B2440] flex items-center justify-center">
+                  <div className="w-11 h-11 rounded-2xl bg-[#B8F2D0] border-[2px] border-[#1B2440] text-[#1B2440] flex items-center justify-center">
                     <CreditCard className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <EasyPaisaLogo className="h-4.5 w-auto" />
+                    <EasyPaisaLogo className="h-5 w-auto" />
                     <span className="text-xs font-black text-slate-400">&</span>
-                    <JazzCashLogo className="h-4.5 w-auto" />
+                    <JazzCashLogo className="h-5 w-auto" />
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-[10px] font-space font-black uppercase px-2 py-0.5 rounded-full bg-[#FFF1A8] text-[#1B2440] border border-[#1B2440]">
+                  <span className="text-[10px] font-space font-black uppercase px-2 py-0.5 rounded-full bg-[#B8F2D0] text-[#1B2440] border border-[#1B2440]">
                     EasyPaisa & JazzCash
                   </span>
                 </div>
 
-                <h3 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440] group-hover:text-emerald-800 transition-colors">
+                <h3 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440] group-hover:text-[#0F5A3E] transition-colors">
                   {isUrdu ? "ادائیگی اور اسکرین شاٹ فراڈ" : "Payment & Screenshot Scam"}
                 </h3>
                 <p className="text-xs sm:text-sm font-semibold text-[#1B2440]/80 mt-1.5 leading-relaxed">
@@ -329,48 +296,31 @@ export default function LandingScreen({
               </div>
 
               <div className="mt-5 pt-3 border-t-[1.5px] border-[#1B2440]/15 flex items-center justify-between text-xs font-space font-black text-[#1B2440]">
-                <span className="text-emerald-800">Inspect Screenshots</span>
+                <span className="text-[#0F5A3E]">Inspect Screenshots</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
 
-            {/* Card 3: WhatsApp & SMS Link Scanner */}
+            {/* Card 3: WhatsApp & SMS Link Scanner (Pure White Background, Seamless Logo) */}
             <div 
               onClick={() => navigateTo('scanner')}
-              className="group relative cursor-pointer bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1 transition-all overflow-hidden"
+              className="group cursor-pointer bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all"
             >
-              {/* Single Solid Traveling Border Beam (NO dots) */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <rect 
-                  x="1.5" 
-                  y="1.5" 
-                  width="calc(100% - 3px)" 
-                  height="calc(100% - 3px)" 
-                  rx="22" 
-                  fill="none" 
-                  stroke="#25D366" 
-                  strokeWidth="3.5" 
-                  strokeDasharray="160 1120" 
-                  strokeLinecap="round"
-                  className="animate-solid-beam" 
-                />
-              </svg>
-
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-2xl bg-[#D4C5F9] border-[2px] border-[#1B2440] text-[#1B2440] flex items-center justify-center">
+                  <div className="w-11 h-11 rounded-2xl bg-[#B8F2D0] border-[2px] border-[#1B2440] text-[#1B2440] flex items-center justify-center">
                     <Search className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   </div>
                   <WhatsAppLogo className="w-6 h-6" />
                 </div>
 
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-[10px] font-space font-black uppercase px-2 py-0.5 rounded-full bg-[#D4C5F9] text-[#1B2440] border border-[#1B2440]">
+                  <span className="text-[10px] font-space font-black uppercase px-2 py-0.5 rounded-full bg-[#B8F2D0] text-[#1B2440] border border-[#1B2440]">
                     WhatsApp & SMS Tool
                   </span>
                 </div>
 
-                <h3 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440] group-hover:text-purple-900 transition-colors">
+                <h3 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440] group-hover:text-[#0F5A3E] transition-colors">
                   {isUrdu ? "مشکوک میسج اور لنک اسکینر" : "Scam Message & Link Scanner"}
                 </h3>
                 <p className="text-xs sm:text-sm font-semibold text-[#1B2440]/80 mt-1.5 leading-relaxed">
@@ -381,7 +331,7 @@ export default function LandingScreen({
               </div>
 
               <div className="mt-5 pt-3 border-t-[1.5px] border-[#1B2440]/15 flex items-center justify-between text-xs font-space font-black text-[#1B2440]">
-                <span className="text-purple-800">Open Text Scanner</span>
+                <span className="text-[#0F5A3E]">Open Text Scanner</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
@@ -389,10 +339,10 @@ export default function LandingScreen({
         </div>
       </section>
 
-      {/* 4. COMPACT ELDER TESTIMONIAL BANNER */}
+      {/* 4. COMPACT ELDER TESTIMONIAL BANNER (Pure White Card) */}
       <section className="max-w-4xl mx-auto px-4 py-12 md:py-16 w-full animate-fadeInUp">
-        <div className="bg-[#FFFDF9] border-[2px] border-[#1B2440] rounded-3xl p-6 sm:p-7 flex flex-col md:flex-row items-center gap-5">
-          <div className="w-14 h-14 rounded-2xl bg-[#D4C5F9] border-[2px] border-[#1B2440] text-[#1B2440] flex items-center justify-center text-2xl flex-shrink-0">
+        <div className="bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 sm:p-7 flex flex-col md:flex-row items-center gap-5">
+          <div className="w-14 h-14 rounded-2xl bg-[#FFFBF5] border-[2px] border-[#1B2440] text-[#1B2440] flex items-center justify-center text-2xl flex-shrink-0">
             👴
           </div>
           <div className="text-left flex-1">

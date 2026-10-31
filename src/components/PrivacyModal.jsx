@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ShieldCheck, Lock, CheckCircle2 } from 'lucide-react';
+import { X, Lock, CheckCircle2 } from 'lucide-react';
 import soundEffects from '../utils/soundEffects';
 
 export default function PrivacyModal({ isOpen, onClose, language = 'roman' }) {
@@ -10,11 +10,11 @@ export default function PrivacyModal({ isOpen, onClose, language = 'roman' }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1B2440]/60 backdrop-blur-xs animate-fadeIn">
       <div 
-        className="w-full max-w-lg bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 relative flex flex-col gap-5 max-h-[90vh] overflow-y-auto"
+        className="w-full max-w-lg bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 relative flex flex-col gap-5 max-h-[90vh] overflow-y-auto"
         dir={isUrdu ? 'rtl' : 'ltr'}
       >
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b-[2px] border-[#1B2440]/20">
+        <div className="flex items-center justify-between pb-3 border-b-[2px] border-[#1B2440]/15">
           <div className="flex items-center gap-2">
             <div className="w-9 h-9 rounded-xl bg-[#B8F2D0] border-[1.5px] border-[#1B2440] flex items-center justify-center">
               <Lock className="w-5 h-5 text-[#1B2440]" />
@@ -42,7 +42,7 @@ export default function PrivacyModal({ isOpen, onClose, language = 'roman' }) {
         {/* Core Principles */}
         <div className="flex flex-col gap-3">
           <div className="bg-[#B8F2D0]/40 border-[2px] border-[#1B2440] rounded-2xl p-4 flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-emerald-700 flex-shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-5 h-5 text-[#0F5A3E] flex-shrink-0 mt-0.5" />
             <div>
               <h4 className="font-space font-black text-sm text-[#1B2440]">
                 {isUrdu ? "صفر رجسٹریشن — کوئی لاگ ان نہیں" : "Zero Registration Required"}
@@ -55,35 +55,36 @@ export default function PrivacyModal({ isOpen, onClose, language = 'roman' }) {
             </div>
           </div>
 
-          <div className="bg-[#FFF1A8]/50 border-[2px] border-[#1B2440] rounded-2xl p-4 flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" />
+          <div className="bg-[#B8F2D0]/20 border-[2px] border-[#1B2440] rounded-2xl p-4 flex items-start gap-3">
+            <CheckCircle2 className="w-5 h-5 text-[#0F5A3E] flex-shrink-0 mt-0.5" />
             <div>
               <h4 className="font-space font-black text-sm text-[#1B2440]">
-                {isUrdu ? "براؤزر میں محفوظ سمیولیشن" : "100% In-Browser Simulation"}
+                {isUrdu ? "کوئی ڈیٹا شیئرنگ نہیں" : "No Tracking or Selling"}
               </h4>
               <p className="text-xs font-semibold text-[#1B2440]/80 mt-1 leading-relaxed">
-                {isUrdu
-                  ? "تمام پریکٹس صرف آپ کے اپنے موبائل یا لیپ ٹاپ پر چلتی ہے، کسی بیرونی سرور پر نہیں جاتی۔"
-                  : "All tests, scam scans, and phone calls run entirely inside your browser. No personal data leaves your device."}
+                {isUrdu 
+                  ? "آپ کی پریکٹس کا ریکارڈ صرف آپ کی اسکرین تک محدود ہے۔ کوئی سرور لاگز نہیں۔" 
+                  : "All simulated decisions occur locally in your browser. Nothing is sent to third parties."}
               </p>
             </div>
           </div>
 
-          <div className="bg-[#FFE8E5] border-[2px] border-[#1B2440] rounded-2xl p-4 flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-[#BA1A1A] flex-shrink-0 mt-0.5" />
+          <div className="bg-[#FFFBF5] border-[2px] border-[#1B2440] rounded-2xl p-4 flex items-start gap-3">
+            <CheckCircle2 className="w-5 h-5 text-[#0F5A3E] flex-shrink-0 mt-0.5" />
             <div>
               <h4 className="font-space font-black text-sm text-[#1B2440]">
-                {isUrdu ? "حقیقی بینک سے کوئی تعلق نہیں" : "Zero Real Financial Link"}
+                {isUrdu ? "حقیقی بینکنگ سے مکمل طور پر الگ" : "Zero Real Banking Connectivity"}
               </h4>
               <p className="text-xs font-semibold text-[#1B2440]/80 mt-1 leading-relaxed">
-                {isUrdu
-                  ? "یہ صرف ایک تعلیمی سینڈ باکس ہے۔ یہاں غلط بٹن دبانے پر بھی ایک روپے کا نقصان نہیں ہو سکتا۔"
-                  : "This is purely an educational training simulator. Even if you make a wrong choice, zero real money can be lost."}
+                {isUrdu 
+                  ? "یہ ایک محفوظ تعلیمی سینڈ باکس ہے۔ یہاں کلک کرنے سے کسی اصلی بینک یا اکاؤنٹ کا تعلق نہیں۔" 
+                  : "Pure educational sandbox. No real bank accounts or wallets can ever be touched."}
               </p>
             </div>
           </div>
         </div>
 
+        {/* Close Button */}
         <button
           onClick={() => {
             soundEffects.playClick();

@@ -1,30 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #FFF4E0;
+  --color-cream: #FFFBF5;
   --color-navy: #1B2440;
   --color-mint: #B8F2D0;
-  --color-mint-dark: #2B7A4B;
+  --color-mint-dark: #0F5A3E;
   --color-coral: #FF6B6B;
   --color-coral-dark: #BA1A1A;
   --color-butter: #FFF1A8;
   --color-lavender: #D4C5F9;
-  --color-peach: #FFD3B6;
   --color-surface-pure: #FFFFFF;
 
   --font-space: "Space Grotesk", sans-serif;
   --font-nunito: "Nunito Sans", "Nunito", sans-serif;
   --font-caveat: "Caveat", cursive;
   --font-urdu: "Noto Sans Arabic", "Noto Nastaliq Urdu", sans-serif;
-
-  /* Clean subtle depth - NO bulky cardboard block shadows */
-  --shadow-subtle: 2px 2px 0px #1B2440;
-  --shadow-card: 2px 2px 0px #1B2440;
-  --shadow-elevated: 3px 3px 0px #1B2440;
 }
 
 html, body {
-  background-color: #FFF4E0;
+  background-color: #FFFBF5;
   color: #1B2440;
   font-family: var(--font-nunito);
   -webkit-font-smoothing: antialiased;
@@ -40,7 +34,7 @@ html, body {
   font-family: var(--font-urdu), "Nunito Sans", sans-serif;
 }
 
-/* Smooth Marquee without emojis */
+/* Smooth Micro-Marquee */
 @keyframes microMarquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
@@ -102,27 +96,12 @@ html, body {
 /* Tactile button pressed state */
 .btn-tactile:active {
   transform: translate(2px, 2px);
-  box-shadow: none !important;
 }
 
 /* Accessible focus ring */
 button:focus-visible, a:focus-visible {
   outline: 3px solid #1B2440;
   outline-offset: 2px;
-}
-
-/* Single Solid Traveling Border Beam (NO dots/dashes) */
-@keyframes solidBeamFlow {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: -1200;
-  }
-}
-
-.animate-solid-beam {
-  animation: solidBeamFlow 2.5s linear infinite;
 }
 
 /* Print Certificate rules */

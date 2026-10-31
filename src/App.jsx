@@ -117,17 +117,7 @@ function App() {
       } ${isUrdu ? 'font-urdu-mode' : ''}`}
       dir={isUrdu ? 'rtl' : 'ltr'}
     >
-      {/* FIXED SETTINGS GEAR BUTTON (OUTSIDE NAVBAR AT TOP RIGHT) */}
-      <button
-        onClick={() => {
-          soundEffects.playClick();
-          setIsSettingsOpen(true);
-        }}
-        className="fixed top-2 sm:top-2.5 right-3 sm:right-4 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white hover:bg-[#FFFDF9] border-[2px] border-[#1B2440] flex items-center justify-center cursor-pointer active:scale-95 transition-all"
-        title="Settings (Language & Elder Mode)"
-      >
-        <Settings className="w-4 h-4 sm:w-5 sm:h-5 text-[#1B2440] hover:rotate-45 transition-transform" />
-      </button>
+
 
       {/* 1. TOP MARQUEE TICKER (Matching Brand Emerald Green Theme) */}
       <AnnouncementBar language={language} />
@@ -136,6 +126,8 @@ function App() {
       <Navbar
         currentScreen={currentScreen}
         setCurrentScreen={setCurrentScreen}
+        language={language}
+        onOpenSettings={() => setIsSettingsOpen(true)}
       />
 
       {/* 3. ACTIVE SCREEN CONTENT */}
@@ -247,13 +239,13 @@ function App() {
             </div>
           </div>
 
-          {/* Right Area: Grouped Options Shifted Towards Right */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 text-xs font-space font-extrabold text-[#1B2440]">
+          {/* Right Area: Clean 2 Groups (Zero Clutter, Zero Live Labs) */}
+          <div className="grid grid-cols-2 gap-10 text-xs font-space font-extrabold text-[#1B2440]">
             
-            {/* Group 1: Practice Arena */}
+            {/* Group 1: Navigation */}
             <div className="flex flex-col gap-2.5">
               <span className="text-[11px] uppercase tracking-wider text-[#1B2440]/60 font-black">
-                Practice Arena
+                {isUrdu ? "نیویگیشن" : "Navigation"}
               </span>
               <button
                 onClick={() => {
@@ -262,68 +254,7 @@ function App() {
                 }}
                 className="group cursor-pointer text-left w-fit"
               >
-                <RollingText text="Home" />
-              </button>
-              <button
-                onClick={() => {
-                  soundEffects.playNav();
-                  setCurrentScreen('guided');
-                }}
-                className="group cursor-pointer text-left w-fit"
-              >
-                <RollingText text="Guided Practice" />
-              </button>
-              <button
-                onClick={() => {
-                  soundEffects.playNav();
-                  setCurrentScreen('solo');
-                }}
-                className="group cursor-pointer text-left w-fit"
-              >
-                <RollingText text="Solo Test" />
-              </button>
-              <button
-                onClick={() => {
-                  soundEffects.playNav();
-                  setCurrentScreen('result');
-                }}
-                className="group cursor-pointer text-left w-fit"
-              >
-                <RollingText text="Results" />
-              </button>
-            </div>
-
-            {/* Group 2: Simulators */}
-            <div className="flex flex-col gap-2.5">
-              <span className="text-[11px] uppercase tracking-wider text-[#1B2440]/60 font-black">
-                Live Labs
-              </span>
-              <button
-                onClick={() => {
-                  soundEffects.playNav();
-                  setCurrentScreen('phone');
-                }}
-                className="group cursor-pointer text-left w-fit"
-              >
-                <RollingText text="Fake Bank Call" />
-              </button>
-              <button
-                onClick={() => {
-                  soundEffects.playNav();
-                  setCurrentScreen('payment');
-                }}
-                className="group cursor-pointer text-left w-fit"
-              >
-                <RollingText text="EasyPaisa Trap" />
-              </button>
-              <button
-                onClick={() => {
-                  soundEffects.playNav();
-                  setCurrentScreen('scanner');
-                }}
-                className="group cursor-pointer text-left w-fit"
-              >
-                <RollingText text="WhatsApp Scanner" />
+                <RollingText text={isUrdu ? "ہوم" : "Home"} />
               </button>
               <button
                 onClick={() => {
@@ -332,20 +263,47 @@ function App() {
                 }}
                 className="group cursor-pointer text-left w-fit"
               >
-                <RollingText text="About Us" />
+                <RollingText text={isUrdu ? "ہمارا تعارف" : "About Us"} />
+              </button>
+              <button
+                onClick={() => {
+                  soundEffects.playNav();
+                  setCurrentScreen('guided');
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text={isUrdu ? "رہنمائی مشق" : "Guided Practice"} />
+              </button>
+              <button
+                onClick={() => {
+                  soundEffects.playNav();
+                  setCurrentScreen('solo');
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text={isUrdu ? "ٹیسٹ" : "Solo Test"} />
+              </button>
+              <button
+                onClick={() => {
+                  soundEffects.playNav();
+                  setCurrentScreen('result');
+                }}
+                className="group cursor-pointer text-left w-fit"
+              >
+                <RollingText text={isUrdu ? "نتیجہ" : "Results"} />
               </button>
             </div>
 
-            {/* Group 3: Emergency & Privacy */}
-            <div className="flex flex-col gap-2.5 col-span-2 sm:col-span-1">
+            {/* Group 2: Emergency & Help */}
+            <div className="flex flex-col gap-2.5">
               <span className="text-[11px] uppercase tracking-wider text-[#1B2440]/60 font-black">
-                Help & Safety
+                {isUrdu ? "حفاظت و مدد" : "Help & Safety"}
               </span>
               <a
                 href="tel:1991"
-                className="group cursor-pointer text-left w-fit text-[#BA1A1A]"
+                className="group cursor-pointer text-left w-fit text-[#BA1A1A] font-black"
               >
-                <RollingText text="🚨 Call FIA (1991)" />
+                <RollingText text="Call FIA (1991)" />
               </a>
               <button
                 onClick={() => {
@@ -354,25 +312,16 @@ function App() {
                 }}
                 className="group cursor-pointer text-left w-fit"
               >
-                <RollingText text="Bank Helplines" />
+                <RollingText text={isUrdu ? "بینک ہیلپ لائنز" : "Bank Helplines"} />
               </button>
               <button
                 onClick={() => {
                   soundEffects.playClick();
                   setIsPrivacyOpen(true);
                 }}
-                className="group cursor-pointer text-left w-fit text-emerald-800"
+                className="group cursor-pointer text-left w-fit text-[#0F5A3E]"
               >
-                <RollingText text="Privacy Guarantee" />
-              </button>
-              <button
-                onClick={() => {
-                  soundEffects.playClick();
-                  setIsSettingsOpen(true);
-                }}
-                className="group cursor-pointer text-left w-fit"
-              >
-                <RollingText text="Language / ترتیبات" />
+                <RollingText text={isUrdu ? "پرائیویسی گارنٹی" : "Privacy Guarantee"} />
               </button>
             </div>
 

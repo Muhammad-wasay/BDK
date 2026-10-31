@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Globe, UserCheck, Volume2, Check } from 'lucide-react';
+import { X, Globe, UserCheck, Settings } from 'lucide-react';
 import soundEffects from '../utils/soundEffects';
 
 export default function SettingsModal({
@@ -17,14 +17,14 @@ export default function SettingsModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1B2440]/60 backdrop-blur-xs animate-fadeIn">
       <div 
-        className="w-full max-w-sm bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 relative flex flex-col gap-5"
+        className="w-full max-w-sm bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 relative flex flex-col gap-5"
         dir={isUrdu ? 'rtl' : 'ltr'}
       >
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b-[2px] border-[#1B2440]/20">
+        <div className="flex items-center justify-between pb-3 border-b-[2px] border-[#1B2440]/15">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-[#FFF1A8] border-[1.5px] border-[#1B2440] flex items-center justify-center">
-              ⚙️
+            <div className="w-8 h-8 rounded-xl bg-[#B8F2D0] border-[1.5px] border-[#1B2440] flex items-center justify-center">
+              <Settings className="w-4 h-4 text-[#1B2440]" />
             </div>
             <h3 className="font-space font-extrabold text-lg text-[#1B2440]">
               {isUrdu ? "ترتیبات (Settings)" : "Settings"}
@@ -55,7 +55,7 @@ export default function SettingsModal({
               }}
               className={`py-2 px-2 rounded-xl border-[2px] text-xs font-space font-black transition-all cursor-pointer ${
                 language === 'roman'
-                  ? 'bg-[#FFF1A8] border-[#1B2440] text-[#1B2440]'
+                  ? 'bg-[#B8F2D0] border-[#1B2440] text-[#1B2440]'
                   : 'bg-white border-[#1B2440]/30 text-[#1B2440]/70 hover:border-[#1B2440]'
               }`}
             >
@@ -68,7 +68,7 @@ export default function SettingsModal({
               }}
               className={`py-2 px-2 rounded-xl border-[2px] text-xs font-space font-black transition-all cursor-pointer font-urdu-mode ${
                 language === 'urdu'
-                  ? 'bg-[#FFF1A8] border-[#1B2440] text-[#1B2440]'
+                  ? 'bg-[#B8F2D0] border-[#1B2440] text-[#1B2440]'
                   : 'bg-white border-[#1B2440]/30 text-[#1B2440]/70 hover:border-[#1B2440]'
               }`}
             >
@@ -81,7 +81,7 @@ export default function SettingsModal({
               }}
               className={`py-2 px-2 rounded-xl border-[2px] text-xs font-space font-black transition-all cursor-pointer ${
                 language === 'en'
-                  ? 'bg-[#FFF1A8] border-[#1B2440] text-[#1B2440]'
+                  ? 'bg-[#B8F2D0] border-[#1B2440] text-[#1B2440]'
                   : 'bg-white border-[#1B2440]/30 text-[#1B2440]/70 hover:border-[#1B2440]'
               }`}
             >
