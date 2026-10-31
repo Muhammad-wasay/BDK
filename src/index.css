@@ -111,15 +111,18 @@ button:focus-visible, a:focus-visible {
   outline-offset: 2px;
 }
 
-/* Running animated border stroke on card hover */
-@keyframes borderFlow {
+/* Single Solid Traveling Border Beam (NO dots/dashes) */
+@keyframes solidBeamFlow {
+  from {
+    stroke-dashoffset: 0;
+  }
   to {
-    stroke-dashoffset: -64;
+    stroke-dashoffset: -1200;
   }
 }
 
-.animate-border-flow {
-  animation: borderFlow 1.2s linear infinite;
+.animate-solid-beam {
+  animation: solidBeamFlow 2.5s linear infinite;
 }
 
 /* Print Certificate rules */
