@@ -27,6 +27,9 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
         callAudioRef.current.pause();
         callAudioRef.current = null;
       }
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
     };
   }, []);
 
@@ -89,22 +92,57 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
 
   const scenario = callScenarios[language] || callScenarios.roman;
 
+  const stopAudioOrSpeech = () => {
+    if (callAudioRef.current) {
+      callAudioRef.current.pause();
+    }
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setIsPlaying(false);
+  };
+
+  const playEnglishCallSpeech = () => {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const fullText = scenario.transcript.join(' ');
+    const utterance = new SpeechSynthesisUtterance(fullText);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.pitch = 1.0;
+
+    const voices = window.speechSynthesis.getVoices();
+    const googleVoice = voices.find(v => (v.name.includes('Google') || v.name.includes('Natural')) && v.lang.startsWith('en'))
+                     || voices.find(v => v.lang.startsWith('en'));
+    if (googleVoice) {
+      utterance.voice = googleVoice;
+    }
+
+    utterance.onend = () => setIsPlaying(false);
+    utterance.onerror = () => setIsPlaying(false);
+    setIsPlaying(true);
+    window.speechSynthesis.speak(utterance);
+  };
+
   const handleAccept = () => {
     soundEffects.playClick();
     setCallState('connected');
-    setIsPlaying(true);
-    if (!callAudioRef.current) {
-      callAudioRef.current = new Audio('/audio/bank_call.mp3');
-      callAudioRef.current.onended = () => setIsPlaying(false);
+
+    if (language === 'en') {
+      playEnglishCallSpeech();
+    } else {
+      setIsPlaying(true);
+      if (!callAudioRef.current) {
+        callAudioRef.current = new Audio('/audio/bank_call.mp3');
+        callAudioRef.current.onended = () => setIsPlaying(false);
+      }
+      callAudioRef.current.play().catch(() => {});
     }
-    callAudioRef.current.play().catch(() => {});
   };
 
   const handleReject = () => {
     soundEffects.playClick();
-    if (callAudioRef.current) {
-      callAudioRef.current.pause();
-    }
+    stopAudioOrSpeech();
     setUserDecision('reject');
     setShowFeedback(true);
     setCallState('ended');
@@ -117,9 +155,7 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
 
   const handleEndCall = () => {
     soundEffects.playClick();
-    if (callAudioRef.current) {
-      callAudioRef.current.pause();
-    }
+    stopAudioOrSpeech();
     setUserDecision('end');
     setShowFeedback(true);
     setCallState('ended');
@@ -127,16 +163,24 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
 
   const toggleAudio = () => {
     soundEffects.playClick();
-    if (!callAudioRef.current) {
-      callAudioRef.current = new Audio('/audio/bank_call.mp3');
-      callAudioRef.current.onended = () => setIsPlaying(false);
-    }
-    if (isPlaying) {
-      callAudioRef.current.pause();
-      setIsPlaying(false);
+    if (language === 'en') {
+      if (isPlaying) {
+        stopAudioOrSpeech();
+      } else {
+        playEnglishCallSpeech();
+      }
     } else {
-      callAudioRef.current.play().catch(() => {});
-      setIsPlaying(true);
+      if (!callAudioRef.current) {
+        callAudioRef.current = new Audio('/audio/bank_call.mp3');
+        callAudioRef.current.onended = () => setIsPlaying(false);
+      }
+      if (isPlaying) {
+        callAudioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        callAudioRef.current.play().catch(() => {});
+        setIsPlaying(true);
+      }
     }
   };
 

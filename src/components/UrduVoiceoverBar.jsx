@@ -19,7 +19,7 @@ export default function UrduVoiceoverBar({
   const words = text ? text.split(/\s+/) : [];
 
   // Match text to ElevenLabs recorded audio files in public/audio/
-  // Works for both Roman Urdu and Urdu script!
+  // ONLY USED FOR URDU & ROMAN URDU (English uses Google / Browser Speech)
   const getAudioFile = (t) => {
     if (!t) return null;
     const s = t.toLowerCase();
@@ -28,7 +28,6 @@ export default function UrduVoiceoverBar({
     if (
       s.includes('khush-aamdeed') || 
       s.includes('خوش آمدید') || 
-      s.includes('welcome to binadarke') || 
       s.includes('assalamu alaykum') || 
       s.includes('assalam-o-alaikum') || 
       s.includes('السلام علیکم')
@@ -40,7 +39,6 @@ export default function UrduVoiceoverBar({
     if (
       s.includes('4 ahem nishan') || 
       s.includes('۴ اہم نشانات') || 
-      s.includes('4 critical red flags') || 
       s.includes('ghor se dekhein') ||
       s.includes('غور سے دیکھیں')
     ) {
@@ -48,27 +46,27 @@ export default function UrduVoiceoverBar({
     }
 
     // 3. Guided Practice Red Flags 1 to 4
-    if (s.includes('pehli nishani') || s.includes('پہلی نشانی') || s.includes('first red flag') || s.includes('ghair mamooli') || s.includes('غیر معمولی')) {
+    if (s.includes('pehli nishani') || s.includes('پہلی نشانی') || s.includes('ghair mamooli') || s.includes('غیر معمولی')) {
       return '/audio/redflag_1.mp3';
     }
-    if (s.includes('doosri nishani') || s.includes('دوسری نشانی') || s.includes('second red flag') || s.includes('khufia pin') || s.includes('خفیہ پن') || s.includes('خفیہ پاس ورڈ')) {
+    if (s.includes('doosri nishani') || s.includes('دوسری نشانی') || s.includes('khufia pin') || s.includes('خفیہ پن') || s.includes('خفیہ پاس ورڈ')) {
       return '/audio/redflag_2.mp3';
     }
-    if (s.includes('teesri nishani') || s.includes('تیسری نشانی') || s.includes('third red flag') || s.includes('jaldbazi') || s.includes('جلد بازی')) {
+    if (s.includes('teesri nishani') || s.includes('تیسری نشانی') || s.includes('jaldbazi') || s.includes('جلد بازی')) {
       return '/audio/redflag_3.mp3';
     }
-    if (s.includes('chouthi nishani') || s.includes('چوتھی نشانی') || s.includes('fourth red flag') || s.includes('mashkook link') || s.includes('مشکوک لنک')) {
+    if (s.includes('chouthi nishani') || s.includes('چوتھی نشانی') || s.includes('mashkook link') || s.includes('مشکوک لنک')) {
       return '/audio/redflag_4.mp3';
     }
 
     // 4. Solo Practice Scenarios 1 to 3
-    if (s.includes('sawal number aik') || s.includes('سوال نمبر ایک') || s.includes('question 1') || s.includes('solo-1')) {
+    if (s.includes('sawal number aik') || s.includes('سوال نمبر ایک') || s.includes('solo-1')) {
       return '/audio/solo_1.mp3';
     }
-    if (s.includes('sawal number do') || s.includes('سوال نمبر دو') || s.includes('question 2') || s.includes('solo-2')) {
+    if (s.includes('sawal number do') || s.includes('سوال نمبر دو') || s.includes('solo-2')) {
       return '/audio/solo_2.mp3';
     }
-    if (s.includes('sawal number teen') || s.includes('سوال نمبر تین') || s.includes('question 3') || s.includes('solo-3')) {
+    if (s.includes('sawal number teen') || s.includes('سوال نمبر تین') || s.includes('solo-3')) {
       return '/audio/solo_3.mp3';
     }
 
@@ -108,7 +106,7 @@ export default function UrduVoiceoverBar({
 
   useEffect(() => {
     stopAllAudio();
-  }, [text]);
+  }, [text, language]);
 
   const handleTogglePlay = () => {
     if (isPlaying) {
@@ -120,10 +118,20 @@ export default function UrduVoiceoverBar({
     soundEffects.playClick();
     stopAllAudio();
 
+    // =========================================================================
+    // 1. ENGLISH MODE: ALWAYS USE GOOGLE / BROWSER ENGLISH SPEECH SYNTHESIS
+    // =========================================================================
+    if (isEn) {
+      playEnglishBrowserSpeech();
+      return;
+    }
+
+    // =========================================================================
+    // 2. URDU & ROMAN URDU MODE: PLAY ELEVENLABS MP3 STUDIO RECORDINGS
+    // =========================================================================
     const audioSrc = getAudioFile(text);
 
     if (audioSrc) {
-      // 1. PLAY ACTUAL ELEVENLABS MP3 RECORDING (Both Urdu & Roman Urdu)
       const audio = new Audio(audioSrc);
       audioRef.current = audio;
 
@@ -147,20 +155,66 @@ export default function UrduVoiceoverBar({
       };
 
       audio.onerror = () => {
-        fallbackToBrowserSpeech();
+        fallbackToUrduBrowserSpeech();
       };
 
       audio.play().then(() => {
         setIsPlaying(true);
       }).catch(() => {
-        fallbackToBrowserSpeech();
+        fallbackToUrduBrowserSpeech();
       });
     } else {
-      fallbackToBrowserSpeech();
+      fallbackToUrduBrowserSpeech();
     }
   };
 
-  const fallbackToBrowserSpeech = () => {
+  // Google / Browser Speech for English
+  const playEnglishBrowserSpeech = () => {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utteranceRef.current = utterance;
+    utterance.lang = 'en-US';
+    utterance.rate = 0.95;
+    utterance.pitch = 1.0;
+
+    // Pick Google or natural English voice if available
+    const voices = window.speechSynthesis.getVoices();
+    const googleVoice = voices.find(v => (v.name.includes('Google') || v.name.includes('Natural')) && v.lang.startsWith('en'))
+                     || voices.find(v => v.lang.startsWith('en'));
+    if (googleVoice) {
+      utterance.voice = googleVoice;
+    }
+
+    // Word highlight timer based on estimated speaking rate
+    const estimatedDuration = (words.length / 2.6) * 1000;
+    const wordInterval = estimatedDuration / Math.max(words.length, 1);
+    let currentIndex = 0;
+
+    intervalRef.current = setInterval(() => {
+      if (currentIndex < words.length) {
+        setActiveWordIndex(currentIndex);
+        currentIndex++;
+      } else {
+        clearInterval(intervalRef.current);
+      }
+    }, wordInterval);
+
+    utterance.onend = () => {
+      stopAllAudio();
+    };
+
+    utterance.onerror = () => {
+      stopAllAudio();
+    };
+
+    setIsPlaying(true);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  // Fallback for Urdu / Roman Urdu if MP3 file fails
+  const fallbackToUrduBrowserSpeech = () => {
     if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
 
@@ -168,16 +222,14 @@ export default function UrduVoiceoverBar({
     utteranceRef.current = utterance;
     utterance.pitch = 1.05;
     utterance.rate = 0.88;
-    utterance.lang = isEn ? 'en-US' : (isUrdu ? 'ur-PK' : 'hi-IN');
+    utterance.lang = isUrdu ? 'ur-PK' : 'hi-IN';
 
     utterance.onend = () => {
-      setIsPlaying(false);
-      setActiveWordIndex(-1);
+      stopAllAudio();
     };
 
     utterance.onerror = () => {
-      setIsPlaying(false);
-      setActiveWordIndex(-1);
+      stopAllAudio();
     };
 
     setIsPlaying(true);
@@ -212,15 +264,17 @@ export default function UrduVoiceoverBar({
               {label}
             </span>
             <span className="text-[11px] font-bold text-[#1B2440]/60">
-              {isPlaying ? (isEn ? "Playing voice..." : "آواز چل رہی ہے...") : (isEn ? "Click listen for spoken guidance" : "سننے کے لیے بٹن دبائیں")}
+              {isPlaying 
+                ? (isEn ? "Speaking English..." : (isUrdu ? "آواز چل رہی ہے..." : "Aawaz chal rahi hai...")) 
+                : (isEn ? "Click listen for English speech" : (isUrdu ? "سننے کے لیے بٹن دبائیں" : "Suniye button dabayein"))}
             </span>
           </div>
         </div>
 
-        {/* Play/Stop Button */}
+        {/* Play/Stop Button and Voice Badge */}
         <div className="flex items-center gap-2">
           <span className="px-2.5 py-1 rounded-xl bg-[#B8F2D0] border border-[#1B2440] text-[11px] font-space font-extrabold text-[#1B2440]">
-            {isEn ? "English Voice" : "اردو آواز (ElevenLabs)"}
+            {isEn ? "Google English Voice" : (isUrdu ? "اردو آواز (ElevenLabs)" : "Roman Urdu (ElevenLabs)")}
           </span>
 
           <button
@@ -235,12 +289,12 @@ export default function UrduVoiceoverBar({
             {isPlaying ? (
               <>
                 <VolumeX className="w-3.5 h-3.5 text-[#BA1A1A]" />
-                <span>Stop</span>
+                <span>{isEn ? "Stop" : (isUrdu ? "روکیں" : "Stop")}</span>
               </>
             ) : (
               <>
                 <Volume2 className="w-3.5 h-3.5 text-[#1B2440]" />
-                <span>{isEn ? "Listen" : "Suniyen"}</span>
+                <span>{isEn ? "Listen" : (isUrdu ? "سنیں" : "Suniyen")}</span>
               </>
             )}
           </button>
