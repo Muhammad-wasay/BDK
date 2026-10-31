@@ -122,12 +122,12 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
       <div className="flex items-center justify-between mb-6">
         <button
           onClick={onGoHome}
-          className="w-10 h-10 rounded-2xl bg-white border-[2px] border-[#1B2440] hover:bg-[#FFF4E0] flex items-center justify-center text-[#1B2440] shadow-[1.5px_1.5px_0px_#1B2440] cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
+          className="w-10 h-10 rounded-2xl bg-white border-[2px] border-[#1B2440] hover:bg-[#FFF4E0] flex items-center justify-center text-[#1B2440] cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
         >
           <ArrowLeft className="w-4 h-4" />
         </button>
         <div className="text-center">
-          <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#FFD3B6] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5 shadow-[1px_1px_0px_#1B2440]">
+          <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#FFD3B6] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5">
             Level 2 • Phone Call Simulator
           </span>
         </div>
@@ -136,7 +136,7 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
 
       {/* Phone Interface */}
       <div className="flex-1 flex flex-col items-center justify-center">
-        <div className="w-full max-w-[360px] bg-[#1B2440] rounded-[40px] p-6 shadow-[4px_4px_0px_#1B2440]/30">
+        <div className="w-full max-w-[360px] bg-[#1B2440] rounded-[40px] p-6">
           {/* Call Screen */}
           <div className="bg-gradient-to-b from-[#2D3A5E] to-[#1B2440] rounded-[32px] p-6 flex flex-col items-center gap-6 text-white">
             {/* Caller Info */}
@@ -167,13 +167,13 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
               <div className="flex items-center gap-8 mt-4">
                 <button
                   onClick={handleReject}
-                  className="w-16 h-16 rounded-full bg-[#FF6B6B] hover:bg-[#f25e5e] flex items-center justify-center shadow-[2px_2px_0px_#BA1A1A] cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
+                  className="w-16 h-16 rounded-full bg-[#FF6B6B] hover:bg-[#f25e5e] flex items-center justify-center cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
                 >
                   <PhoneOff className="w-7 h-7 text-white" />
                 </button>
                 <button
                   onClick={handleAccept}
-                  className="w-16 h-16 rounded-full bg-[#B8F2D0] hover:bg-[#a6e6bf] flex items-center justify-center shadow-[2px_2px_0px_#2B7A4B] cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
+                  className="w-16 h-16 rounded-full bg-[#B8F2D0] hover:bg-[#a6e6bf] flex items-center justify-center cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
                 >
                   <Phone className="w-7 h-7 text-[#1B2440]" />
                 </button>
@@ -219,7 +219,7 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
                 {/* End Call Button */}
                 <button
                   onClick={handleEndCall}
-                  className="w-full mt-4 py-3 rounded-xl bg-[#FF6B6B] hover:bg-[#f25e5e] flex items-center justify-center gap-2 text-sm font-bold cursor-pointer transition-all shadow-[2px_2px_0px_#BA1A1A] active:translate-x-0.5 active:translate-y-0.5"
+                  className="w-full mt-4 py-3 rounded-xl bg-[#FF6B6B] hover:bg-[#f25e5e] flex items-center justify-center gap-2 text-sm font-bold cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
                 >
                   <PhoneOff className="w-4 h-4" />
                   <span>{isUrdu ? 'کال ختم کریں' : 'End Call'}</span>
@@ -261,7 +261,7 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
 
                 <button
                   onClick={onGoHome}
-                  className="w-full py-3 rounded-xl bg-[#FFF1A8] hover:bg-[#ffe769] text-[#1B2440] flex items-center justify-center gap-2 text-sm font-bold cursor-pointer transition-all shadow-[2px_2px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5"
+                  className="w-full py-3 rounded-xl bg-[#FFF1A8] hover:bg-[#ffe769] text-[#1B2440] flex items-center justify-center gap-2 text-sm font-bold cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   <span>{isUrdu ? 'ہوم پر واپس جائیں' : 'Return to Home'}</span>
@@ -273,7 +273,7 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
       </div>
 
       {/* Safety Tip */}
-      <div className="mt-6 bg-[#B8F2D0] border-[2px] border-[#1B2440] rounded-2xl p-4 flex items-start gap-3 shadow-[1.5px_1.5px_0px_#1B2440]">
+      <div className="mt-6 bg-[#B8F2D0] border-[2px] border-[#1B2440] rounded-2xl p-4 flex items-start gap-3">
         <ShieldCheck className="w-5 h-5 text-[#1B2440] flex-shrink-0 mt-0.5" />
         <div>
           <span className="font-space font-black text-xs text-[#1B2440] block uppercase">

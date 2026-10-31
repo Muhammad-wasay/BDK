@@ -3,6 +3,9 @@ import AnnouncementBar from './components/AnnouncementBar';
 import Navbar from './components/Navbar';
 import HelplineModal from './components/HelplineModal';
 import CertificateModal from './components/CertificateModal';
+import SettingsModal from './components/SettingsModal';
+import PrivacyModal from './components/PrivacyModal';
+import RollingText from './components/RollingText';
 
 import LandingScreen from './screens/LandingScreen';
 import GuidedPracticeScreen from './screens/GuidedPracticeScreen';
@@ -11,6 +14,7 @@ import ResultScreen from './screens/ResultScreen';
 import PhoneCallSimulatorScreen from './screens/PhoneCallSimulatorScreen';
 import PaymentScamScreen from './screens/PaymentScamScreen';
 import ScamScannerScreen from './screens/ScamScannerScreen';
+import AboutScreen from './screens/AboutScreen';
 
 import { SOLO_SCENARIOS_DATA } from './data/scenarios';
 import { TRANSLATIONS } from './data/translations';
@@ -30,8 +34,11 @@ function App() {
     const saved = localStorage.getItem('binadarke_babaMode');
     return saved === 'true';
   });
+
   const [isHelplineOpen, setIsHelplineOpen] = useState(false);
   const [isCertificateOpen, setIsCertificateOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
   // Solo Practice scores & answers
   const [soloScore, setSoloScore] = useState(() => {
@@ -109,18 +116,14 @@ function App() {
       } ${isUrdu ? 'font-urdu-mode' : ''}`}
       dir={isUrdu ? 'rtl' : 'ltr'}
     >
-      {/* 1. TOP MARQUEE TICKER (No blocking sandbox badge) */}
+      {/* 1. TOP MARQUEE TICKER (Zero Emojis, Clean Bullet Dots) */}
       <AnnouncementBar language={language} />
 
-      {/* 2. MAIN NAVBAR (Clean flat 2.5px borders, rolling text on nav links, clean action buttons) */}
+      {/* 2. SLEEK NAVBAR (No Helpline on top, Dedicated Settings button on right) */}
       <Navbar
         currentScreen={currentScreen}
         setCurrentScreen={setCurrentScreen}
-        babaJiMode={babaJiMode}
-        setBabaJiMode={setBabaJiMode}
-        language={language}
-        setLanguage={setLanguage}
-        onOpenHelpline={() => setIsHelplineOpen(true)}
+        onOpenSettings={() => setIsSettingsOpen(true)}
       />
 
       {/* 3. ACTIVE SCREEN CONTENT */}
@@ -193,30 +196,46 @@ function App() {
             language={language}
           />
         )}
+
+        {currentScreen === 'about' && (
+          <AboutScreen
+            onGoHome={handleGoHome}
+            babaJiMode={babaJiMode}
+            language={language}
+          />
+        )}
       </main>
 
-      {/* 4. CLEAN, BEAUTIFUL SINGLE FOOTER (NO overlapping floating bar) */}
+      {/* 4. FOOTER WITH ROLLING TEXT FLIP ON LINKS */}
       <footer className="w-full bg-[#FFFDF9] border-t-[2.5px] border-[#1B2440] py-10 px-4 mt-16 relative z-20">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo & Platform Info */}
+          {/* Logo */}
           <div className="flex items-center gap-3">
-            <img 
-              src="/official_logo.png" 
-              alt="BinaDarKe" 
-              className="h-11 w-auto object-contain"
-            />
-          </div>
-
-          {/* Nav Links & Emergency Shortcuts */}
-          <div className="flex flex-wrap items-center justify-center gap-3.5 text-xs font-space font-extrabold text-[#1B2440]">
             <button
               onClick={() => {
                 soundEffects.playNav();
                 setCurrentScreen('landing');
               }}
-              className="hover:underline cursor-pointer"
+              className="cursor-pointer"
             >
-              {t.navHome}
+              <img 
+                src="/official_logo.png" 
+                alt="BinaDarKe" 
+                className="h-10 w-auto object-contain"
+              />
+            </button>
+          </div>
+
+          {/* Links with RollingText Kinetic Wave Effect */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-space font-extrabold text-[#1B2440]">
+            <button
+              onClick={() => {
+                soundEffects.playNav();
+                setCurrentScreen('landing');
+              }}
+              className="group cursor-pointer py-1 px-1.5"
+            >
+              <RollingText text={t.navHome || "Home"} />
             </button>
             <span>•</span>
             <button
@@ -224,9 +243,9 @@ function App() {
                 soundEffects.playNav();
                 setCurrentScreen('guided');
               }}
-              className="hover:underline cursor-pointer"
+              className="group cursor-pointer py-1 px-1.5"
             >
-              {t.navGuided}
+              <RollingText text={t.navGuided || "Guided Practice"} />
             </button>
             <span>•</span>
             <button
@@ -234,53 +253,43 @@ function App() {
                 soundEffects.playNav();
                 setCurrentScreen('solo');
               }}
-              className="hover:underline cursor-pointer"
+              className="group cursor-pointer py-1 px-1.5"
             >
-              {t.navSolo}
+              <RollingText text={t.navSolo || "Solo Test"} />
             </button>
             <span>•</span>
-            <a
-              href="tel:1991"
-              className="inline-flex items-center gap-1 bg-[#FFE8E5] text-[#BA1A1A] border border-[#BA1A1A]/40 px-2.5 py-0.5 rounded-full font-black hover:bg-[#ffd5d0] transition-colors"
+            <button
+              onClick={() => {
+                soundEffects.playNav();
+                setCurrentScreen('about');
+              }}
+              className="group cursor-pointer py-1 px-1.5"
             >
-              <span>🚨 FIA Helpline: 1991</span>
-            </a>
+              <RollingText text="About BinaDarKe" />
+            </button>
             <span>•</span>
-            {/* Language Switcher */}
-            <div className="inline-flex items-center gap-1.5 bg-[#FFF4E0] border border-[#1B2440] px-2 py-0.5 rounded-lg text-[11px]">
-              <button 
-                onClick={() => {
-                  soundEffects.playClick();
-                  setLanguage('roman');
-                }}
-                className={`cursor-pointer ${language === 'roman' ? 'font-black underline text-[#1B2440]' : 'text-[#1B2440]/60'}`}
-              >
-                Roman
-              </button>
-              <span>/</span>
-              <button 
-                onClick={() => {
-                  soundEffects.playClick();
-                  setLanguage('urdu');
-                }}
-                className={`cursor-pointer font-urdu-mode ${language === 'urdu' ? 'font-black underline text-[#1B2440]' : 'text-[#1B2440]/60'}`}
-              >
-                اردو
-              </button>
-              <span>/</span>
-              <button 
-                onClick={() => {
-                  soundEffects.playClick();
-                  setLanguage('en');
-                }}
-                className={`cursor-pointer ${language === 'en' ? 'font-black underline text-[#1B2440]' : 'text-[#1B2440]/60'}`}
-              >
-                ENG
-              </button>
-            </div>
+            <button
+              onClick={() => {
+                soundEffects.playClick();
+                setIsPrivacyOpen(true);
+              }}
+              className="group cursor-pointer py-1 px-1.5 text-emerald-800"
+            >
+              <RollingText text="Privacy Guarantee" />
+            </button>
+            <span>•</span>
+            <button
+              onClick={() => {
+                soundEffects.playClick();
+                setIsHelplineOpen(true);
+              }}
+              className="group cursor-pointer py-1 px-1.5 text-[#BA1A1A]"
+            >
+              <RollingText text="Helplines & FIA 1991" />
+            </button>
           </div>
 
-          {/* Safe Note Badge */}
+          {/* Educational Sandbox Badge */}
           <div className="text-center md:text-right">
             <span className="inline-block text-[11px] font-space font-black bg-[#FFF1A8] border-[1.5px] border-[#1B2440] px-3 py-0.5 rounded-full">
               100% Free & Educational Sandbox
@@ -292,14 +301,31 @@ function App() {
         </div>
       </footer>
 
-      {/* 5. HELPLINE MODAL */}
+      {/* 5. HELPLINE SUPPORT MODAL */}
       <HelplineModal
         isOpen={isHelplineOpen}
         onClose={() => setIsHelplineOpen(false)}
         language={language}
       />
 
-      {/* 6. CERTIFICATE MODAL */}
+      {/* 6. SETTINGS MODAL (Triggered from Top Right Gear Icon) */}
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        language={language}
+        setLanguage={setLanguage}
+        babaJiMode={babaJiMode}
+        setBabaJiMode={setBabaJiMode}
+      />
+
+      {/* 7. PRIVACY GUARANTEE MODAL */}
+      <PrivacyModal
+        isOpen={isPrivacyOpen}
+        onClose={() => setIsPrivacyOpen(false)}
+        language={language}
+      />
+
+      {/* 8. CERTIFICATE MODAL */}
       <CertificateModal
         isOpen={isCertificateOpen}
         onClose={() => setIsCertificateOpen(false)}

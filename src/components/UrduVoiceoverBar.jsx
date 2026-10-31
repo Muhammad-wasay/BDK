@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, Sparkles, User, Radio } from 'lucide-react';
+import { Volume2, VolumeX, Sparkles, Radio, Check } from 'lucide-react';
 import soundEffects from '../utils/soundEffects';
 
 export default function UrduVoiceoverBar({ 
@@ -8,69 +8,54 @@ export default function UrduVoiceoverBar({
   language = "roman" 
 }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [selectedVoiceName, setSelectedVoiceName] = useState('');
-  const [availableVoices, setAvailableVoices] = useState([]);
+  const [voiceLang, setVoiceLang] = useState('urdu'); // 'urdu' | 'english'
+  const [activeWordIndex, setActiveWordIndex] = useState(-1);
   const utteranceRef = useRef(null);
 
-  // Load and filter natural female voices
+  const words = text ? text.split(' ') : [];
+
+  // Stop speech when text changes or component unmounts
   useEffect(() => {
-    const updateVoices = () => {
-      if (!('speechSynthesis' in window)) return;
-      const voices = window.speechSynthesis.getVoices();
-      setAvailableVoices(voices);
-
-      // Find the best soothing female voice
-      const bestFemaleVoice = findBestFemaleVoice(voices, language);
-      if (bestFemaleVoice) {
-        setSelectedVoiceName(bestFemaleVoice.name);
-      }
-    };
-
-    updateVoices();
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.onvoiceschanged = updateVoices;
-    }
-
     return () => {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
       }
     };
-  }, [language]);
+  }, []);
 
-  // Stop speech when text changes or unmounts
   useEffect(() => {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       setIsPlaying(false);
+      setActiveWordIndex(-1);
     }
   }, [text]);
 
-  const findBestFemaleVoice = (voices, lang) => {
+  const findBestVoice = (voices, langChoice) => {
     if (!voices || voices.length === 0) return null;
 
-    // 1. First priority: High quality Natural Hindi / Urdu Female voices
-    const naturalHindiUrduFemale = voices.find(v => 
-      (v.lang.includes('hi') || v.lang.includes('ur') || v.lang.includes('IN') || v.lang.includes('PK')) &&
-      (v.name.includes('Swara') || v.name.includes('Heera') || v.name.includes('Kalpana') || v.name.includes('Google हिन्दी') || v.name.toLowerCase().includes('female'))
-    );
-    if (naturalHindiUrduFemale) return naturalHindiUrduFemale;
+    if (langChoice === 'urdu') {
+      // 1. Natural Hindi/Urdu Female voice
+      const hindiUrduFemale = voices.find(v => 
+        (v.lang.includes('hi') || v.lang.includes('ur') || v.lang.includes('IN') || v.lang.includes('PK')) &&
+        (v.name.includes('Swara') || v.name.includes('Heera') || v.name.includes('Kalpana') || v.name.includes('Google हिन्दी') || v.name.toLowerCase().includes('female'))
+      );
+      if (hindiUrduFemale) return hindiUrduFemale;
 
-    // 2. Second priority: Any Hindi / Urdu voice
-    const anyHindiUrdu = voices.find(v => v.lang.includes('hi') || v.lang.includes('ur'));
-    if (anyHindiUrdu) return anyHindiUrdu;
+      const anyUrduHindi = voices.find(v => v.lang.includes('hi') || v.lang.includes('ur'));
+      if (anyUrduHindi) return anyUrduHindi;
+    }
 
-    // 3. Third priority: Clear Natural English Female voices (friendly accent for Roman Urdu)
-    const naturalEnglishFemale = voices.find(v => 
+    // English Female voice
+    const englishFemale = voices.find(v => 
       v.name.includes('Zira') || 
       v.name.includes('Jenny') || 
       v.name.includes('Google UK English Female') ||
       v.name.includes('Google US English Female') ||
-      v.name.toLowerCase().includes('female')
+      (v.lang.includes('en') && v.name.toLowerCase().includes('female'))
     );
-    if (naturalEnglishFemale) return naturalEnglishFemale;
+    if (englishFemale) return englishFemale;
 
-    // 4. Fallback to first voice
     return voices[0];
   };
 
@@ -84,6 +69,7 @@ export default function UrduVoiceoverBar({
       soundEffects.playClick();
       window.speechSynthesis.cancel();
       setIsPlaying(false);
+      setActiveWordIndex(-1);
     } else {
       soundEffects.playClick();
       window.speechSynthesis.cancel();
@@ -92,31 +78,46 @@ export default function UrduVoiceoverBar({
       utteranceRef.current = utterance;
 
       const voices = window.speechSynthesis.getVoices();
-      const bestVoice = findBestFemaleVoice(voices, language);
+      const selectedVoice = findBestVoice(voices, voiceLang);
 
-      if (bestVoice) {
-        utterance.voice = bestVoice;
-        setSelectedVoiceName(bestVoice.name);
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
       }
 
-      // Voice tone tuning: Female pitch (1.1) and clear, soothing elder-friendly speed (0.86)
-      utterance.pitch = 1.1;
-      utterance.rate = 0.86;
+      // Voice tuning: Female pitch (1.08) and calm, elder-friendly pace (0.85)
+      utterance.pitch = 1.08;
+      utterance.rate = 0.85;
 
-      if (language === 'urdu') {
-        utterance.lang = 'ur-PK';
-      } else if (language === 'roman') {
-        utterance.lang = 'hi-IN'; // Hindi voice reads Roman Urdu/Urdu phonetics with 95% natural clarity
+      if (voiceLang === 'urdu') {
+        utterance.lang = language === 'urdu' ? 'ur-PK' : 'hi-IN';
       } else {
         utterance.lang = 'en-US';
       }
 
+      // Word boundary event for live karaoke highlight
+      utterance.onboundary = (event) => {
+        if (event.name === 'word') {
+          // Estimate word index based on character index
+          const charIndex = event.charIndex;
+          let runningChars = 0;
+          for (let i = 0; i < words.length; i++) {
+            runningChars += words[i].length + 1;
+            if (runningChars > charIndex) {
+              setActiveWordIndex(i);
+              break;
+            }
+          }
+        }
+      };
+
       utterance.onend = () => {
         setIsPlaying(false);
+        setActiveWordIndex(-1);
       };
 
       utterance.onerror = () => {
         setIsPlaying(false);
+        setActiveWordIndex(-1);
       };
 
       setIsPlaying(true);
@@ -128,68 +129,116 @@ export default function UrduVoiceoverBar({
 
   return (
     <div 
-      className={`w-full bg-[#FFFDF9] border-[2px] border-[#1B2440] rounded-2xl p-3 sm:p-4 shadow-[2px_2px_0px_#1B2440] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 transition-all ${
+      className={`w-full bg-[#FFFDF9] border-[2px] border-[#1B2440] rounded-2xl p-4 sm:p-5 flex flex-col gap-3 transition-all ${
         isUrdu ? 'font-urdu-mode' : ''
       }`}
       dir={isUrdu ? 'rtl' : 'ltr'}
     >
-      <div className="flex items-center gap-3">
-        {/* Animated Soundwave Avatar */}
-        <div className={`w-11 h-11 rounded-xl border-[2px] border-[#1B2440] flex items-center justify-center flex-shrink-0 transition-all ${
-          isPlaying 
-            ? 'bg-[#FF6B6B] text-white shadow-[1px_1px_0px_#1B2440]' 
-            : 'bg-[#B8F2D0] text-[#1B2440]'
-        }`}>
-          {isPlaying ? (
-            <div className="flex items-center gap-0.5">
-              <span className="w-1 h-3 bg-white rounded-full animate-pulse"></span>
-              <span className="w-1 h-5 bg-white rounded-full animate-bounce"></span>
-              <span className="w-1 h-4 bg-white rounded-full animate-pulse"></span>
-            </div>
-          ) : (
-            <Volume2 className="w-5 h-5 text-[#1B2440]" />
-          )}
-        </div>
-
-        {/* Text & Female Assistant Badge */}
-        <div className="flex flex-col">
-          <div className="flex items-center gap-2">
-            <span className="font-space font-extrabold text-sm sm:text-base text-[#1B2440] leading-none">
+      {/* Top Controls Row */}
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-[#1B2440]/15">
+        <div className="flex items-center gap-2.5">
+          <div className={`w-9 h-9 rounded-xl border-[2px] border-[#1B2440] flex items-center justify-center flex-shrink-0 transition-all ${
+            isPlaying ? 'bg-[#FF6B6B] text-white' : 'bg-[#B8F2D0] text-[#1B2440]'
+          }`}>
+            {isPlaying ? (
+              <div className="flex items-center gap-0.5">
+                <span className="w-1 h-3 bg-white rounded-full animate-pulse"></span>
+                <span className="w-1 h-5 bg-white rounded-full animate-bounce"></span>
+                <span className="w-1 h-4 bg-white rounded-full animate-pulse"></span>
+              </div>
+            ) : (
+              <Volume2 className="w-4 h-4 text-[#1B2440]" />
+            )}
+          </div>
+          <div>
+            <span className="font-space font-extrabold text-sm sm:text-base text-[#1B2440] leading-none block">
               {label}
             </span>
-            <span className="inline-flex items-center gap-1 bg-[#D4C5F9] text-[#1B2440] border border-[#1B2440] text-[10px] font-space font-black px-2 py-0.5 rounded-full">
-              <Radio className="w-2.5 h-2.5 text-[#1B2440]" />
-              <span>Female Voice Guide</span>
+            <span className="text-[11px] font-bold text-[#1B2440]/60">
+              {isPlaying ? "Speaking now..." : "Click listen for spoken guidance"}
             </span>
           </div>
-          <p className="text-xs font-bold text-[#1B2440]/75 mt-1 line-clamp-1 italic">
-            "{text}"
-          </p>
+        </div>
+
+        {/* Voice Language Selector & Play/Stop Button */}
+        <div className="flex items-center gap-2">
+          {/* Urdu / English Voice Toggle */}
+          <div className="flex items-center bg-[#FFF4E0] border-[1.5px] border-[#1B2440] p-0.5 rounded-xl text-[11px] font-space font-bold">
+            <button
+              onClick={() => {
+                soundEffects.playClick();
+                if (isPlaying) window.speechSynthesis.cancel();
+                setIsPlaying(false);
+                setVoiceLang('urdu');
+              }}
+              className={`px-2 py-0.5 rounded-lg transition-all cursor-pointer ${
+                voiceLang === 'urdu' 
+                  ? 'bg-white text-[#1B2440] border border-[#1B2440] font-black' 
+                  : 'text-[#1B2440]/60 hover:text-[#1B2440]'
+              }`}
+            >
+              Urdu Female
+            </button>
+            <button
+              onClick={() => {
+                soundEffects.playClick();
+                if (isPlaying) window.speechSynthesis.cancel();
+                setIsPlaying(false);
+                setVoiceLang('english');
+              }}
+              className={`px-2 py-0.5 rounded-lg transition-all cursor-pointer ${
+                voiceLang === 'english' 
+                  ? 'bg-white text-[#1B2440] border border-[#1B2440] font-black' 
+                  : 'text-[#1B2440]/60 hover:text-[#1B2440]'
+              }`}
+            >
+              English Female
+            </button>
+          </div>
+
+          {/* Play/Stop Button */}
+          <button
+            onClick={handleTogglePlay}
+            type="button"
+            className={`px-3.5 py-1.5 rounded-xl border-[2px] border-[#1B2440] text-xs font-space font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 ${
+              isPlaying
+                ? 'bg-[#FFE8E5] text-[#BA1A1A] hover:bg-[#ffd5d0]'
+                : 'bg-[#FFF1A8] text-[#1B2440] hover:bg-[#ffe769]'
+            }`}
+          >
+            {isPlaying ? (
+              <>
+                <VolumeX className="w-3.5 h-3.5 text-[#BA1A1A]" />
+                <span>Stop</span>
+              </>
+            ) : (
+              <>
+                <Volume2 className="w-3.5 h-3.5 text-[#1B2440]" />
+                <span>Listen</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
 
-      {/* Action Button */}
-      <button
-        onClick={handleTogglePlay}
-        type="button"
-        className={`px-4 py-2 rounded-xl border-[2px] border-[#1B2440] text-xs font-space font-black transition-all flex items-center justify-center gap-2 cursor-pointer flex-shrink-0 shadow-[1.5px_1.5px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5 ${
-          isPlaying
-            ? 'bg-[#FFE8E5] text-[#BA1A1A] hover:bg-[#ffd5d0]'
-            : 'bg-[#FFF1A8] text-[#1B2440] hover:bg-[#ffe769]'
-        }`}
-      >
-        {isPlaying ? (
-          <>
-            <VolumeX className="w-4 h-4 text-[#BA1A1A]" />
-            <span>{isUrdu ? "آواز بند کریں" : "Aawaz Band Karein"}</span>
-          </>
-        ) : (
-          <>
-            <Volume2 className="w-4 h-4 text-[#1B2440]" />
-            <span>{isUrdu ? "سنیں (Female Voice)" : "Suniyen (Female Voice)"}</span>
-          </>
-        )}
-      </button>
+      {/* Full Spoken Text with Live Word-by-Word Highlight (NO Truncation!) */}
+      <div className="text-xs sm:text-sm font-bold text-[#1B2440] leading-relaxed pt-1">
+        {words.map((word, index) => {
+          const isCurrent = isPlaying && activeWordIndex === index;
+          return (
+            <span
+              key={index}
+              className={`inline-block mr-1.5 transition-all duration-150 ${
+                isCurrent 
+                  ? 'bg-[#FFF1A8] text-[#1B2440] px-1 py-0.5 rounded-md font-black scale-105 border border-[#1B2440]' 
+                  : 'text-[#1B2440]/85'
+              }`}
+            >
+              {word}
+            </span>
+          );
+        })}
+      </div>
     </div>
   );
 }

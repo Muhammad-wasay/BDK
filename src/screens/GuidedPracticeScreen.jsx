@@ -47,14 +47,14 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
         <div className="flex items-center gap-3">
           <button
             onClick={onGoHome}
-            className="w-10 h-10 rounded-2xl bg-white border-[2px] border-[#1B2440] hover:bg-[#FFF4E0] flex items-center justify-center text-[#1B2440] shadow-[1.5px_1.5px_0px_#1B2440] cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
+            className="w-10 h-10 rounded-2xl bg-white border-[2px] border-[#1B2440] hover:bg-[#FFF4E0] flex items-center justify-center text-[#1B2440] cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
             title="Back to Home"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#FFF1A8] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5 shadow-[1px_1px_0px_#1B2440]">
+              <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#FFF1A8] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5">
                 {t.guidedTag}
               </span>
               <span className="text-xs text-[#1B2440]/70 font-bold">Step 1 of 2</span>
@@ -67,7 +67,7 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
 
         <button
           onClick={onNextStep}
-          className="px-5 py-2.5 rounded-2xl bg-[#B8F2D0] hover:bg-[#a6e6bf] text-[#1B2440] border-[2px] border-[#1B2440] font-space font-extrabold text-xs flex items-center gap-2 cursor-pointer transition-all shadow-[2px_2px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5"
+          className="px-5 py-2.5 rounded-2xl bg-[#B8F2D0] hover:bg-[#a6e6bf] text-[#1B2440] border-[2px] border-[#1B2440] font-space font-extrabold text-xs flex items-center gap-2 cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
         >
           <span>{t.guidedNextBtn}</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -83,7 +83,7 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Simulated Phone (5 cols) */}
         <div className="lg:col-span-5 flex flex-col items-center">
-          <div className="w-full max-w-[360px] bg-[#FFFDF9] rounded-[36px] border-[3px] border-[#1B2440] shadow-[3px_3px_0px_#1B2440] p-4 flex flex-col gap-3">
+          <div className="w-full max-w-[360px] bg-[#FFFDF9] rounded-[36px] border-[3px] border-[#1B2440] p-4 flex flex-col gap-3">
             {/* Phone Top Status */}
             <div className="flex items-center justify-between pb-2 border-b-[2px] border-[#1B2440]/20">
               <div className="flex items-center gap-1.5">
@@ -112,7 +112,7 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
             </div>
 
             {/* Chat Bubble with Interactive Hotspots */}
-            <div className="bg-[#FFF4E0] border-[2.5px] border-[#1B2440] rounded-2xl p-4 shadow-[1.5px_1.5px_0px_#1B2440] flex flex-col gap-2.5 text-[#1B2440]">
+            <div className="bg-[#FFF4E0] border-[2.5px] border-[#1B2440] rounded-2xl p-4 flex flex-col gap-2.5 text-[#1B2440]">
               <p className="text-sm font-extrabold leading-relaxed">
                 {scenario.rawMessage.greeting}{' '}
                 <button
@@ -120,7 +120,7 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
                   onClick={() => handleSpotClick('lalach')}
                   className={`cursor-pointer inline-block px-2 py-0.5 rounded-lg font-black border-[2px] transition-all ${
                     activeFlag === 'lalach'
-                      ? 'bg-[#FFF1A8] border-[#1B2440] ring-2 ring-[#FF6B6B] scale-105 shadow-[1.5px_1.5px_0px_#1B2440]'
+                      ? 'bg-[#FFF1A8] border-[#1B2440] ring-2 ring-[#FF6B6B] scale-105'
                       : 'bg-[#FFF1A8] border-dashed border-[#1B2440] hover:scale-105'
                   }`}
                 >
@@ -135,7 +135,7 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
                   onClick={() => handleSpotClick('pin')}
                   className={`cursor-pointer inline-block px-2 py-0.5 rounded-lg font-black border-[2px] transition-all mr-1 ${
                     activeFlag === 'pin'
-                      ? 'bg-[#FFE8E5] border-[#BA1A1A] text-[#BA1A1A] ring-2 ring-[#BA1A1A] scale-105 shadow-[1.5px_1.5px_0px_#1B2440]'
+                      ? 'bg-[#FFE8E5] border-[#BA1A1A] text-[#BA1A1A] ring-2 ring-[#BA1A1A] scale-105'
                       : 'bg-[#FFE8E5] border-dashed border-[#BA1A1A] text-[#BA1A1A] hover:scale-105'
                   }`}
                 >
@@ -146,7 +146,7 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
                   onClick={() => handleSpotClick('jaldi')}
                   className={`cursor-pointer inline-block px-2 py-0.5 rounded-lg font-black border-[2px] transition-all ${
                     activeFlag === 'jaldi'
-                      ? 'bg-[#D4C5F9] border-[#1B2440] ring-2 ring-[#1B2440] scale-105 shadow-[1.5px_1.5px_0px_#1B2440]'
+                      ? 'bg-[#D4C5F9] border-[#1B2440] ring-2 ring-[#1B2440] scale-105'
                       : 'bg-[#D4C5F9] border-dashed border-[#1B2440] hover:scale-105'
                   }`}
                 >
@@ -161,7 +161,7 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
                   onClick={handleSimulatedLinkClick}
                   className={`w-full text-left p-2.5 rounded-xl border-[2px] transition-all cursor-pointer ${
                     activeFlag === 'link'
-                      ? 'bg-[#FFE3E3] border-[#FF6B6B] ring-2 ring-[#FF6B6B] shadow-[1.5px_1.5px_0px_#1B2440]'
+                      ? 'bg-[#FFE3E3] border-[#FF6B6B] ring-2 ring-[#FF6B6B]'
                       : 'bg-[#FFE3E3] border-dashed border-[#FF6B6B] hover:bg-[#ffdcdc]'
                   }`}
                 >
@@ -206,9 +206,9 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
 
         {/* Right Column: Breakdown Cards (7 cols) */}
         <div className="lg:col-span-7 flex flex-col gap-4">
-          <div className="bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 shadow-[2px_2px_0px_#1B2440] space-y-4">
+          <div className="bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 space-y-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 bg-[#FFF1A8] text-[#1B2440] border-[2px] border-[#1B2440] px-3 py-1 rounded-full text-xs font-space font-black mb-2 shadow-[1px_1px_0px_#1B2440]">
+              <div className="inline-flex items-center gap-1.5 bg-[#FFF1A8] text-[#1B2440] border-[2px] border-[#1B2440] px-3 py-1 rounded-full text-xs font-space font-black mb-2">
                 <Lightbulb className="w-3.5 h-3.5" />
                 <span>{t.guidedAdviceTitle}</span>
               </div>
@@ -230,8 +230,8 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
                     onClick={() => setActiveFlag(flag.id)}
                     className={`p-4 rounded-2xl border-[2.5px] border-[#1B2440] transition-all cursor-pointer ${
                       isSelected
-                        ? 'bg-[#FFF1A8] ring-2 ring-[#1B2440] shadow-[2px_2px_0px_#1B2440] scale-[1.01]'
-                        : 'bg-white hover:bg-[#FFF4E0] shadow-[1px_1px_0px_#1B2440]'
+                        ? 'bg-[#FFF1A8] ring-2 ring-[#1B2440] scale-[1.01]'
+                        : 'bg-white hover:bg-[#FFF4E0]'
                     }`}
                   >
                     <div className="flex items-start gap-3">
@@ -258,7 +258,7 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
             </div>
 
             {/* Reassurance Rule Box */}
-            <div className="bg-[#B8F2D0] border-[2px] border-[#1B2440] p-4 rounded-2xl flex items-center gap-3 shadow-[1.5px_1.5px_0px_#1B2440]">
+            <div className="bg-[#B8F2D0] border-[2px] border-[#1B2440] p-4 rounded-2xl flex items-center gap-3">
               <ShieldCheck className="w-6 h-6 text-[#1B2440] flex-shrink-0" />
               <div>
                 <span className="font-space font-black text-xs text-[#1B2440] block uppercase">
@@ -274,7 +274,7 @@ export default function GuidedPracticeScreen({ onNextStep, onGoHome, babaJiMode,
           <button
             onClick={onNextStep}
             type="button"
-            className="w-full bg-[#FFF1A8] hover:bg-[#ffe769] text-[#1B2440] border-[2.5px] border-[#1B2440] py-4 px-6 rounded-2xl shadow-[2px_2px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2 cursor-pointer font-space font-black text-sm"
+            className="w-full bg-[#FFF1A8] hover:bg-[#ffe769] text-[#1B2440] border-[2.5px] border-[#1B2440] py-4 px-6 rounded-2xl active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2 cursor-pointer font-space font-black text-sm"
           >
             <span>{t.guidedNextBtn}</span>
             <ArrowRight className="w-4 h-4" />

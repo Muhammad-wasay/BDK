@@ -91,12 +91,12 @@ export default function ScamScannerScreen({ onGoHome, babaJiMode, language = 'ro
       <div className="flex items-center justify-between mb-6">
         <button
           onClick={onGoHome}
-          className="w-10 h-10 rounded-2xl bg-white border-[2px] border-[#1B2440] hover:bg-[#FFF4E0] flex items-center justify-center text-[#1B2440] shadow-[1.5px_1.5px_0px_#1B2440] cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
+          className="w-10 h-10 rounded-2xl bg-white border-[2px] border-[#1B2440] hover:bg-[#FFF4E0] flex items-center justify-center text-[#1B2440] cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
         >
           <ArrowLeft className="w-4 h-4" />
         </button>
         <div className="text-center">
-          <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#D4C5F9] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5 shadow-[1px_1px_0px_#1B2440]">
+          <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#D4C5F9] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5">
             {isUrdu ? 'اسکام اسکینر' : 'Scam Scanner'}
           </span>
         </div>
@@ -106,7 +106,7 @@ export default function ScamScannerScreen({ onGoHome, babaJiMode, language = 'ro
       {/* Main Content */}
       <div className="flex-1 flex flex-col gap-6">
         {/* Scanner Card */}
-        <div className="bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 shadow-[2px_2px_0px_#1B2440]">
+        <div className="bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6">
           <div className="flex items-center gap-2 mb-4">
             <Sparkles className="w-5 h-5 text-[#1B2440]" />
             <h2 className="font-space font-extrabold text-lg text-[#1B2440]">
@@ -126,7 +126,7 @@ export default function ScamScannerScreen({ onGoHome, babaJiMode, language = 'ro
             <button
               onClick={handleScan}
               disabled={isScanning || !inputText.trim()}
-              className="flex-1 py-3 rounded-xl bg-[#1B2440] hover:bg-slate-800 text-white font-space font-black text-sm flex items-center justify-center gap-2 cursor-pointer transition-all shadow-[2px_2px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 py-3 rounded-xl bg-[#1B2440] hover:bg-slate-800 text-white font-space font-black text-sm flex items-center justify-center gap-2 cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isScanning ? (
                 <>
@@ -143,7 +143,7 @@ export default function ScamScannerScreen({ onGoHome, babaJiMode, language = 'ro
 
             <button
               onClick={handleClear}
-              className="px-6 py-3 rounded-xl bg-white border-[2px] border-[#1B2440] text-[#1B2440] font-space font-black text-sm cursor-pointer transition-all shadow-[2px_2px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5"
+              className="px-6 py-3 rounded-xl bg-white border-[2px] border-[#1B2440] text-[#1B2440] font-space font-black text-sm cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
             >
               {isUrdu ? 'صاف' : 'Clear'}
             </button>
@@ -152,7 +152,7 @@ export default function ScamScannerScreen({ onGoHome, babaJiMode, language = 'ro
 
         {/* Scan Result */}
         {scanResult && (
-          <div className={`rounded-3xl p-6 border-[2.5px] border-[#1B2440] shadow-[2px_2px_0px_#1B2440] animate-fadeIn ${
+          <div className={`rounded-3xl p-6 border-[2.5px] border-[#1B2440] animate-fadeIn ${
             scanResult.riskLevel === 'high'
               ? 'bg-[#FFE8E5]'
               : scanResult.riskLevel === 'medium'
@@ -231,7 +231,7 @@ export default function ScamScannerScreen({ onGoHome, babaJiMode, language = 'ro
         )}
 
         {/* Safety Tips */}
-        <div className="bg-[#B8F2D0] border-[2px] border-[#1B2440] rounded-2xl p-4 shadow-[1.5px_1.5px_0px_#1B2440]">
+        <div className="bg-[#B8F2D0] border-[2px] border-[#1B2440] rounded-2xl p-4">
           <div className="flex items-start gap-3">
             <ShieldCheck className="w-5 h-5 text-[#1B2440] flex-shrink-0 mt-0.5" />
             <div>

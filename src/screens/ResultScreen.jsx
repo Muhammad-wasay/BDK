@@ -88,9 +88,9 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
       </div>
 
       {/* Hero Celebration Card with Stitch Borders */}
-      <div className="relative w-full bg-[#B8F2D0] border-[2.5px] border-[#1B2440] text-[#1B2440] rounded-3xl p-6 sm:p-8 shadow-[2.5px_2.5px_0px_#1B2440] mb-8 overflow-hidden">
+      <div className="relative w-full bg-[#B8F2D0] border-[2.5px] border-[#1B2440] text-[#1B2440] rounded-3xl p-6 sm:p-8 mb-8 overflow-hidden">
         <div className="relative z-10 text-center max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 bg-[#FFF1A8] border-[1.5px] border-[#1B2440] px-3.5 py-1 rounded-full text-xs font-space font-black uppercase tracking-wider mb-3 shadow-[1px_1px_0px_#1B2440]">
+          <div className="inline-flex items-center gap-1.5 bg-[#FFF1A8] border-[1.5px] border-[#1B2440] px-3.5 py-1 rounded-full text-xs font-space font-black uppercase tracking-wider mb-3">
             <Award className="w-4 h-4 text-[#1B2440]" />
             <span>{t.resultTag}</span>
           </div>
@@ -107,13 +107,13 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
       {/* Score & Confidence Grid with Stitch Borders */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-8 items-stretch">
         {/* Score Card */}
-        <div className="md:col-span-5 bg-[#FFF1A8] border-[2.5px] border-[#1B2440] rounded-3xl p-6 shadow-[2px_2px_0px_#1B2440] flex flex-col items-center justify-between text-center">
-          <span className="text-xs font-space font-black uppercase tracking-wider bg-white border-[1.5px] border-[#1B2440] text-[#1B2440] px-3 py-1 rounded-full shadow-[1px_1px_0px_#1B2440]">
+        <div className="md:col-span-5 bg-[#FFF1A8] border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col items-center justify-between text-center">
+          <span className="text-xs font-space font-black uppercase tracking-wider bg-white border-[1.5px] border-[#1B2440] text-[#1B2440] px-3 py-1 rounded-full">
             {t.resultTotalScore}
           </span>
 
           <div className="my-5">
-            <div className="bg-white border-[2.5px] border-[#1B2440] rounded-2xl px-8 py-3 inline-flex items-baseline gap-2 shadow-[1.5px_1.5px_0px_#1B2440]">
+            <div className="bg-white border-[2.5px] border-[#1B2440] rounded-2xl px-8 py-3 inline-flex items-baseline gap-2">
               <span className="font-space text-5xl font-black text-[#1B2440]">
                 {finalScore}
               </span>
@@ -128,7 +128,7 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
             <p className="text-xs sm:text-sm font-extrabold text-[#1B2440]">
               {total} {t.soloOf} {finalScore} {t.resultScoreDesc}
             </p>
-            <div className="mt-2.5 inline-flex items-center gap-1.5 bg-[#B8F2D0] text-[#1B2440] border-[1.5px] border-[#1B2440] px-3 py-1 rounded-full text-xs font-black shadow-[1px_1px_0px_#1B2440]">
+            <div className="mt-2.5 inline-flex items-center gap-1.5 bg-[#B8F2D0] text-[#1B2440] border-[1.5px] border-[#1B2440] px-3 py-1 rounded-full text-xs font-black">
               <Lock className="w-3.5 h-3.5" />
               <span>{t.resultZeroRisk}</span>
             </div>
@@ -136,14 +136,14 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
         </div>
 
         {/* Confidence Meter Card */}
-        <div className="md:col-span-7 bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 shadow-[2px_2px_0px_#1B2440] flex flex-col justify-between">
+        <div className="md:col-span-7 bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col justify-between">
           <div>
             <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
               <span className="text-xs sm:text-sm font-space font-extrabold text-[#1B2440] flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#1B2440]" />
                 <span>{t.resultConfidenceTitle}</span>
               </span>
-              <span className="bg-[#D4C5F9] text-[#1B2440] border-[1.5px] border-[#1B2440] px-2.5 py-0.5 rounded-full text-xs font-black shadow-[1px_1px_0px_#1B2440]">
+              <span className="bg-[#D4C5F9] text-[#1B2440] border-[1.5px] border-[#1B2440] px-2.5 py-0.5 rounded-full text-xs font-black">
                 {percentage}% Safe Guardian
               </span>
             </div>
@@ -157,7 +157,7 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
           </div>
 
           {/* Elder Quote Bubble */}
-          <div className="bg-[#FFF4E0] border-[2px] border-[#1B2440] rounded-2xl p-4 flex items-start gap-3 shadow-[1.5px_1.5px_0px_#1B2440]">
+          <div className="bg-[#FFF4E0] border-[2px] border-[#1B2440] rounded-2xl p-4 flex items-start gap-3">
             <HeartHandshake className="w-5 h-5 text-[#1B2440] flex-shrink-0 mt-0.5" />
             <p className="text-xs sm:text-sm text-[#1B2440] font-bold leading-relaxed">
               {t.resultAvatarQuote}
@@ -167,7 +167,7 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
       </div>
 
       {/* Detailed Breakdown List */}
-      <section className="w-full bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 shadow-[2px_2px_0px_#1B2440] mb-8">
+      <section className="w-full bg-[#FFFDF9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 mb-8">
         <div className="flex items-center justify-between pb-4 mb-4 border-b-[2px] border-[#1B2440]/20">
           <h2 className="font-space font-extrabold text-base sm:text-lg text-[#1B2440]">
             {t.resultBreakdownTitle} ({total} Scenarios)
@@ -187,8 +187,8 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
                 key={item.id}
                 className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-2xl border-[2px] border-[#1B2440] transition-all ${
                   isCorrect
-                    ? 'bg-white shadow-[1px_1px_0px_#1B2440]'
-                    : 'bg-[#FFE8E5] shadow-[1.5px_1.5px_0px_#1B2440]'
+                    ? 'bg-white'
+                    : 'bg-[#FFE8E5]'
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -207,14 +207,14 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
 
                 <div className="flex items-center gap-2 self-start sm:self-auto">
                   {isCorrect ? (
-                    <span className="inline-flex items-center gap-1 text-[#1B2440] bg-[#B8F2D0] border border-[#1B2440] px-2.5 py-1 rounded-xl text-xs font-black shadow-[1px_1px_0px_#1B2440]">
+                    <span className="inline-flex items-center gap-1 text-[#1B2440] bg-[#B8F2D0] border border-[#1B2440] px-2.5 py-1 rounded-xl text-xs font-black">
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       <span>{isUrdu ? 'درست پہچانا' : 'Correct'}</span>
                     </span>
                   ) : (
                     <button
                       onClick={() => setSelectedTip(item)}
-                      className="inline-flex items-center gap-1 text-[#1B2440] bg-[#FFF1A8] hover:bg-[#ffe769] border border-[#1B2440] px-2.5 py-1 rounded-xl text-xs font-black cursor-pointer transition-colors shadow-[1px_1px_0px_#1B2440]"
+                      className="inline-flex items-center gap-1 text-[#1B2440] bg-[#FFF1A8] hover:bg-[#ffe769] border border-[#1B2440] px-2.5 py-1 rounded-xl text-xs font-black cursor-pointer transition-colors"
                     >
                       <span>{isUrdu ? 'سبق دیکھیں' : 'Review Clue'}</span>
                     </button>
@@ -229,7 +229,7 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
       {/* Review Modal if clicked */}
       {selectedTip && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1B2440]/60 backdrop-blur-sm animate-fadeIn">
-          <div className="w-full max-w-md bg-[#FFFDF9] border-[3px] border-[#1B2440] rounded-3xl p-6 relative shadow-[3px_3px_0px_#1B2440]">
+          <div className="w-full max-w-md bg-[#FFFDF9] border-[3px] border-[#1B2440] rounded-3xl p-6 relative">
             <button
               onClick={() => setSelectedTip(null)}
               className="absolute top-4 right-4 w-7 h-7 rounded-full bg-[#FFF1A8] border border-[#1B2440] flex items-center justify-center text-[#1B2440] font-bold"
@@ -257,9 +257,9 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
         <button
           onClick={onOpenCertificate}
           type="button"
-          className="p-4 rounded-2xl bg-[#D4C5F9] hover:bg-[#c9b7f5] border-[2.5px] border-[#1B2440] text-left transition-all cursor-pointer shadow-[2px_2px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5"
+          className="p-4 rounded-2xl bg-[#D4C5F9] hover:bg-[#c9b7f5] border-[2.5px] border-[#1B2440] text-left transition-all cursor-pointer active:translate-x-0.5 active:translate-y-0.5"
         >
-          <div className="w-10 h-10 rounded-xl bg-white border-[1.5px] border-[#1B2440] text-[#1B2440] flex items-center justify-center mb-3 shadow-[1px_1px_0px_#1B2440]">
+          <div className="w-10 h-10 rounded-xl bg-white border-[1.5px] border-[#1B2440] text-[#1B2440] flex items-center justify-center mb-3">
             <Award className="w-5 h-5" />
           </div>
           <span className="block font-space font-extrabold text-sm text-[#1B2440]">
@@ -273,9 +273,9 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
         <button
           onClick={onRetry}
           type="button"
-          className="p-4 rounded-2xl bg-[#FFD3B6] hover:bg-[#ffc6a1] border-[2.5px] border-[#1B2440] text-left transition-all cursor-pointer shadow-[2px_2px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5"
+          className="p-4 rounded-2xl bg-[#FFD3B6] hover:bg-[#ffc6a1] border-[2.5px] border-[#1B2440] text-left transition-all cursor-pointer active:translate-x-0.5 active:translate-y-0.5"
         >
-          <div className="w-10 h-10 rounded-xl bg-white border-[1.5px] border-[#1B2440] text-[#1B2440] flex items-center justify-center mb-3 shadow-[1px_1px_0px_#1B2440]">
+          <div className="w-10 h-10 rounded-xl bg-white border-[1.5px] border-[#1B2440] text-[#1B2440] flex items-center justify-center mb-3">
             <RefreshCw className="w-5 h-5" />
           </div>
           <span className="block font-space font-extrabold text-sm text-[#1B2440]">
@@ -289,9 +289,9 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
         <button
           onClick={onGoHome}
           type="button"
-          className="p-4 rounded-2xl bg-[#FFF1A8] hover:bg-[#ffe769] border-[2.5px] border-[#1B2440] text-left transition-all cursor-pointer shadow-[2px_2px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5"
+          className="p-4 rounded-2xl bg-[#FFF1A8] hover:bg-[#ffe769] border-[2.5px] border-[#1B2440] text-left transition-all cursor-pointer active:translate-x-0.5 active:translate-y-0.5"
         >
-          <div className="w-10 h-10 rounded-xl bg-white border-[1.5px] border-[#1B2440] text-[#1B2440] flex items-center justify-center mb-3 shadow-[1px_1px_0px_#1B2440]">
+          <div className="w-10 h-10 rounded-xl bg-white border-[1.5px] border-[#1B2440] text-[#1B2440] flex items-center justify-center mb-3">
             <ArrowRight className="w-5 h-5" />
           </div>
           <span className="block font-space font-extrabold text-sm text-[#1B2440]">
@@ -304,7 +304,7 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
       </div>
 
       {/* WhatsApp Family Share Card with Stitch Borders */}
-      <div className="w-full bg-[#B8F2D0] border-[2.5px] border-[#1B2440] rounded-3xl p-6 sm:p-7 shadow-[2px_2px_0px_#1B2440]">
+      <div className="w-full bg-[#B8F2D0] border-[2.5px] border-[#1B2440] rounded-3xl p-6 sm:p-7">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <h2 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440]">
@@ -316,7 +316,7 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
           </div>
           <button
             onClick={handleWhatsAppFamilyShare}
-            className="px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20b858] text-white border-[2px] border-[#1B2440] font-space font-black text-xs flex items-center gap-2 cursor-pointer transition-all shadow-[1.5px_1.5px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5"
+            className="px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20b858] text-white border-[2px] border-[#1B2440] font-space font-black text-xs flex items-center gap-2 cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
           >
             <Share2 className="w-4 h-4" />
             <span>{t.resultWhatsAppBtn}</span>
@@ -325,7 +325,7 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
       </div>
 
       {/* WhatsApp Family Challenge Link */}
-      <div className="w-full bg-[#D4C5F9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 sm:p-7 shadow-[2px_2px_0px_#1B2440]">
+      <div className="w-full bg-[#D4C5F9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 sm:p-7">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <h2 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440]">
@@ -339,7 +339,7 @@ Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi
           </div>
           <button
             onClick={handleWhatsAppChallenge}
-            className="px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20b858] text-white border-[2px] border-[#1B2440] font-space font-black text-xs flex items-center gap-2 cursor-pointer transition-all shadow-[1.5px_1.5px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5"
+            className="px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20b858] text-white border-[2px] border-[#1B2440] font-space font-black text-xs flex items-center gap-2 cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
           >
             <Share2 className="w-4 h-4" />
             <span>{isUrdu ? 'چیلنج بھیجیں' : 'Send Challenge'}</span>

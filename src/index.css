@@ -111,6 +111,17 @@ button:focus-visible, a:focus-visible {
   outline-offset: 2px;
 }
 
+/* Running animated border stroke on card hover */
+@keyframes borderFlow {
+  to {
+    stroke-dashoffset: -64;
+  }
+}
+
+.animate-border-flow {
+  animation: borderFlow 1.2s linear infinite;
+}
+
 /* Print Certificate rules */
 @media print {
   body * {

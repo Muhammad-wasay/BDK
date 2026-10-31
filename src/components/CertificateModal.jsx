@@ -36,7 +36,7 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
       <div 
-        className={`w-full max-w-xl max-h-[92vh] overflow-y-auto bg-white border border-slate-200 rounded-3xl shadow-card p-6 sm:p-7 relative ${
+        className={`w-full max-w-xl max-h-[92vh] overflow-y-auto bg-white border border-slate-200 rounded-3xl p-6 sm:p-7 relative ${
           isUrdu ? 'font-urdu-mode' : ''
         }`}
         dir={isUrdu ? 'rtl' : 'ltr'}
@@ -81,7 +81,7 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
           className="relative bg-gradient-to-br from-emerald-50/40 via-white to-amber-50/30 border border-slate-300 rounded-2xl p-6 text-center my-4 shadow-sm"
         >
           <div className="flex justify-center mb-2">
-            <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shadow-xs">
+            <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center">
               <Award className="w-5 h-5" />
             </div>
           </div>
@@ -127,7 +127,7 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
           <button
             onClick={handleShareWhatsApp}
-            className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-space font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs"
+            className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-space font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
           >
             <Share2 className="w-4 h-4" />
             <span>Share to WhatsApp</span>

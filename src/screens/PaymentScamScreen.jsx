@@ -111,12 +111,12 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
       <div className="flex items-center justify-between mb-6">
         <button
           onClick={onGoHome}
-          className="w-10 h-10 rounded-2xl bg-white border-[2px] border-[#1B2440] hover:bg-[#FFF4E0] flex items-center justify-center text-[#1B2440] shadow-[1.5px_1.5px_0px_#1B2440] cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
+          className="w-10 h-10 rounded-2xl bg-white border-[2px] border-[#1B2440] hover:bg-[#FFF4E0] flex items-center justify-center text-[#1B2440] cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
         >
           <ArrowLeft className="w-4 h-4" />
         </button>
         <div className="text-center">
-          <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#FFD3B6] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5 shadow-[1px_1px_0px_#1B2440]">
+          <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#FFD3B6] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5">
             Level 3 • Payment Scam Detection
           </span>
         </div>
@@ -125,7 +125,7 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
 
       {/* Payment Slip Simulator */}
       <div className="flex-1 flex flex-col items-center justify-center">
-        <div className="w-full max-w-[380px] bg-white rounded-3xl shadow-[3px_3px_0px_#1B2440] overflow-hidden">
+        <div className="w-full max-w-[380px] bg-white rounded-3xl overflow-hidden">
           {/* Header */}
           <div className="bg-[#00A651] p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -215,9 +215,9 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
         <div className="mt-6 space-y-3">
           <button
             onClick={() => handleChoice('safe')}
-            className="w-full p-4 rounded-2xl bg-[#B8F2D0] border-[2.5px] border-[#1B2440] text-left flex items-center gap-3 cursor-pointer transition-all shadow-[2px_2px_0px_#1B2440] hover:bg-[#a6e6bf] active:translate-x-0.5 active:translate-y-0.5"
+            className="w-full p-4 rounded-2xl bg-[#B8F2D0] border-[2.5px] border-[#1B2440] text-left flex items-center gap-3 cursor-pointer transition-all hover:bg-[#a6e6bf] active:translate-x-0.5 active:translate-y-0.5"
           >
-            <div className="w-10 h-10 rounded-xl bg-white border-[2px] border-[#1B2440] text-[#1B2440] flex items-center justify-center flex-shrink-0 shadow-[1px_1px_0px_#1B2440]">
+            <div className="w-10 h-10 rounded-xl bg-white border-[2px] border-[#1B2440] text-[#1B2440] flex items-center justify-center flex-shrink-0">
               <CheckCircle2 className="w-5 h-5" />
             </div>
             <div className="flex flex-col">
@@ -232,9 +232,9 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
 
           <button
             onClick={() => handleChoice('scam')}
-            className="w-full p-4 rounded-2xl bg-[#FF6B6B] border-[2.5px] border-[#1B2440] text-left flex items-center gap-3 cursor-pointer transition-all shadow-[2px_2px_0px_#1B2440] hover:bg-[#f25e5e] active:translate-x-0.5 active:translate-y-0.5"
+            className="w-full p-4 rounded-2xl bg-[#FF6B6B] border-[2.5px] border-[#1B2440] text-left flex items-center gap-3 cursor-pointer transition-all hover:bg-[#f25e5e] active:translate-x-0.5 active:translate-y-0.5"
           >
-            <div className="w-10 h-10 rounded-xl bg-white border-[2px] border-[#1B2440] text-[#1B2440] flex items-center justify-center flex-shrink-0 shadow-[1px_1px_0px_#1B2440]">
+            <div className="w-10 h-10 rounded-xl bg-white border-[2px] border-[#1B2440] text-[#1B2440] flex items-center justify-center flex-shrink-0">
               <AlertTriangle className="w-5 h-5 text-red-600" />
             </div>
             <div className="flex flex-col">
@@ -251,7 +251,7 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
 
       {/* Feedback Panel */}
       {showFeedback && (
-        <div className={`mt-6 p-4 rounded-2xl border-[2.5px] border-[#1B2440] shadow-[2px_2px_0px_#1B2440] animate-fadeIn ${
+        <div className={`mt-6 p-4 rounded-2xl border-[2.5px] border-[#1B2440] animate-fadeIn ${
           isCorrect ? 'bg-[#B8F2D0]' : 'bg-[#FFD3B6]'
         }`}>
           <div className="flex items-start gap-3 mb-3">
@@ -285,7 +285,7 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
 
           <button
             onClick={onGoHome}
-            className="w-full py-3 bg-[#1B2440] hover:bg-slate-800 text-white rounded-xl text-xs font-black font-space flex items-center justify-center gap-2 cursor-pointer shadow-[1.5px_1.5px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5 transition-all"
+            className="w-full py-3 bg-[#1B2440] hover:bg-slate-800 text-white rounded-xl text-xs font-black font-space flex items-center justify-center gap-2 cursor-pointer active:translate-x-0.5 active:translate-y-0.5 transition-all"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>{isUrdu ? 'ہوم پر واپس جائیں' : 'Return to Home'}</span>
@@ -294,7 +294,7 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
       )}
 
       {/* Safety Tip */}
-      <div className="mt-6 bg-[#B8F2D0] border-[2px] border-[#1B2440] rounded-2xl p-4 flex items-start gap-3 shadow-[1.5px_1.5px_0px_#1B2440]">
+      <div className="mt-6 bg-[#B8F2D0] border-[2px] border-[#1B2440] rounded-2xl p-4 flex items-start gap-3">
         <ShieldCheck className="w-5 h-5 text-[#1B2440] flex-shrink-0 mt-0.5" />
         <div>
           <span className="font-space font-black text-xs text-[#1B2440] block uppercase">
