@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { 
-  ShieldCheck, 
-  ArrowRight, 
-  Volume2, 
-  VolumeX, 
-  Lock, 
-  CheckCircle2, 
-  AlertTriangle, 
-  Sparkles, 
-  HeartHandshake, 
-  Smartphone, 
-  Headphones 
+import {
+  ShieldCheck,
+  ArrowRight,
+  Volume2,
+  VolumeX,
+  Lock,
+  CheckCircle2,
+  AlertTriangle,
+  Sparkles,
+  HeartHandshake,
+  Smartphone,
+  Headphones
 } from 'lucide-react';
 import { TRANSLATIONS } from '../data/translations';
 import UrduVoiceoverBar from '../components/UrduVoiceoverBar';
@@ -29,7 +29,7 @@ export default function LandingScreen({ onStartPractice, onOpenHelpline, babaJiM
   const introAudioText = introAudioMap[language] || introAudioMap.roman;
 
   return (
-    <div 
+    <div
       className={`w-full flex-1 flex flex-col ${babaJiMode ? 'elder-active' : ''} ${
         isUrdu ? 'font-urdu-mode' : ''
       }`}
@@ -38,7 +38,7 @@ export default function LandingScreen({ onStartPractice, onOpenHelpline, babaJiM
       {/* HERO SECTION */}
       <section className="max-w-6xl mx-auto px-4 pt-8 pb-14 md:py-16 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-          
+
           {/* Left Hero Content (7 cols) */}
           <div className="lg:col-span-7 flex flex-col items-start gap-5">
             {/* Pill Badge with Stitch black outline */}
@@ -99,7 +99,7 @@ export default function LandingScreen({ onStartPractice, onOpenHelpline, babaJiM
           {/* Right Hero Phone Sandbox Preview (5 cols) */}
           <div className="lg:col-span-5 relative flex items-center justify-center">
             <div className="relative w-full max-w-[340px] transform hover:scale-[1.01] transition-transform duration-300">
-              
+
               {/* Phone Container with Stitch 3px Outline */}
               <div className="w-full bg-[#FFFDF9] rounded-[36px] border-[3px] border-[#1B2440] shadow-[3px_3px_0px_#1B2440] p-4 flex flex-col gap-3">
                 {/* Header */}
@@ -120,17 +120,13 @@ export default function LandingScreen({ onStartPractice, onOpenHelpline, babaJiM
                     <AlertTriangle className="w-3.5 h-3.5" />
                     <span>{t.heroCardSender}</span>
                   </div>
-                  
+
                   <p className="font-space font-extrabold text-base text-[#1B2440] leading-snug">
-                    {isUrdu 
-                      ? 'مبارک ہو! آپ کا ۵۰،۰۰۰ روپے انعام نکلا ہے۔'
-                      : 'Mubarak! Aapka 50,000 Inaam Nikla Hai!'}
+                    {t.heroCardMessage1}
                   </p>
-                  
+
                   <p className="text-xs font-bold text-[#1B2440]/80 leading-relaxed">
-                    {isUrdu 
-                      ? 'فوری طور پر اس لنک پر کلک کر کے اے ٹی ایم پن درج کریں:'
-                      : 'Fauran is link par click kar ke ATM PIN darj karein:'}
+                    {t.heroCardMessage2}
                   </p>
 
                   <div className="bg-[#FFE3E3] border-[2px] border-dashed border-[#FF6B6B] rounded-xl p-2 text-[#FF6B6B] font-extrabold text-xs break-all flex items-center gap-1.5">
@@ -147,10 +143,10 @@ export default function LandingScreen({ onStartPractice, onOpenHelpline, babaJiM
                 {/* Simulated Decision Buttons */}
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   <div className="bg-[#FF6B6B]/20 border-[2px] border-[#1B2440] rounded-xl py-2 px-2 text-center text-xs font-space font-extrabold text-[#1B2440]">
-                    {isUrdu ? 'دھوکہ ہے' : 'Dhoka Hai'}
+                    {t.heroCardSimButton1}
                   </div>
                   <div className="bg-[#B8F2D0] border-[2px] border-[#1B2440] text-[#1B2440] rounded-xl py-2 px-2 text-center text-xs font-space font-extrabold shadow-[1.5px_1.5px_0px_#1B2440]">
-                    {isUrdu ? 'بلاک کریں' : 'Block Karein'}
+                    {t.heroCardSimButton2}
                   </div>
                 </div>
               </div>
@@ -250,9 +246,7 @@ export default function LandingScreen({ onStartPractice, onOpenHelpline, babaJiM
           </div>
           <div className="text-left flex-1">
             <p className="font-space font-bold text-base sm:text-lg text-[#1B2440] leading-snug">
-              {isUrdu 
-                ? '”پہلے فون پر کوئی میسج آتا تھا تو ڈر لگتا تھا کہ کہیں کوئی غلط بٹن دبنے سے پیسے نہ کٹ جائیں۔ بغیر ڈر کے نے سارا خوف ختم کر دیا۔“'
-                : '“Mujhe hamesha darr rehta tha ke phone par koi ghalt button dab gaya to paise kat jayenge. BinaDarKe ne mera darr hamesha ke liye nikal diya!”'}
+              {t.elderStory}
             </p>
             <span className="block text-xs font-bold text-[#1B2440]/70 mt-1 uppercase tracking-wider">
               — Haji Abdul Rasheed, Lahore (Age: 68)

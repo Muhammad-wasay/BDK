@@ -9,6 +9,9 @@ export const TRANSLATIONS = {
     navGuided: "Guided Practice",
     navSolo: "Solo Test",
     navResult: "Nateeja",
+    navPhone: "Phone Call",
+    navPayment: "Payment Scam",
+    navScanner: "Scam Scanner",
     helplineBtn: "Madad Helpline",
     babaMode: "Buzurg Mode",
     babaModeActive: "Buzurg Mode: ON",
@@ -31,7 +34,12 @@ export const TRANSLATIONS = {
     heroCardSender: "Ghair-Tasdeeq Shuda Contact",
     heroCardAlert: "Bank kabhi bhi achanak lottery ka link ya ATM PIN nahi maangta!",
     heroSafeNote: "100% Mehfooz Sandbox • Asli Bank se koi taluq nahi",
-    
+    heroCardMessage1: "Mubarak! Aapka 50,000 Inaam Nikla Hai!",
+    heroCardMessage2: "Fauran is link par click kar ke ATM PIN darj karein:",
+    heroCardSimButton1: "Dhoka Hai",
+    heroCardSimButton2: "Block Karein",
+    elderStory: 'Mujhe hamesha darr rehta tha ke phone par koi ghalt button dab gaya to paise kat jayenge. BinaDarKe ne mera darr hamesha ke liye nikal diya!',
+
     // Feature Bento
     featuresTitle: "BinaDarKe Kyun Zaroori Hai?",
     featuresSubtitle: "Waldein aur buzurg technology se darr kar nahi, balke fakhar se chala sakein.",
@@ -98,6 +106,9 @@ export const TRANSLATIONS = {
     navGuided: "رہنمائی",
     navSolo: "خود ٹیسٹ کریں",
     navResult: "نتیجہ",
+    navPhone: "فون کال",
+    navPayment: "ادائیگی فراڈ",
+    navScanner: "اسکام اسکینر",
     helplineBtn: "مدد ہیلپ لائن",
     babaMode: "بزرگ موڈ",
     babaModeActive: "بزرگ موڈ: فعال",
@@ -120,6 +131,11 @@ export const TRANSLATIONS = {
     heroCardSender: "غیر تصدیق شدہ رابطہ",
     heroCardAlert: "بینک کبھی بھی اچانک لاٹری کا لنک یا اے ٹی ایم پن نہیں مانگتا!",
     heroSafeNote: "مکمل محفوظ سینڈ باکس • اصلی بینک سے کوئی تعلق نہیں",
+    heroCardMessage1: "مبارک ہو! آپ کا ۵۰،۰۰۰ روپے انعام نکلا ہے۔",
+    heroCardMessage2: "فوری طور پر اس لنک پر کلک کر کے اے ٹی ایم پن درج کریں:",
+    heroCardSimButton1: "دھوکہ ہے",
+    heroCardSimButton2: "بلاک کریں",
+    elderStory: 'پہلے فون پر کوئی میسج آتا تھا تو ڈر لگتا تھا کہ کہیں کوئی غلط بٹن دبنے سے پیسے نہ کٹ جائیں۔ بغیر ڈر کے نے سارا خوف ختم کر دیا۔',
 
     // Feature Bento
     featuresTitle: "بغیر ڈر کے کیوں ضروری ہے؟",
@@ -187,6 +203,9 @@ export const TRANSLATIONS = {
     navGuided: "Guided Practice",
     navSolo: "Solo Practice",
     navResult: "Results",
+    navPhone: "Phone Call",
+    navPayment: "Payment Scam",
+    navScanner: "Scam Scanner",
     helplineBtn: "Helpline Support",
     babaMode: "Elder Mode",
     babaModeActive: "Elder Mode: ON",
@@ -209,6 +228,11 @@ export const TRANSLATIONS = {
     heroCardSender: "Unverified Contact",
     heroCardAlert: "Banks will never ask for your ATM PIN or sudden lottery links!",
     heroSafeNote: "100% Educational Sandbox • No Real Bank Connection",
+    heroCardMessage1: "Congratulations! You've won PKR 50,000!",
+    heroCardMessage2: "Click this link immediately and enter your ATM PIN:",
+    heroCardSimButton1: "It's a Scam",
+    heroCardSimButton2: "Block It",
+    elderStory: 'I used to be scared that pressing the wrong button would cost me money. BinaDarKe has removed that fear forever!',
 
     // Feature Bento
     featuresTitle: "Why BinaDarKe Matters",

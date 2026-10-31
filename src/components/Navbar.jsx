@@ -1,13 +1,17 @@
 import React from 'react';
-import { 
-  ShieldCheck, 
-  BookOpen, 
-  Target, 
-  Trophy, 
-  PhoneCall, 
-  UserCheck
+import {
+  ShieldCheck,
+  BookOpen,
+  Target,
+  Trophy,
+  PhoneCall,
+  UserCheck,
+  Phone,
+  CreditCard,
+  Search
 } from 'lucide-react';
 import { TRANSLATIONS } from '../data/translations';
+import soundEffects from '../utils/soundEffects';
 
 export default function Navbar({
   currentScreen,
@@ -25,7 +29,10 @@ export default function Navbar({
     { id: 'landing', label: t.navHome, icon: ShieldCheck },
     { id: 'guided', label: t.navGuided, icon: BookOpen },
     { id: 'solo', label: t.navSolo, icon: Target },
-    { id: 'result', label: t.navResult, icon: Trophy }
+    { id: 'result', label: t.navResult, icon: Trophy },
+    { id: 'phone', label: t.navPhone, icon: Phone },
+    { id: 'payment', label: t.navPayment, icon: CreditCard },
+    { id: 'scanner', label: t.navScanner, icon: Search }
   ];
 
   return (
@@ -78,7 +85,10 @@ export default function Navbar({
             {/* Clean Language Selector */}
             <div className="flex items-center bg-[#FFF4E0] border-[2px] border-[#1B2440] p-0.5 rounded-xl text-xs font-extrabold">
               <button
-                onClick={() => setLanguage('roman')}
+                onClick={() => {
+                  soundEffects.playClick();
+                  setLanguage('roman');
+                }}
                 className={`px-2 py-1 rounded-lg transition-all cursor-pointer ${
                   language === 'roman'
                     ? 'bg-white text-[#1B2440] border-[1.5px] border-[#1B2440] shadow-[1px_1px_0px_#1B2440]'
@@ -89,7 +99,10 @@ export default function Navbar({
                 Roman
               </button>
               <button
-                onClick={() => setLanguage('urdu')}
+                onClick={() => {
+                  soundEffects.playClick();
+                  setLanguage('urdu');
+                }}
                 className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer font-urdu-mode ${
                   language === 'urdu'
                     ? 'bg-white text-[#1B2440] border-[1.5px] border-[#1B2440] shadow-[1px_1px_0px_#1B2440]'
@@ -100,7 +113,10 @@ export default function Navbar({
                 اردو
               </button>
               <button
-                onClick={() => setLanguage('en')}
+                onClick={() => {
+                  soundEffects.playClick();
+                  setLanguage('en');
+                }}
                 className={`px-2 py-1 rounded-lg transition-all cursor-pointer ${
                   language === 'en'
                     ? 'bg-white text-[#1B2440] border-[1.5px] border-[#1B2440] shadow-[1px_1px_0px_#1B2440]'

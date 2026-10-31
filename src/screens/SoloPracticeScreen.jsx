@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  CheckCircle2, 
-  AlertTriangle, 
-  Lightbulb, 
-  Lock, 
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  AlertTriangle,
+  Lightbulb,
+  Lock,
   ShieldCheck
 } from 'lucide-react';
 import { SOLO_SCENARIOS_DATA } from '../data/scenarios';
 import { TRANSLATIONS } from '../data/translations';
 import UrduVoiceoverBar from '../components/UrduVoiceoverBar';
+import soundEffects from '../utils/soundEffects';
 
 export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMode, language = 'roman' }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -33,6 +34,14 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
     setIsAnswered(true);
 
     const isCorrect = choice === scenario.correctChoice;
+
+    // Play appropriate sound
+    if (isCorrect) {
+      soundEffects.playSuccess();
+    } else {
+      soundEffects.playError();
+    }
+
     const newAnswer = {
       scenarioId: scenario.id,
       category: scenario.category,

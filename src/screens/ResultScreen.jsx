@@ -44,9 +44,33 @@ export default function ResultScreen({
   const celebrationAudioText = celebrationAudioMap[language] || celebrationAudioMap.roman;
 
   const handleWhatsAppFamilyShare = () => {
-    const text = isUrdu 
-      ? `السلام علیکم! میں نے بغیر ڈر کے (BinaDarKe) پلیٹ فارم پر مشق کی اور ${finalScore}/${total} اسکور حاصل کیا! اب مجھے ڈیجیٹل فراڈ کے حربوں کی پہچان ہو گئی ہے۔ آپ بھی چیک کریں: https://binadarke.pk`
-      : `Assalamu Alaikum! Maine BinaDarKe Anti-Scam Sandbox par practice ki aur ${finalScore}/${total} score hasil kiya! Ab mujhe fake lottery, bank OTP, aur fraud messages ki pehchan ho gayi hai. Check karein: https://binadarke.pk`;
+    const text = isUrdu
+      ? `السلام علیکم! میں نے بغیر ڈر کے (BinaDarKe) پلیٹ فارم پر مشق کی اور ${finalScore}/${total} اسکور حاصل کیا! اب مجھے ڈیجیٹل فراڈ کے حربوں کی پہچان ہو گئی ہے۔ آپ بھی چیک کریں: https://binadarke.pk
+
+🎯 چیلنج: امی/اببا آپ بھی یہ ٹیسٹ کریں اور سند حاصل کریں!`
+      : `Assalamu Alaikum! Maine BinaDarKe Anti-Scam Sandbox par practice ki aur ${finalScore}/${total} score hasil kiya! Ab mujhe fake lottery, bank OTP, aur fraud messages ki pehchan ho gayi hai. Check karein: https://binadarke.pk
+
+🎯 Challenge: Ammi/Abba aap bhi ye test karein aur certificate hasil karein!`;
+    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  };
+
+  const handleWhatsAppChallenge = () => {
+    const text = isUrdu
+      ? `🎯 BinaDarKe Family Challenge!
+
+اسلام علیکم! میں نے بغیر ڈر کے پلیٹ فارم پر ڈیجیٹل فراڈ پہچاننا سیکھا۔ اب آپ بھی سیکھیں اور اپنے میں اعتماد پیدا کریں!
+
+📱 یہاں کھیلیں: https://binadarke.pk
+
+🎁 مفت تعلیمی سینڈ باکس - کوئی نقصان نہیں!`
+      : `🎯 BinaDarKe Family Challenge!
+
+Assalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi seekhein aur apne mein imaan paida karein!
+
+📱 Play here: https://binadarke.pk
+
+🎁 Free educational sandbox - No risk involved!`;
     const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
@@ -296,6 +320,29 @@ export default function ResultScreen({
           >
             <Share2 className="w-4 h-4" />
             <span>{t.resultWhatsAppBtn}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* WhatsApp Family Challenge Link */}
+      <div className="w-full bg-[#D4C5F9] border-[2.5px] border-[#1B2440] rounded-3xl p-6 sm:p-7 shadow-[2px_2px_0px_#1B2440]">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <h2 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440]">
+              {isUrdu ? 'خاندان کو چیلنج بھیجیں' : 'Send Family Challenge'}
+            </h2>
+            <p className="text-xs sm:text-sm text-[#1B2440]/85 mt-1 font-bold">
+              {isUrdu
+                ? 'اپنے والدین یا بزرگوں کو اسکام پہچاننے کا چیلنج بھیجیں'
+                : 'Challenge your parents or elders to learn scam detection'}
+            </p>
+          </div>
+          <button
+            onClick={handleWhatsAppChallenge}
+            className="px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20b858] text-white border-[2px] border-[#1B2440] font-space font-black text-xs flex items-center gap-2 cursor-pointer transition-all shadow-[1.5px_1.5px_0px_#1B2440] active:translate-x-0.5 active:translate-y-0.5"
+          >
+            <Share2 className="w-4 h-4" />
+            <span>{isUrdu ? 'چیلنج بھیجیں' : 'Send Challenge'}</span>
           </button>
         </div>
       </div>

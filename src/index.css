@@ -105,3 +105,47 @@ button:focus-visible, a:focus-visible {
     border: 3px solid #1B2440 !important;
   }
 }
+
+/* Mobile optimization for low-end Android phones */
+@media (max-width: 640px) {
+  /* Reduce shadow complexity for better performance */
+  * {
+    box-shadow: 1px 1px 0px #1B2440 !important;
+  }
+
+  /* Increase touch targets for elderly users */
+  button {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Optimize text rendering */
+  body {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  /* Disable smooth scroll on low-end devices */
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Very small screens (low-end Android phones) */
+@media (max-width: 360px) {
+  /* Further reduce visual complexity */
+  .shadow-\[2px_2px_0px_\#1B2440\],
+  .shadow-\[3px_3px_0px_\#1B2440\] {
+    box-shadow: 1px 1px 0px #1B2440 !important;
+  }
+
+  /* Simplify borders */
+  .border-\[2\.5px\] {
+    border-width: 2px !important;
+  }
+
+  /* Increase touch targets even more */
+  button {
+    min-height: 52px;
+    padding: 12px 16px;
+  }
+}

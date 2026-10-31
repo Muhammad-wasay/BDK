@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AnnouncementBar from './components/AnnouncementBar';
 import Navbar from './components/Navbar';
 import HelplineModal from './components/HelplineModal';
@@ -8,31 +8,74 @@ import LandingScreen from './screens/LandingScreen';
 import GuidedPracticeScreen from './screens/GuidedPracticeScreen';
 import SoloPracticeScreen from './screens/SoloPracticeScreen';
 import ResultScreen from './screens/ResultScreen';
+import PhoneCallSimulatorScreen from './screens/PhoneCallSimulatorScreen';
+import PaymentScamScreen from './screens/PaymentScamScreen';
+import ScamScannerScreen from './screens/ScamScannerScreen';
 
 import { SOLO_SCENARIOS_DATA } from './data/scenarios';
 import { TRANSLATIONS } from './data/translations';
+import soundEffects from './utils/soundEffects';
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState('landing');
-  const [language, setLanguage] = useState('roman'); // 'roman' | 'urdu' | 'en'
-  const [babaJiMode, setBabaJiMode] = useState(false);
+  // Load state from localStorage on mount
+  const [currentScreen, setCurrentScreen] = useState(() => {
+    const saved = localStorage.getItem('binadarke_screen');
+    return saved || 'landing';
+  });
+  const [language, setLanguage] = useState(() => {
+    const saved = localStorage.getItem('binadarke_language');
+    return saved || 'roman';
+  });
+  const [babaJiMode, setBabaJiMode] = useState(() => {
+    const saved = localStorage.getItem('binadarke_babaMode');
+    return saved === 'true';
+  });
   const [isHelplineOpen, setIsHelplineOpen] = useState(false);
   const [isCertificateOpen, setIsCertificateOpen] = useState(false);
 
   // Solo Practice scores & answers
-  const [soloScore, setSoloScore] = useState(4);
-  const [soloAnswers, setSoloAnswers] = useState([]);
+  const [soloScore, setSoloScore] = useState(() => {
+    const saved = localStorage.getItem('binadarke_score');
+    return saved ? parseInt(saved, 10) : 0;
+  });
+  const [soloAnswers, setSoloAnswers] = useState(() => {
+    const saved = localStorage.getItem('binadarke_answers');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // Save state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('binadarke_screen', currentScreen);
+  }, [currentScreen]);
+
+  useEffect(() => {
+    localStorage.setItem('binadarke_language', language);
+  }, [language]);
+
+  useEffect(() => {
+    localStorage.setItem('binadarke_babaMode', babaJiMode);
+  }, [babaJiMode]);
+
+  useEffect(() => {
+    localStorage.setItem('binadarke_score', soloScore.toString());
+  }, [soloScore]);
+
+  useEffect(() => {
+    localStorage.setItem('binadarke_answers', JSON.stringify(soloAnswers));
+  }, [soloAnswers]);
 
   const t = TRANSLATIONS[language] || TRANSLATIONS.roman;
   const isUrdu = language === 'urdu';
   const totalQuestions = (SOLO_SCENARIOS_DATA[language] || SOLO_SCENARIOS_DATA.roman).length;
 
   const handleStartPractice = () => {
+    soundEffects.playNav();
     setCurrentScreen('guided');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleGoToSolo = () => {
+    soundEffects.playNav();
     setCurrentScreen('solo');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -40,11 +83,13 @@ function App() {
   const handleCompleteSolo = (answers, score) => {
     setSoloAnswers(answers);
     setSoloScore(score);
+    soundEffects.playSuccess();
     setCurrentScreen('result');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleRetry = () => {
+    soundEffects.playClick();
     setSoloAnswers([]);
     setSoloScore(0);
     setCurrentScreen('solo');
@@ -52,6 +97,7 @@ function App() {
   };
 
   const handleGoHome = () => {
+    soundEffects.playNav();
     setCurrentScreen('landing');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -114,6 +160,30 @@ function App() {
             onRetry={handleRetry}
             onGoHome={handleGoHome}
             onOpenCertificate={() => setIsCertificateOpen(true)}
+            babaJiMode={babaJiMode}
+            language={language}
+          />
+        )}
+
+        {currentScreen === 'phone' && (
+          <PhoneCallSimulatorScreen
+            onGoHome={handleGoHome}
+            babaJiMode={babaJiMode}
+            language={language}
+          />
+        )}
+
+        {currentScreen === 'payment' && (
+          <PaymentScamScreen
+            onGoHome={handleGoHome}
+            babaJiMode={babaJiMode}
+            language={language}
+          />
+        )}
+
+        {currentScreen === 'scanner' && (
+          <ScamScannerScreen
+            onGoHome={handleGoHome}
             babaJiMode={babaJiMode}
             language={language}
           />
