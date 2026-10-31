@@ -1,4 +1,4 @@
-# BinaDarKe • بغیر ڈر کے
+# BinaDarKe • بنا ڈر کے
 > **A Free Anti-Scam Practice Space for Families and Elders**  
 > Built for the Build4Better Hackathon (NED University)
 
@@ -11,7 +11,7 @@
 ---
 
 ## 👥 Team Information
-* **Project**: BinaDarKe (بغیر ڈر کے)
+* **Project**: BinaDarKe (بنا ڈر کے)
 * **Hackathon**: Build4Better (NED University of Engineering & Technology)
 * **Team Members**:
   * [Team Member 1 - Full-Stack / Product Designer]

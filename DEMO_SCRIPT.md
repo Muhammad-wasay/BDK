@@ -1,4 +1,4 @@
-# BinaDarKe (بغیر ڈر کے) • Live Demo Script
+# BinaDarKe (بنا ڈر کے) • Live Demo Script
 > **Target Duration**: Under 2 Minutes (1:55 Total)  
 > **Speaker Role**: Presenter / Product Lead  
 > **Audience**: Build4Better Hackathon Judges (NED University)

@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { SOLO_SCENARIOS_DATA } from '../data/scenarios';
 import { TRANSLATIONS } from '../data/translations';
+import { BRAND } from '../data/brand';
 import UrduVoiceoverBar from '../components/UrduVoiceoverBar';
 import soundEffects from '../utils/soundEffects';
 
@@ -49,8 +50,8 @@ export default function ResultScreen({
   const handleWhatsAppFamilyShare = () => {
     soundEffects.playClick();
     const text = isUrdu
-      ? `السلام علیکم! میں نے بغیر ڈر کے (BinaDarKe) پلیٹ فارم پر مشق کی اور ${finalScore}/${total} اسکور حاصل کیا! اب مجھے ڈیجیٹل فراڈ کے حربوں کی پہچان ہو گئی ہے۔ آپ بھی چیک کریں: https://binadarke.web.app\n\n🎯 فیملی چیلنج: امی/ابو آپ بھی یہ ٹیسٹ کریں اور سند حاصل کریں!`
-      : `Assalamu Alaikum! Maine BinaDarKe Anti-Scam Sandbox par practice ki aur ${finalScore}/${total} score hasil kiya! Ab mujhe fake lottery, bank OTP, aur fraud messages ki pehchan ho gayi hai. Check karein: https://binadarke.web.app\n\n🎯 Family Challenge: Ammi/Abba aap bhi ye test karein aur certificate hasil karein!`;
+      ? `السلام علیکم! میں نے ${BRAND.urdu} (${BRAND.roman}) پلیٹ فارم پر مشق کی اور ${finalScore}/${total} اسکور حاصل کیا! اب مجھے ڈیجیٹل فراڈ کے حربوں کی پہچان ہو گئی ہے۔ آپ بھی چیک کریں: https://binadarke.web.app\n\n🎯 فیملی چیلنج: امی/ابو آپ بھی یہ ٹیسٹ کریں اور سند حاصل کریں!`
+      : `Assalamu Alaikum! Maine ${BRAND.roman} Anti-Scam Sandbox par practice ki aur ${finalScore}/${total} score hasil kiya! Ab mujhe fake lottery, bank OTP, aur fraud messages ki pehchan ho gayi hai. Check karein: https://binadarke.web.app\n\n🎯 Family Challenge: Ammi/Abba aap bhi ye test karein aur certificate hasil karein!`;
     const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
@@ -58,8 +59,8 @@ export default function ResultScreen({
   const handleWhatsAppChallenge = () => {
     soundEffects.playClick();
     const text = isUrdu
-      ? `🎯 BinaDarKe Family Challenge!\n\nاسلام علیکم! میں نے بغیر ڈر کے پلیٹ فارم پر ڈیجیٹل فراڈ پہچاننا سیکھا۔ اب آپ بھی آزمائیں اور اپنا سرٹیفکیٹ حاصل کریں!\n\n📱 کھیلیں: https://binadarke.web.app\n\n🎁 مفت تعلیمی سینڈ باکس - کوئی خطرہ نہیں!`
-      : `🎯 BinaDarKe Family Challenge!\n\nAssalamu Alaikum! Maine BinaDarKe par digital scams pehchanna seekha. Ab aap bhi try karein aur certificate hasil karein!\n\n📱 Practice here: https://binadarke.web.app\n\n🎁 Free educational practice - Zero financial risk!`;
+      ? `🎯 ${BRAND.roman} Family Challenge!\n\nاسلام علیکم! میں نے ${BRAND.urdu} پلیٹ فارم پر ڈیجیٹل فراڈ پہچاننا سیکھا۔ اب آپ بھی آزمائیں اور اپنا سرٹیفکیٹ حاصل کریں!\n\n📱 کھیلیں: https://binadarke.web.app\n\n🎁 مفت تعلیمی سینڈ باکس - کوئی خطرہ نہیں!`
+      : `🎯 ${BRAND.roman} Family Challenge!\n\nAssalamu Alaikum! Maine ${BRAND.roman} par digital scams pehchanna seekha. Ab aap bhi try karein aur certificate hasil karein!\n\n📱 Practice here: https://binadarke.web.app\n\n🎁 Free educational practice - Zero financial risk!`;
     const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
@@ -443,7 +444,7 @@ export default function ResultScreen({
             </h2>
             <p className="text-xs sm:text-sm text-[#1B2440]/85 mt-1 font-bold">
               {isUrdu
-                ? 'اپنے بہن بھائیوں اور والدین کو بغیر ڈر کے ٹیسٹ کرنے کا کہیں'
+                ? `اپنے بہن بھائیوں اور والدین کو ${BRAND.urdu} ٹیسٹ کرنے کا کہیں`
                 : 'Challenge your family members to test their scam awareness'}
             </p>
           </div>

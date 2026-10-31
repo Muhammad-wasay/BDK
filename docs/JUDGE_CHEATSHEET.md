@@ -1,4 +1,4 @@
-# BinaDarKe (بغیر ڈر کے) • Hackathon Judge Cheatsheet
+# BinaDarKe (بنا ڈر کے) • Hackathon Judge Cheatsheet
 > **Evaluation Guide for Build4Better Hackathon Judges (NED University)**
 
 ---

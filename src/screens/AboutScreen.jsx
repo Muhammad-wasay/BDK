@@ -7,6 +7,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import soundEffects from '../utils/soundEffects';
+import { BRAND } from '../data/brand';
 
 export default function AboutScreen({ onGoHome, babaJiMode, language = 'roman' }) {
   const isUrdu = language === 'urdu';
@@ -68,7 +69,7 @@ export default function AboutScreen({ onGoHome, babaJiMode, language = 'roman' }
             <span>{isUrdu ? "ہمارا وژن" : "Our Vision"}</span>
           </div>
           <h1 className="font-space font-extrabold text-2xl sm:text-3xl text-[#1B2440]">
-            {isUrdu ? "بغیر ڈر کے کیوں بنایا گیا؟" : "Why BinaDarKe Was Built"}
+            {isUrdu ? `${BRAND.urdu} کیوں بنایا گیا؟` : `Why ${BRAND.en} Was Built`}
           </h1>
           <p className="font-nunito font-bold text-sm sm:text-base text-[#1B2440]/85 leading-relaxed">
             {isUrdu
@@ -77,8 +78,8 @@ export default function AboutScreen({ onGoHome, babaJiMode, language = 'roman' }
           </p>
           <p className="font-nunito font-semibold text-xs sm:text-sm text-[#1B2440]/80 leading-relaxed">
             {isUrdu
-              ? "بغیر ڈر کے کا مقصد اس خوف اور جھجھک کو ختم کرنا ہے۔ یہاں کوئی بھی بزرگ بنا کسی مالی نقصان کے حقیقی دنیا کے فراڈ پہچاننے کی ٹریننگ حاصل کر سکتا ہے۔"
-              : "BinaDarKe provides a calm, safe training ground. In this client-side sandbox, anyone can practice spot-checking fake lottery traps, deceptive bank calls, and forged payment slips without losing a single rupee."}
+              ? `${BRAND.urdu} کا مقصد اس خوف اور جھجھک کو ختم کرنا ہے۔ یہاں کوئی بھی بزرگ بنا کسی مالی نقصان کے حقیقی دنیا کے فراڈ پہچاننے کی ٹریننگ حاصل کر سکتا ہے۔`
+              : `${BRAND.en} provides a calm, safe training ground. In this client-side sandbox, anyone can practice spot-checking fake lottery traps, deceptive bank calls, and forged payment slips without losing a single rupee.`}
           </p>
         </div>
       </div>

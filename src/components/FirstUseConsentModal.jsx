@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ShieldCheck, CheckCircle2, Lock, ArrowRight } from 'lucide-react';
 import soundEffects from '../utils/soundEffects';
 import storage from '../utils/storage';
+import { BRAND } from '../data/brand';
 
 export default function FirstUseConsentModal({ language = 'roman' }) {
   const [isOpen, setIsOpen] = useState(() => {
@@ -37,10 +38,10 @@ export default function FirstUseConsentModal({ language = 'roman' }) {
             </span>
             <h2 className="font-space font-extrabold text-xl sm:text-2xl text-[#1B2440]">
               {isUrdu
-                ? "بغیر ڈر کے میں خوش آمدید"
+                ? `${BRAND.urdu} میں خوش آمدید`
                 : isEn
-                ? "Welcome to BinaDarKe"
-                : "BinaDarKe Mein Khush-Aamdeed"}
+                ? `Welcome to ${BRAND.en}`
+                : `${BRAND.roman} Mein Khush-Aamdeed`}
             </h2>
             <p className="text-xs sm:text-sm font-bold text-[#1B2440]/75 mt-0.5">
               {isUrdu
@@ -93,10 +94,10 @@ export default function FirstUseConsentModal({ language = 'roman' }) {
           <div className="bg-[#FFF4E0] border-[1.5px] border-[#1B2440] rounded-2xl p-3 flex items-start gap-2.5">
             <span className="text-xs font-bold text-[#1B2440]/80 leading-relaxed">
               ⚖️ {isUrdu
-                ? "بغیر ڈر کے Build4Better ہیکاتھون (این ای ڈی یونیورسٹی) کا تعلیمی پروجیکٹ ہے۔ کسی تجارتی بینک یا ادارے سے الحاق نہیں ہے۔"
+                ? `${BRAND.urdu} Build4Better ہیکاتھون (این ای ڈی یونیورسٹی) کا تعلیمی پروجیکٹ ہے۔ کسی تجارتی بینک یا ادارے سے الحاق نہیں ہے۔`
                 : isEn
-                ? "BinaDarKe is an independent educational tool for the Build4Better hackathon (NED University). Not affiliated with any commercial entity."
-                : "BinaDarKe Build4Better hackathon ka azaad taleemi tool hai."}
+                ? `${BRAND.en} is an independent educational tool for the Build4Better hackathon (NED University). Not affiliated with any commercial entity.`
+                : `${BRAND.roman} Build4Better hackathon ka azaad taleemi tool hai.`}
             </span>
           </div>
         </div>

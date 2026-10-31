@@ -1,4 +1,4 @@
-# BinaDarKe (بغیر ڈر کے) • Product Pitch Deck & Narrative
+# BinaDarKe (بنا ڈر کے) • Product Pitch Deck & Narrative
 > **Hackathon**: Build4Better (NED University of Engineering & Technology)  
 > **Theme**: Digital Resilience, Accessibility, & Family Empowerment
 

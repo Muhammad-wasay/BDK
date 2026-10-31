@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Award, Printer, Share2, X, ShieldCheck } from 'lucide-react';
+import { BRAND } from '../data/brand';
 
 export default function CertificateModal({ isOpen, onClose, score, totalQuestions, language = 'roman' }) {
   const [userName, setUserName] = useState('Abba Jan');
@@ -21,13 +22,17 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
   };
 
   const handleShareWhatsApp = () => {
-    const text = `🎉 Assalamu Alaikum! Maine BinaDarKe Anti-Scam Sandbox par ${score}/${totalQuestions} (${percentage}%) score hasil kiya hai aur 'Safe Citizen Certificate' hasil kiya hai! Check karein: https://binadarke.pk`;
+    const text = isUrdu
+      ? `🎉 السلام علیکم! میں نے ${BRAND.urdu} (${BRAND.roman}) پلیٹ فارم پر ${score}/${totalQuestions} (${percentage}%) اسکور حاصل کیا اور 'محفوظ شہری سند' حاصل کی! چیک کریں: https://binadarke.web.app`
+      : `🎉 Assalamu Alaikum! Maine ${BRAND.roman} Anti-Scam Sandbox par ${score}/${totalQuestions} (${percentage}%) score hasil kiya hai aur 'Safe Citizen Certificate' hasil kiya hai! Check karein: https://binadarke.web.app`;
     const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
 
   const handleCopy = () => {
-    const text = `🎉 Maine BinaDarKe Anti-Scam Sandbox par ${score}/${totalQuestions} score kiya!`;
+    const text = isUrdu
+      ? `🎉 میں نے ${BRAND.urdu} اینٹی اسکیم پلیٹ فارم پر ${score}/${totalQuestions} اسکور حاصل کیا!`
+      : `🎉 Maine ${BRAND.roman} Anti-Scam Sandbox par ${score}/${totalQuestions} score kiya!`;
     navigator.clipboard.writeText(text);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
@@ -87,7 +92,7 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
           </div>
 
           <p className="font-space font-bold text-xs uppercase tracking-widest text-slate-500">
-            BinaDarKe Anti-Scam Training Platform
+            {isUrdu ? `${BRAND.urdu} اینٹی اسکیم ٹریننگ پلیٹ فارم` : `${BRAND.en} Anti-Scam Training Platform`}
           </p>
           <h3 className="font-space font-bold text-xl sm:text-2xl text-[#151E33] mt-1">
             CERTIFICATE OF DIGITAL RESILIENCE

@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import soundEffects from '../utils/soundEffects';
 import storage from '../utils/storage';
+import { BRAND } from '../data/brand';
 
 export default function PrivacyScreen({ onGoHome, babaJiMode, language = 'roman' }) {
   const [showEraseConfirm, setShowEraseConfirm] = useState(false);
@@ -64,17 +65,17 @@ export default function PrivacyScreen({ onGoHome, babaJiMode, language = 'roman'
           <div>
             <h1 className="font-space font-extrabold text-2xl sm:text-3xl text-[#1B2440]">
               {isUrdu
-                ? "آپ کا ڈیٹا آپ کا ہے — بغیر ڈر کے کی گارنٹی"
+                ? `آپ کا ڈیٹا آپ کا ہے — ${BRAND.urdu} کی گارنٹی`
                 : isEn
-                ? "Your Data Stays on Your Device"
-                : "Aapka Data Aapka Hai: BinaDarKe Guarantee"}
+                ? `Your Data Stays on Your Device: ${BRAND.en} Guarantee`
+                : `Aapka Data Aapka Hai: ${BRAND.roman} Guarantee`}
             </h1>
             <p className="text-sm sm:text-base text-[#1B2440]/80 font-bold mt-2 leading-relaxed">
               {isUrdu
-                ? "بغیر ڈر کے سو فیصد کلائنٹ سائیڈ تعلیمی پلیٹ فارم ہے۔ کوئی بھی ڈیٹا کسی بیرونی سرور پر نہیں بھیجا جاتا۔"
+                ? `${BRAND.urdu} سو فیصد کلائنٹ سائیڈ تعلیمی پلیٹ فارم ہے۔ کوئی بھی ڈیٹا کسی بیرونی سرور پر نہیں بھیجا جاتا۔`
                 : isEn
-                ? "BinaDarKe is a 100% client-side educational practice space. No personal information ever leaves your device."
-                : "BinaDarKe 100% client-side practice platform hai. Koi bhi zaati maloomat kisi server par nahi bheji jaati."}
+                ? `${BRAND.en} is a 100% client-side educational practice space. No personal information ever leaves your device.`
+                : `${BRAND.roman} 100% client-side practice platform hai. Koi bhi zaati maloomat kisi server par nahi bheji jaati.`}
             </p>
           </div>
         </div>
@@ -175,10 +176,10 @@ export default function PrivacyScreen({ onGoHome, babaJiMode, language = 'roman'
               </h3>
               <p className="text-xs sm:text-sm text-[#1B2440]/80 font-bold mt-1.5 leading-relaxed">
                 {isUrdu
-                  ? "بغیر ڈر کے Build4Better ہیکاتھون (این ای ڈی یونیورسٹی) کے لیے بنایا گیا ایک آزاد تعلیمی پروجیکٹ ہے۔ یہ جیز کیش، ایزی پیسہ، اسٹیٹ بینک آف پاکستان، ایف آئی اے، پی ٹی اے، یا کسی تجارتی ادارے کی ملکیت یا سرپرستی میں نہیں ہے۔"
+                  ? `${BRAND.urdu} Build4Better ہیکاتھون (این ای ڈی یونیورسٹی) کے لیے بنایا گیا ایک آزاد تعلیمی پروجیکٹ ہے۔ یہ جیز کیش، ایزی پیسہ، اسٹیٹ بینک آف پاکستان، ایف آئی اے، پی ٹی اے، یا کسی تجارتی ادارے کی ملکیت یا سرپرستی میں نہیں ہے۔`
                   : isEn
-                  ? "BinaDarKe is an independent educational practice prototype built for the Build4Better hackathon (NED University). It is not affiliated with, sponsored by, or endorsed by JazzCash, EasyPaisa, State Bank of Pakistan, FIA, PTA, HBL, Meezan Bank, or any corporate entity."
-                  : "BinaDarKe Build4Better hackathon (NED University) ke liye banaya gaya azaad taleemi project hai. Ye kisi bank ya telecom company se affiliated nahi hai."}
+                  ? `${BRAND.en} is an independent educational practice prototype built for the Build4Better hackathon (NED University). It is not affiliated with, sponsored by, or endorsed by JazzCash, EasyPaisa, State Bank of Pakistan, FIA, PTA, HBL, Meezan Bank, or any corporate entity.`
+                  : `${BRAND.roman} Build4Better hackathon (NED University) ke liye banaya gaya azaad taleemi project hai. Ye kisi bank ya telecom company se affiliated nahi hai.`}
               </p>
             </div>
           </div>

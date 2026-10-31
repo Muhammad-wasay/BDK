@@ -1,4 +1,5 @@
 // BinaDarKe - Multi-Language Content System (Pure Roman Urdu, Urdu Script, and English)
+import { BRAND } from './brand';
 
 export const TRANSLATIONS = {
   roman: {
@@ -154,7 +155,7 @@ export const TRANSLATIONS = {
     ],
     heroTag: "والدین اور بزرگوں کے لیے مکمل محفوظ ماحول",
     heroTitle1: "فراڈ پہچانیں،",
-    heroTitleAccent: "بغیر ڈر",
+    heroTitleAccent: "بنا ڈر",
     heroTitle2: " کے۔",
     heroSubtitle: "جعلی واٹس ایپ پیغامات، لاٹری فراڈ، اور او ٹی پی چوروں سے ہوشیار رہیں۔ یہاں غلطی کرنے پر بھی ایک روپے کا نقصان نہیں ہوگا۔",
     ctaStart: "مشق شروع کریں",
@@ -168,10 +169,10 @@ export const TRANSLATIONS = {
     heroCardMessage2: "فوری طور پر اس لنک پر کلک کر کے اے ٹی ایم پن درج کریں:",
     heroCardSimButton1: "دھوکہ ہے",
     heroCardSimButton2: "بلاک کریں",
-    elderStory: 'پہلے فون پر کوئی میسج آتا تھا تو ڈر لگتا تھا کہ کہیں کوئی غلط بٹن دبنے سے پیسے نہ کٹ جائیں۔ بغیر ڈر کے نے سارا خوف ختم کر دیا۔',
+    elderStory: `پہلے فون پر کوئی میسج آتا تھا تو ڈر لگتا تھا کہ کہیں کوئی غلط بٹن دبنے سے پیسے نہ کٹ جائیں۔ ${BRAND.urdu} نے سارا خوف ختم کر دیا۔`,
 
     // Feature Bento
-    featuresTitle: "بغیر ڈر کے کیوں ضروری ہے؟",
+    featuresTitle: `${BRAND.urdu} کیوں ضروری ہے؟`,
     featuresSubtitle: "والدین اور بزرگ ٹیکنالوجی سے خوفزدہ ہوئے بغیر فخر سے موبائل استعمال کر سکیں۔",
     feat1Title: "صفر مالی نقصان",
     feat1Desc: "یہاں آپ جتنی چاہیں غلطیاں کریں، آپ کا کوئی پیسہ ضائع نہیں ہوگا۔ غلطی کر کے ہی انسان سیکھتا ہے۔",
@@ -187,7 +188,7 @@ export const TRANSLATIONS = {
     guidedNextBtn: "خود ٹیسٹ کی طرف چلیں",
     guidedAdviceTitle: "استاد کی نصیحت",
     guidedAdviceSubtitle: "فراڈ کرنے والے اکثر یہ ۴ ہتھکنڈے استعمال کرتے ہیں:",
-    guidedRuleTitle: "بغیر ڈر کے اصول:",
+    guidedRuleTitle: `${BRAND.urdu} اصول:`,
     guidedRuleDesc: "جب بھی ایسا کوئی پیغام آئے: پہلے رکیں، سانس لیں، اور بچوں یا بینک ہیلپ لائن سے تصدیق کریں۔",
 
     // Solo Practice
@@ -242,9 +243,9 @@ export const TRANSLATIONS = {
 
     // About Platform Section
     aboutTag: "ہمارا مقصد",
-    aboutTitle: "بغیر ڈر کے کیوں بنایا گیا؟",
+    aboutTitle: `${BRAND.urdu} کیوں بنایا گیا؟`,
     aboutP1: "پاکستان میں ڈیجیٹل بینکنگ عام ہونے کے بعد ہمارے بزرگ سب سے زیادہ نشانہ بن رہے ہیں۔ اکثر بچے ڈانٹنے کے ڈر سے بزرگ غلطی بتاتے ہی نہیں۔",
-    aboutP2: "بغیر ڈر کے کا مقصد اس خوف کو ختم کرنا ہے تاکہ ہر فرد عزت اور اعتماد کے ساتھ موبائل چلا سکے۔",
+    aboutP2: `${BRAND.urdu} کا مقصد اس خوف کو ختم کرنا ہے تاکہ ہر فرد عزت اور اعتماد کے ساتھ موبائل چلا سکے۔`,
 
     // Data Privacy Guarantee
     privacyTag: "ڈیٹا کی مکمل حفاظت",

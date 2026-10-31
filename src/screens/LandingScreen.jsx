@@ -14,6 +14,7 @@ import {
   Heart
 } from 'lucide-react';
 import { TRANSLATIONS } from '../data/translations';
+import { BRAND } from '../data/brand';
 import UrduVoiceoverBar from '../components/UrduVoiceoverBar';
 import soundEffects from '../utils/soundEffects';
 import { EasyPaisaLogo, JazzCashLogo, WhatsAppLogo, HBLLogo } from '../components/BrandLogos';
@@ -31,9 +32,9 @@ export default function LandingScreen({
   const isEn = language === 'en';
 
   const introAudioMap = {
-    roman: "As-salamu alaykum! BinaDarKe mein khush-aamdeed. Ye waldein aur buzurgon ke liye ek mehfooz jagah hai jahan aap bila kisi khauf ke fake WhatsApp messages aur bank scams pehchanna seekh sakte hain. Practice Shuru Karein button par click karke aazmayein!",
-    urdu: "السلام علیکم! بغیر ڈر کے پلیٹ فارم پر خوش آمدید۔ یہ والدین اور بزرگوں کے لیے مکمل محفوظ ماحول ہے جہاں آپ بغیر کسی خوف کے ڈیجیٹل دھوکہ دہی اور فراڈ پہچاننا سیکھ سکتے ہیں۔ نیچے دیے گئے بٹن پر کلک کر کے مشق شروع کریں۔",
-    en: "Welcome to BinaDarKe! A free practice space for families and elders to recognize everyday online scams and phishing threats without any financial risk. Click Start Practice to begin."
+    roman: `As-salamu alaykum! ${BRAND.roman} mein khush-aamdeed. Ye waldein aur buzurgon ke liye ek mehfooz jagah hai jahan aap bila kisi khauf ke fake WhatsApp messages aur bank scams pehchanna seekh sakte hain. Practice Shuru Karein button par click karke aazmayein!`,
+    urdu: `السلام علیکم! ${BRAND.urdu} پلیٹ فارم پر خوش آمدید۔ یہ والدین اور بزرگوں کے لیے مکمل محفوظ ماحول ہے جہاں آپ بغیر کسی خوف کے ڈیجیٹل دھوکہ دہی اور فراڈ پہچاننا سیکھ سکتے ہیں۔ نیچے دیے گئے بٹن پر کلک کر کے مشق شروع کریں۔`,
+    en: `Welcome to ${BRAND.en}! A free practice space for families and elders to recognize everyday online scams and phishing threats without any financial risk. Click Start Practice to begin.`
   };
 
   const introAudioText = introAudioMap[language] || introAudioMap.roman;
