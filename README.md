@@ -1,139 +1,185 @@
 # BinaDarKe • بغیر ڈر کے
-> **Pakistan's First Fear-Free Anti-Scam Training Sandbox for Families & Elders**
+> **A Free Anti-Scam Practice Space for Families and Elders**  
+> Built for the Build4Better Hackathon (NED University)
 
-[![React](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev)
-[![Vite](https://img.shields.io/badge/Vite-8-purple.svg)](https://vitejs.dev)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-38bdf8.svg)](https://tailwindcss.com)
-
----
-
-## 💡 Project Vision & Core Philosophy
-
-In Pakistan, elders and parents frequently fall victim to digital scams (fake lottery messages, bank account block threats, electricity cutoff notices, and OTP thefts). The root problem is often **fear & lack of safe practice**—elders are terrified of pressing the wrong button.
-
-**BinaDarKe** eliminates this fear with a radical promise:
-> **"Yahan ghalti karne par koi paisa nahi katega. Bilkul be-khauf seekhein!"**
-> *(Mistakes cost zero rupees here. Learn with complete peace of mind.)*
+[![React 19](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev)
+[![Vite 8](https://img.shields.io/badge/Vite-8-purple.svg)](https://vitejs.dev)
+[![Tailwind v4](https://img.shields.io/badge/Tailwind-v4-38bdf8.svg)](https://tailwindcss.com)
+[![Vitest](https://img.shields.io/badge/Vitest-Tested-green.svg)](https://vitest.dev)
+[![Zero Telemetry](https://img.shields.io/badge/Privacy-100%25%20Client--Side-brightgreen.svg)](#-trust-safety--privacy-architecture)
 
 ---
 
-## 🚀 How to Run Locally
+## 👥 Team Information
+* **Project**: BinaDarKe (بغیر ڈر کے)
+* **Hackathon**: Build4Better (NED University of Engineering & Technology)
+* **Team Members**:
+  * [Team Member 1 - Full-Stack / Product Designer]
+  * [Team Member 2 - Frontend Engineer]
+  * [Team Member 3 - Accessibility Specialist]
+* **Repository**: [GitHub Repository URL]
+* **Live Demo**: [https://binadarke.web.app](https://binadarke.web.app) (or local host)
+
+---
+
+## 🎯 Target User & The Problem
+
+### Meet Abba Ji (Fictional Composite Persona)
+* **Profile**: 67-year-old retired clerk in Pakistan using a budget Android device (3GB RAM).
+* **Daily Apps**: WhatsApp (voice notes, family greetings), EasyPaisa (utility bills), and phone dialer.
+* **The Real Barrier**: It is not a lack of intelligence; it is **fear of financial loss** and **fear of scolding**:
+  > *"Agar ghalti se koi button dab gaya to meri saari pension kat jayegi."*  
+  > *"Bachon ko bataunga to wo daantein ge ke aap phone mat chhera karein."*
+
+### Why Existing Approaches Fail
+1. **Advisories without practice**: Telling elders *"Never click links"* is useless when genuine bank alerts, utility bills, and courier notices also arrive via SMS. Elders become paralyzed with anxiety or blindly trust scammers using familiar brand names.
+2. **High stakes in real apps**: Testing a transaction in real banking apps carries real financial risk. A mistake costs actual rupees.
+3. **Complex jargon & English interfaces**: Dense banking terms ("CVV", "2FA", "Phishing domain") confuse elders.
+
+---
+
+## 💡 Solution: What BinaDarKe Is and Does
+
+BinaDarKe eliminates the fear of technology with a core promise:
+> **"Yahan ghalti karne par koi paisa nahi katega. Bilkul be-khauf seekhein!"**  
+> *(Mistakes cost zero rupees here. Practice with complete peace of mind.)*
+
+### Core Capabilities
+1. **Practice Phone Module (`src/screens/PracticePhoneScreen.jsx`)**:
+   * Realistic Android-style practice phone frame with persistent safety badge: *"PRACTICE ONLY: nothing is sent"*.
+   * Fictional vector assets and contacts (`Ammi`, `Abu`, `Beti`, `Family Group`).
+   * 4 data-driven lessons (`src/data/lessons.js`):
+     * Share a family photo
+     * Send a WhatsApp voice message
+     * Check a payment safely before sending money (verify recipient title)
+     * Recognize and report a suspicious link
+   * Two modes: **Guided** (dynamic spotlight overlay with tooltips) and **Independent** (no hints, tracking attempts, wrong taps, and time).
+   * Transparent, non-shaming feedback and one-tap progress erasure.
+
+2. **4-Stage Teaching Loop (`src/screens/SoloPracticeScreen.jsx`)**:
+   * **Guided**: Spot the 4 key red flags with audio explanations.
+   * **Independent**: Decide *"Yeh Dhoka Hai (Scam)"* vs. *"Mehfooz Hai (Safe)"* without hints.
+   * **Teach-Back**: One-tap interactive choice explaining *why* the message is a scam or safe to solidify mental models.
+   * **Family Challenge**: One-tap WhatsApp share (`wa.me`) to challenge relatives.
+
+3. **15 Balanced Scenarios (`src/data/scenarios.js`)**:
+   * Covers 12 common Pakistani scam vectors: fake prize/BISP/Ehsaas, bank block threats, OTP social engineering, courier address fees, electricity cutoff threats, gas arrears notices, fake relative hospital emergencies, video-like task jobs, fake payment slip refund traps, regulatory impersonation, remote-access app traps (AnyDesk), and ATM PIN phishing.
+   * **Crucially paired with 3 genuine messages** (routine debit alerts, legitimate utility bill reminders, and user-requested login OTPs) so learners build discernment instead of paranoia.
+
+4. **Branching Phone Call Simulator (`src/screens/PhoneCallSimulatorScreen.jsx`)**:
+   * Multi-turn interactive phone conversation with a fake bank manager.
+   * Branching choices ("What would you say?"): panicked response vs. calm verification.
+   * Consequence-free outcomes demonstrating why bank staff never ask for OTPs over the phone.
+
+5. **Rule-Based Scam Scanner (`src/screens/ScamScannerScreen.jsx`)**:
+   * 100% client-side, deterministic regex heuristic analyzer.
+   * Detects credential theft, artificial urgency, prize bait, advance fees, shortened links, and unverified mobile senders.
+   * Highlights triggered phrases in-context and explains each in plain language.
+   * Low scores explicitly state: *"No known red flags found. This is a rule-based check, not a guarantee."*
+
+6. **Accessibility & Buzurg (Elder) Mode**:
+   * Body text $\ge$ 16px ($\ge$ 18px in Buzurg mode), touch targets $\ge$ 48px.
+   * Zero `text-[10px]` or `text-[11px]` readable text anywhere in the app.
+   * WCAG AA contrast, visible focus rings (`:focus-visible`), and `prefers-reduced-motion` CSS overrides.
+   * Urdu Voiceover Bar supporting speech synthesis and audio layer fallbacks.
+
+7. **Family Reassurance & Kid View (`src/screens/ResultScreen.jsx`)**:
+   * Dedicated Kid View showing parents' practice summary without carrying any personal data.
+   * 3 calm conversation starters over chai for family members.
+
+---
+
+## 🔒 Trust, Safety & Privacy Architecture
+
+* **Zero Telemetry**: No Google Analytics, no Meta Pixel, no Mixpanel, no Sentry, no cookies, no tracking pixels.
+* **Zero Backend**: BinaDarKe is 100% client-side. There is no remote database or server storing user inputs.
+* **Zero Real Financial Data**: No real OTP, PIN, CNIC, card, or bank data is ever requested or accepted. Everything simulated is fictional.
+* **Local Storage Safety (`src/utils/storage.js`)**: Preferences (language, Buzurg mode, test score) are stored purely in `window.localStorage` wrapped in defensive try/catch error handling.
+* **One-Tap Data Purge**: Learners can wipe all saved progress, scores, and preferences in one tap from the Settings or Privacy screen (`storage.clearAllProgress()`).
+* **First-Use Consent**: On first visit, learners are presented with a plain-language summary of these principles before practicing.
+
+---
+
+## 🛠️ Tech Stack & Dependencies
+
+* **Frontend Framework**: React 19 (`react`, `react-dom`)
+* **Build Tool & Bundler**: Vite 8 (`vite`, `@vitejs/plugin-react`)
+* **Styling**: Tailwind CSS v4 (`tailwindcss`, `@tailwindcss/vite`)
+* **Icons**: Lucide React (`lucide-react`)
+* **Animations**: Framer Motion (`framer-motion`)
+* **Testing Framework**: Vitest (`vitest`)
+* **Hosting**: 100% static client-side hosting (Firebase Hosting, GitHub Pages, or Vercel static)
+
+---
+
+## 🚀 Setup & Local Execution
+
+Ensure you have **Node.js 18+** and **npm** installed.
 
 ```bash
-# 1. Navigate to the project directory
-cd BinaDarKe
+# 1. Clone the repository
+git clone <repository-url>
+cd <repository-directory>
 
-# 2. Install dependencies (if not already installed)
+# 2. Install dependencies
 npm install
 
-# 3. Start development server
+# 3. Run the development server
 npm run dev
 
-# 4. Build for production
+# 4. Run automated unit tests
+npm test
+
+# 5. Run ESLint code quality check
+npm run lint
+
+# 6. Build production bundle
 npm run build
+
+# 7. Preview production build locally
+npm run preview
 ```
-Local URL: `http://localhost:5174/` (or `5173`)
+
+Development server runs at `http://localhost:5173/`.
 
 ---
 
-## ✅ What Has Been Implemented (Completed Work)
+## 🧪 Test Suite
 
-### 1. Design System & Aesthetics (Soft Neobrutalism)
-* **Signature Stitch Black Outlines**: 2.5px - 3px solid `#1B2440` borders on all cards, buttons, badges, and modals.
-* **Colors**: Warm cream canvas (`#FFF4E0`), butter yellow (`#FFF1A8`), soft mint (`#B8F2D0`), coral warning (`#FF6B6B`), lavender (`#D4C5F9`), and peach (`#FFD3B6`).
-* **Subtle Tactile Shadows**: Replaced bulky cardboard block shadows with crisp 2px depth (`shadow-[2px_2px_0px_#1B2440]`) and smooth pressed-down active states (`.btn-tactile`).
-* **Typography**: Space Grotesk (headings), Nunito Sans (body), Caveat (handwritten accents), and Noto Sans Arabic / Noto Nastaliq (Urdu script).
-
-### 2. Multi-Language System (Zero Mixing)
-* **Dedicated Language Switcher**: `Roman Urdu` (Default) | `اردو` (RTL) | `English`.
-* All content cleanly separated in `src/data/translations.js` and `src/data/scenarios.js`—no awkward mixing of three languages in one sentence.
-
-### 3. Audio & Accessibility (Elder Mode)
-* **Urdu Audio Guide (`UrduVoiceoverBar.jsx`)**: Integrated with Web Speech API (`SpeechSynthesis`) configured with a gentle 0.88x speech rate for elder-friendly comprehension.
-* **Buzurg Mode (Elder Mode)**: Instant toggle button in the navbar that enlarges typography and boosts touch targets across all screens.
-
-### 4. Interactive Screens
-* **`LandingScreen.jsx`**:
-  * Top micro-ticker awareness line (`OTP kisi ko nahi dena • Anjane link pe click na karein`).
-  * Full-resolution official logo without duplicate text.
-  * Interactive WhatsApp phone sandbox preview with decision buttons.
-  * 3 Bento feature cards + heartwarming elder testimonial.
-* **`GuidedPracticeScreen.jsx`**:
-  * Step-by-step hotspot inspection on a fake Ehsaas cash prize WhatsApp message.
-  * 4 interactive hotspots: *Lalach (Rs. 50,000)*, *Khufia PIN*, *Jaldbazi (Cancel ho jayega)*, and *Naqli Link*.
-  * Clicking hotspots focuses the corresponding "Ustaad ki Naseehat" breakdown card.
-  * Safe simulated link click warning alert.
-* **`SoloPracticeScreen.jsx`**:
-  * 5 real-life Pakistani scenarios (4 scams + 1 legitimate bank alert to teach distinguishing real alerts from fraud).
-  * Big decision buttons: *"Mehfooz Hai (Safe)"* vs *"Dhoka Hai (Scam!)"*.
-  * Hint/Ishara drawer.
-  * Instant feedback drawer explaining the exact red flags with dynamic score tracking.
-* **`ResultScreen.jsx`**:
-  * Dynamic score pill (e.g. 4/5) with *Zero Real Money Nuqsan* guarantee.
-  * Confidence meter progress bar.
-  * Baba Ji speech bubble with personalized encouraging advice.
-  * Detailed review list for each question with modal tips.
-  * Action buttons: *Certificate*, *Retry*, and *Return Home*.
-  * WhatsApp Family Share button to send results to children.
-
-### 5. Modals
-* **`HelplineModal.jsx`**: Official Pakistani hotlines (FIA Cyber Crime **1991**, State Bank **111-727-273**, PTA **9000**, BinaDarKe **0800-BINA-DARR**) + 4 Elder Golden Rules.
-* **`CertificateModal.jsx`**: Downloadable/printable "Safe Citizen Certificate" with customizable recipient name, date, and verified badge.
+BinaDarKe includes comprehensive automated unit tests (`npm test`):
+* `src/utils/storage.test.js`: Validates safe get, set, remove, clear, and corrupted JSON resilience.
+* `src/utils/scamScannerHeuristics.test.js`: Validates regex pattern matching for OTP theft, urgency threats, prize lures, and legitimate message handling.
+* `src/data/translations.test.js`: Validates 100% key parity across Roman Urdu, Urdu script, and English, and verifies all 15 scenarios adhere to data contracts.
 
 ---
 
-## 🛠️ Project Structure
+## ⚖️ Honest Disclosures (Simulated vs. Real)
 
-```
-BinaDarKe/
-├── public/
-│   ├── official_logo.png     # Cropped high-res brand logo
-│   ├── favicon-logo.png      # Favicon emblem
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   ├── AnnouncementBar.jsx   # Top micro-ticker line
-│   │   ├── Navbar.jsx            # Animated floating navbar & language switcher
-│   │   ├── HelplineModal.jsx     # Pakistan cyber crime helplines
-│   │   ├── CertificateModal.jsx  # Printable Safe Citizen Certificate
-│   │   └── UrduVoiceoverBar.jsx  # Audio voiceover player
-│   ├── data/
-│   │   ├── scenarios.js          # Guided & Solo scenarios (3 languages)
-│   │   └── translations.js       # Pure Roman, Urdu, and English dictionaries
-│   ├── screens/
-│   │   ├── LandingScreen.jsx
-│   │   ├── GuidedPracticeScreen.jsx
-│   │   ├── SoloPracticeScreen.jsx
-│   │   └── ResultScreen.jsx
-│   ├── App.jsx                   # Main state & screen router
-│   ├── index.css                 # Stitch design tokens & typography
-│   └── main.jsx
-├── index.html
-└── package.json
-```
+To ensure full compliance with hackathon integrity standards:
+* **Simulated Phone & Apps**: The WhatsApp chat, EasyPaisa wallet, and phone call interface are mock HTML/CSS components. They cannot send real SMS, place real cellular calls, or connect to real bank accounts.
+* **Scam Scanner**: It is a **deterministic rule-based regex checker**, NOT a machine learning or generative AI model. It does not send text to external APIs and cannot guarantee 100% security.
+* **Helplines**: Only official Pakistani emergency channels are provided:
+  * FIA NR3C Cyber Crime: `1991` ([complaint.fia.gov.pk](https://complaint.fia.gov.pk))
+  * State Bank of Pakistan (SBP) Consumer Protection: `111-727-273` / `1025` ([sbp.org.pk](https://www.sbp.org.pk))
+  * Pakistan Telecommunication Authority (PTA): `0800-55055` / `9000` ([pta.gov.pk](https://www.pta.gov.pk))
 
 ---
 
-## 🎯 Next Steps & Future Roadmap (For Incoming Developer)
+## 🙏 Credits & Attributions
 
-### Priority 1: Polish & Enhancements
-1. **Real Human Audio Files (MP3)**:
-   * Currently, audio uses the browser's Web Speech API (`SpeechSynthesis`).
-   * Replacing this with real human voice recordings (a warm, affectionate Pakistani elder/uncle voice) in MP3 format will make it 10x more relatable and engaging.
-2. **Tactile Sound Effects**:
-   * Add subtle audio sound effects on button clicks (mechanical click sound) and success chimes when picking the correct answer.
-3. **State Persistence (`localStorage`)**:
-   * Save quiz score and current screen in `localStorage` so page refreshes don't lose progress.
-4. **Mobile Optimization**:
-   * Test specifically on low-cost Android devices commonly used by Pakistani parents (Infinix, Tecno, Redmi).
+* **Visual Identity Inspiration**: Inspired by the Google Stitch export system and Soft-Neobrutalism design patterns.
+* **Pair Programming**: Assisted by Antigravity AI coding assistant for architecture and accessible component implementations.
+* **Logos & Brand Names**: EasyPaisa, JazzCash, HBL, Meezan Bank, SBP, and WhatsApp trademarks belong to their respective registered entities. They are featured strictly for educational simulation under nominative fair use. BinaDarKe is an independent educational tool not affiliated with or endorsed by these companies.
+* **Fonts**: Google Fonts (`Noto Sans Arabic`, `Nunito Sans`, `Space Grotesk`, `Caveat`).
 
-### Priority 2: New Features
-1. **Fake Voice Call Simulator (Level 2)**:
-   * Many Pakistani elders are duped via fake phone calls ("Main bank manager bol raha hoon, OTP batayein").
-   * Build an interactive Incoming Call UI with Accept / Reject buttons and simulated audio dialogue.
-2. **EasyPaisa / JazzCash Scam Level (Level 3)**:
-   * Fake screenshot payment slips and QR code manipulation scenarios.
-3. **"Scam Scanner" (Community Feature)**:
-   * Allow users or children to paste a suspicious SMS or upload a screenshot to get instant guidance on whether it's safe or a fraud.
-4. **WhatsApp Family Challenge Link**:
-   * A pre-filled WhatsApp share link allowing sons/daughters to send a challenge to their parents or family group: *"Ammi ye test karein aur certificate hasil karein!"*.
+---
+
+## 📌 Submission Verification
+
+To verify the exact commit submitted for hackathon evaluation:
+
+```bash
+git rev-parse --short HEAD
+```
+
+**Submitted Commit**: `1c2471a` (or current HEAD)
