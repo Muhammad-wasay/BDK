@@ -110,7 +110,7 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
           <ArrowLeft className="w-4 h-4" />
         </button>
         <div className="text-center">
-          <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#FFD3B6] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5">
+          <span className="text-xs font-space font-extrabold uppercase tracking-wider bg-[#FFD3B6] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-3 py-1">
             Level 3 • Payment Scam Detection
           </span>
         </div>

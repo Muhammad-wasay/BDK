@@ -50,7 +50,7 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
         </button>
 
         <div className="text-center mb-4">
-          <span className="text-[11px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full px-3 py-1">
+          <span className="text-xs font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full px-3 py-1">
             {isUrdu ? 'سرکاری اعزازی سند' : 'Safe Citizen Certificate'}
           </span>
           <h2 className="font-space font-bold text-2xl text-[#151E33] mt-2">
@@ -86,7 +86,7 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
             </div>
           </div>
 
-          <p className="font-space font-bold text-[11px] uppercase tracking-widest text-slate-500">
+          <p className="font-space font-bold text-xs uppercase tracking-widest text-slate-500">
             BinaDarKe Anti-Scam Training Platform
           </p>
           <h3 className="font-space font-bold text-xl sm:text-2xl text-[#151E33] mt-1">
@@ -105,7 +105,7 @@ export default function CertificateModal({ isOpen, onClose, score, totalQuestion
 
           <div className="flex items-center justify-around gap-2 text-left text-xs">
             <div>
-              <span className="block text-[10px] text-slate-400 font-semibold uppercase">Score:</span>
+              <span className="block text-xs text-slate-500 font-bold uppercase">Score:</span>
               <span className="font-space font-bold text-sm text-[#151E33]">
                 {score} / {totalQuestions} ({percentage}%)
               </span>
