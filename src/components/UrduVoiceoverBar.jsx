@@ -11,127 +11,130 @@ export default function UrduVoiceoverBar({
   const isUrdu = language === 'urdu';
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [voiceLang, setVoiceLang] = useState(isEn ? 'english' : 'urdu');
   const [activeWordIndex, setActiveWordIndex] = useState(-1);
+  const audioRef = useRef(null);
+  const intervalRef = useRef(null);
   const utteranceRef = useRef(null);
 
-  // Sync voiceLang when language prop changes
-  useEffect(() => {
-    if (language === 'en') {
-      setVoiceLang('english');
-    } else {
-      setVoiceLang('urdu');
+  const words = text ? text.split(/\s+/) : [];
+
+  // Match text to ElevenLabs recorded audio files in public/audio/
+  const getAudioFile = (t) => {
+    if (!t) return null;
+    const s = t.toLowerCase();
+    if (s.includes('khush-aamdeed') || s.includes('خوش آمدید') || s.includes('welcome to binadarke')) return '/audio/welcome_intro.mp3';
+    if (s.includes('4 ahem nishan') || s.includes('۴ اہم نشانات') || s.includes('4 critical red flags') || s.includes('ghor se dekhein')) return '/audio/guided_intro.mp3';
+    if (s.includes('pehli nishani') || s.includes('پہلی نشانی') || s.includes('first red flag') || s.includes('ghair mamooli')) return '/audio/redflag_1.mp3';
+    if (s.includes('doosri nishani') || s.includes('دوسری نشانی') || s.includes('second red flag') || s.includes('khufia pin')) return '/audio/redflag_2.mp3';
+    if (s.includes('teesri nishani') || s.includes('تیسری نشانی') || s.includes('third red flag') || s.includes('jaldbazi')) return '/audio/redflag_3.mp3';
+    if (s.includes('chouthi nishani') || s.includes('چوتھی نشانی') || s.includes('fourth red flag') || s.includes('mashkook link')) return '/audio/redflag_4.mp3';
+    if (s.includes('sawal number aik') || s.includes('سوال نمبر ایک') || s.includes('question 1') || s.includes('solo-1')) return '/audio/solo_1.mp3';
+    if (s.includes('sawal number do') || s.includes('سوال نمبر دو') || s.includes('question 2') || s.includes('solo-2')) return '/audio/solo_2.mp3';
+    if (s.includes('sawal number teen') || s.includes('سوال نمبر تین') || s.includes('question 3') || s.includes('solo-3')) return '/audio/solo_3.mp3';
+    if (s.includes('hbl') || s.includes('bank manager') || s.includes('بینک مینیجر')) return '/audio/bank_call.mp3';
+    if (s.includes('yaad rakhain') || s.includes('یاد رکھیں') || s.includes('golden rule')) return '/audio/golden_rule.mp3';
+    return null;
+  };
+
+  const stopAllAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      audioRef.current = null;
     }
-  }, [language]);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setIsPlaying(false);
+    setActiveWordIndex(-1);
+  };
 
-  const words = text ? text.split(' ') : [];
-
-  // Stop speech when text changes or component unmounts
   useEffect(() => {
     return () => {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
+      stopAllAudio();
     };
   }, []);
 
   useEffect(() => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      setIsPlaying(false);
-      setActiveWordIndex(-1);
-    }
+    stopAllAudio();
   }, [text]);
 
-  const findBestVoice = (voices, langChoice) => {
-    if (!voices || voices.length === 0) return null;
-
-    if (langChoice === 'urdu') {
-      const hindiUrduFemale = voices.find(v => 
-        (v.lang.includes('hi') || v.lang.includes('ur') || v.lang.includes('IN') || v.lang.includes('PK')) &&
-        (v.name.includes('Swara') || v.name.includes('Heera') || v.name.includes('Kalpana') || v.name.includes('Google हिन्दी') || v.name.toLowerCase().includes('female'))
-      );
-      if (hindiUrduFemale) return hindiUrduFemale;
-
-      const anyUrduHindi = voices.find(v => v.lang.includes('hi') || v.lang.includes('ur'));
-      if (anyUrduHindi) return anyUrduHindi;
-    }
-
-    // English Female voice
-    const englishFemale = voices.find(v => 
-      v.name.includes('Zira') || 
-      v.name.includes('Jenny') || 
-      v.name.includes('Google UK English Female') ||
-      v.name.includes('Google US English Female') ||
-      (v.lang.includes('en') && v.name.toLowerCase().includes('female'))
-    );
-    if (englishFemale) return englishFemale;
-
-    return voices[0];
-  };
-
   const handleTogglePlay = () => {
-    if (!('speechSynthesis' in window)) {
-      alert("Aapke browser mein audio guide support nahi hai.");
+    if (isPlaying) {
+      soundEffects.playClick();
+      stopAllAudio();
       return;
     }
 
-    if (isPlaying) {
-      soundEffects.playClick();
-      window.speechSynthesis.cancel();
+    soundEffects.playClick();
+    stopAllAudio();
+
+    const audioSrc = getAudioFile(text);
+
+    if (audioSrc) {
+      // 1. PLAY ACTUAL ELEVENLABS MP3 RECORDING
+      const audio = new Audio(audioSrc);
+      audioRef.current = audio;
+
+      audio.onloadedmetadata = () => {
+        const duration = audio.duration || 6;
+        const wordInterval = (duration * 1000) / Math.max(words.length, 1);
+        let currentIndex = 0;
+
+        intervalRef.current = setInterval(() => {
+          if (currentIndex < words.length) {
+            setActiveWordIndex(currentIndex);
+            currentIndex++;
+          } else {
+            clearInterval(intervalRef.current);
+          }
+        }, wordInterval);
+      };
+
+      audio.onended = () => {
+        stopAllAudio();
+      };
+
+      audio.onerror = () => {
+        fallbackToBrowserSpeech();
+      };
+
+      audio.play().then(() => {
+        setIsPlaying(true);
+      }).catch(() => {
+        fallbackToBrowserSpeech();
+      });
+    } else {
+      fallbackToBrowserSpeech();
+    }
+  };
+
+  const fallbackToBrowserSpeech = () => {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utteranceRef.current = utterance;
+    utterance.pitch = 1.05;
+    utterance.rate = 0.88;
+    utterance.lang = isEn ? 'en-US' : (isUrdu ? 'ur-PK' : 'hi-IN');
+
+    utterance.onend = () => {
       setIsPlaying(false);
       setActiveWordIndex(-1);
-    } else {
-      soundEffects.playClick();
-      window.speechSynthesis.cancel();
+    };
 
-      const utterance = new SpeechSynthesisUtterance(text);
-      utteranceRef.current = utterance;
+    utterance.onerror = () => {
+      setIsPlaying(false);
+      setActiveWordIndex(-1);
+    };
 
-      const voices = window.speechSynthesis.getVoices();
-      const targetLang = isEn ? 'english' : voiceLang;
-      const selectedVoice = findBestVoice(voices, targetLang);
-
-      if (selectedVoice) {
-        utterance.voice = selectedVoice;
-      }
-
-      utterance.pitch = 1.08;
-      utterance.rate = 0.85;
-
-      if (targetLang === 'urdu') {
-        utterance.lang = language === 'urdu' ? 'ur-PK' : 'hi-IN';
-      } else {
-        utterance.lang = 'en-US';
-      }
-
-      utterance.onboundary = (event) => {
-        if (event.name === 'word') {
-          const charIndex = event.charIndex;
-          let runningChars = 0;
-          for (let i = 0; i < words.length; i++) {
-            runningChars += words[i].length + 1;
-            if (runningChars > charIndex) {
-              setActiveWordIndex(i);
-              break;
-            }
-          }
-        }
-      };
-
-      utterance.onend = () => {
-        setIsPlaying(false);
-        setActiveWordIndex(-1);
-      };
-
-      utterance.onerror = () => {
-        setIsPlaying(false);
-        setActiveWordIndex(-1);
-      };
-
-      setIsPlaying(true);
-      window.speechSynthesis.speak(utterance);
-    }
+    setIsPlaying(true);
+    window.speechSynthesis.speak(utterance);
   };
 
   return (
@@ -162,60 +165,17 @@ export default function UrduVoiceoverBar({
               {label}
             </span>
             <span className="text-[11px] font-bold text-[#1B2440]/60">
-              {isPlaying ? (isEn ? "Speaking now..." : "بول رہے ہیں...") : (isEn ? "Click listen for voice guidance" : "سننے کے لیے بٹن دبائیں")}
+              {isPlaying ? (isEn ? "Playing studio voice..." : "اصلی آواز چل رہی ہے...") : (isEn ? "Click listen for spoken guidance" : "سننے کے لیے بٹن دبائیں")}
             </span>
           </div>
         </div>
 
-        {/* Voice Selector & Play/Stop Button */}
+        {/* Play/Stop Button */}
         <div className="flex items-center gap-2">
-          
-          {/* If English mode, show ONLY English Voice badge (NO Urdu option!) */}
-          {isEn ? (
-            <span className="px-2.5 py-1 rounded-xl bg-[#B8F2D0] border border-[#1B2440] text-[11px] font-space font-extrabold text-[#1B2440]">
-              English Voice
-            </span>
-          ) : isUrdu ? (
-            <span className="px-2.5 py-1 rounded-xl bg-[#B8F2D0] border border-[#1B2440] text-[11px] font-space font-extrabold text-[#1B2440]">
-              اردو آواز
-            </span>
-          ) : (
-            /* In Roman Urdu, show clean toggle */
-            <div className="flex items-center bg-[#FFFBF5] border-[1.5px] border-[#1B2440] p-0.5 rounded-xl text-[11px] font-space font-bold">
-              <button
-                onClick={() => {
-                  soundEffects.playClick();
-                  if (isPlaying) window.speechSynthesis.cancel();
-                  setIsPlaying(false);
-                  setVoiceLang('urdu');
-                }}
-                className={`px-2 py-0.5 rounded-lg transition-all cursor-pointer ${
-                  voiceLang === 'urdu' 
-                    ? 'bg-white text-[#1B2440] border border-[#1B2440] font-black' 
-                    : 'text-[#1B2440]/60 hover:text-[#1B2440]'
-                }`}
-              >
-                Urdu Voice
-              </button>
-              <button
-                onClick={() => {
-                  soundEffects.playClick();
-                  if (isPlaying) window.speechSynthesis.cancel();
-                  setIsPlaying(false);
-                  setVoiceLang('english');
-                }}
-                className={`px-2 py-0.5 rounded-lg transition-all cursor-pointer ${
-                  voiceLang === 'english' 
-                    ? 'bg-white text-[#1B2440] border border-[#1B2440] font-black' 
-                    : 'text-[#1B2440]/60 hover:text-[#1B2440]'
-                }`}
-              >
-                English Voice
-              </button>
-            </div>
-          )}
+          <span className="px-2.5 py-1 rounded-xl bg-[#B8F2D0] border border-[#1B2440] text-[11px] font-space font-extrabold text-[#1B2440]">
+            {isEn ? "English Voice" : "ElevenLabs اردو"}
+          </span>
 
-          {/* Play/Stop Button */}
           <button
             onClick={handleTogglePlay}
             type="button"

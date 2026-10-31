@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Phone,
   PhoneOff,
@@ -19,9 +19,19 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
   const [isPlaying, setIsPlaying] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const [userDecision, setUserDecision] = useState(null);
+  const callAudioRef = useRef(null);
 
   const t = TRANSLATIONS[language] || TRANSLATIONS.roman;
   const isUrdu = language === 'urdu';
+
+  useEffect(() => {
+    return () => {
+      if (callAudioRef.current) {
+        callAudioRef.current.pause();
+        callAudioRef.current = null;
+      }
+    };
+  }, []);
 
   const callScenarios = {
     roman: {
@@ -50,12 +60,12 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
         "السلام علیکم! میں ایچ بی ایل بینک سے بول رہا ہوں۔",
         "آپ کا اکاؤنٹ بلاک ہونے والا ہے، مشکوک سرگرمی کی وجہ سے۔",
         "آپ ابھی او ٹی پی بتا دیں تو اکاؤنٹ ان بلاک کر دیں گے۔",
-        "جلدی بتائیں ورنہ اکاؤنٹ پمیننٹ بلاک ہو جائے گا!"
+        "جلدی بتائیں ورنہ اکاؤنٹ مستقل بلاک ہو جائے گا!"
       ],
       isScam: true,
       feedback: {
         scamTitle: "شاباش! درست فیصلہ!",
-        scamDesc: "اصلی بینک کبھی فون پر او ٹی پی نہیں مانگتا۔ یہ 100٪ فراڈ کال تھی۔",
+        scamDesc: "اصلی بینک کبھی فون پر او ٹی پی نہیں مانگتا۔ یہ ۱۰۰٪ فراڈ کال تھی۔",
         safeTitle: "ذرا ٹھہریں! یہ دھوکہ تھا",
         safeDesc: "بینک مینیجر کبھی فون پر او ٹی پی یا حساس معلومات نہیں مانگ سکتا۔ یہ جعلی کال تھی۔"
       }
@@ -86,10 +96,18 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
     soundEffects.playClick();
     setCallState('connected');
     setIsPlaying(true);
+    if (!callAudioRef.current) {
+      callAudioRef.current = new Audio('/audio/bank_call.mp3');
+      callAudioRef.current.onended = () => setIsPlaying(false);
+    }
+    callAudioRef.current.play().catch(() => {});
   };
 
   const handleReject = () => {
     soundEffects.playClick();
+    if (callAudioRef.current) {
+      callAudioRef.current.pause();
+    }
     setUserDecision('reject');
     setShowFeedback(true);
     setCallState('ended');
@@ -102,6 +120,9 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
 
   const handleEndCall = () => {
     soundEffects.playClick();
+    if (callAudioRef.current) {
+      callAudioRef.current.pause();
+    }
     setUserDecision('end');
     setShowFeedback(true);
     setCallState('ended');
@@ -109,7 +130,17 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
 
   const toggleAudio = () => {
     soundEffects.playClick();
-    setIsPlaying(!isPlaying);
+    if (!callAudioRef.current) {
+      callAudioRef.current = new Audio('/audio/bank_call.mp3');
+      callAudioRef.current.onended = () => setIsPlaying(false);
+    }
+    if (isPlaying) {
+      callAudioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      callAudioRef.current.play().catch(() => {});
+      setIsPlaying(true);
+    }
   };
 
   return (
@@ -128,7 +159,7 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
           <ArrowLeft className="w-4 h-4" />
         </button>
         <div className="text-center">
-          <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#FFD3B6] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5">
+          <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#B8F2D0] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5">
             Level 2 • Phone Call Simulator
           </span>
         </div>
@@ -143,7 +174,7 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
             {/* Caller Info */}
             <div className="text-center">
               <div className="flex flex-col items-center gap-2 mb-4">
-                <div className="w-20 h-20 rounded-full bg-[#D4C5F9] border-[3px] border-white/30 flex items-center justify-center text-3xl">
+                <div className="w-20 h-20 rounded-full bg-[#B8F2D0] border-[3px] border-white/30 flex items-center justify-center text-3xl">
                   👨‍💼
                 </div>
                 <HBLLogo className="h-6 w-auto bg-white px-2 py-0.5 rounded-lg" />
@@ -184,111 +215,106 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
               </div>
             )}
 
+            {/* Connected Call Content */}
             {callState === 'connected' && (
-              <div className="w-full">
+              <div className="w-full flex flex-col gap-4">
                 {/* Audio Transcript */}
-                <div className="bg-white/10 rounded-2xl p-4 mb-4 max-h-48 overflow-y-auto">
-                  <div className="space-y-3">
-                    {scenario.transcript.map((line, index) => (
-                      <div
-                        key={index}
-                        className={`text-sm font-bold leading-relaxed ${
-                          isPlaying && index === 0 ? 'text-[#B8F2D0]' : 'text-white/90'
-                        }`}
-                      >
-                        {line}
-                      </div>
-                    ))}
-                  </div>
+                <div className="bg-black/30 rounded-2xl p-4 max-h-48 overflow-y-auto space-y-2">
+                  {scenario.transcript.map((line, idx) => (
+                    <p key={idx} className="text-xs font-medium leading-relaxed">
+                      {line}
+                    </p>
+                  ))}
                 </div>
 
                 {/* Audio Control */}
                 <button
                   onClick={toggleAudio}
-                  className="w-full py-3 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center gap-2 text-sm font-bold cursor-pointer transition-all"
+                  className="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center gap-2 text-xs font-space font-extrabold cursor-pointer transition-all"
                 >
                   {isPlaying ? (
                     <>
-                      <Pause className="w-4 h-4" />
+                      <Pause className="w-3.5 h-3.5 text-[#B8F2D0]" />
                       <span>{isUrdu ? 'آواز روکیں' : 'Pause Audio'}</span>
                     </>
                   ) : (
                     <>
-                      <Play className="w-4 h-4" />
+                      <Play className="w-3.5 h-3.5 text-[#B8F2D0]" />
                       <span>{isUrdu ? 'آواز سنیں' : 'Play Audio'}</span>
                     </>
                   )}
                 </button>
 
-                {/* End Call Button */}
+                {/* Call End Button */}
                 <button
                   onClick={handleEndCall}
-                  className="w-full mt-4 py-3 rounded-xl bg-[#FF6B6B] hover:bg-[#f25e5e] flex items-center justify-center gap-2 text-sm font-bold cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
+                  className="w-full py-3 rounded-xl bg-[#FF6B6B] hover:bg-[#f25e5e] flex items-center justify-center gap-2 text-sm font-space font-black cursor-pointer transition-all"
                 >
                   <PhoneOff className="w-4 h-4" />
-                  <span>{isUrdu ? 'کال ختم کریں' : 'End Call'}</span>
-                </button>
-              </div>
-            )}
-
-            {callState === 'ended' && showFeedback && (
-              <div className="w-full">
-                <div className={`rounded-2xl p-4 mb-4 ${
-                  (userDecision === 'reject' && scenario.isScam) ||
-                  (userDecision === 'end' && !scenario.isScam)
-                    ? 'bg-[#B8F2D0]'
-                    : 'bg-[#FFD3B6]'
-                }`}>
-                  <div className="flex items-start gap-3">
-                    {((userDecision === 'reject' && scenario.isScam) ||
-                      (userDecision === 'end' && !scenario.isScam)) ? (
-                      <CheckCircle2 className="w-5 h-5 text-[#1B2440] flex-shrink-0 mt-0.5" />
-                    ) : (
-                      <AlertTriangle className="w-5 h-5 text-[#1B2440] flex-shrink-0 mt-0.5" />
-                    )}
-                    <div>
-                      <h3 className="font-space font-black text-sm text-[#1B2440] mb-1">
-                        {((userDecision === 'reject' && scenario.isScam) ||
-                          (userDecision === 'end' && !scenario.isScam))
-                          ? scenario.feedback.scamTitle
-                          : scenario.feedback.safeTitle}
-                      </h3>
-                      <p className="text-xs text-[#1B2440]/90 font-bold leading-relaxed">
-                        {((userDecision === 'reject' && scenario.isScam) ||
-                          (userDecision === 'end' && !scenario.isScam))
-                          ? scenario.feedback.scamDesc
-                          : scenario.feedback.safeDesc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <button
-                  onClick={onGoHome}
-                  className="w-full py-3 rounded-xl bg-[#FFF1A8] hover:bg-[#ffe769] text-[#1B2440] flex items-center justify-center gap-2 text-sm font-bold cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  <span>{isUrdu ? 'ہوم پر واپس جائیں' : 'Return to Home'}</span>
+                  <span>{isUrdu ? 'کال کاٹیں' : 'End Call'}</span>
                 </button>
               </div>
             )}
           </div>
         </div>
-      </div>
 
-      {/* Safety Tip */}
-      <div className="mt-6 bg-[#B8F2D0] border-[2px] border-[#1B2440] rounded-2xl p-4 flex items-start gap-3">
-        <ShieldCheck className="w-5 h-5 text-[#1B2440] flex-shrink-0 mt-0.5" />
-        <div>
-          <span className="font-space font-black text-xs text-[#1B2440] block uppercase">
-            {isUrdu ? 'محفوظ رہیں' : 'Stay Safe'}
-          </span>
-          <p className="text-xs text-[#1B2440] font-bold mt-0.5 leading-relaxed">
-            {isUrdu
-              ? 'اصلی بینک کبھی فون پر او ٹی پی یا پاس ورڈ نہیں مانگتا۔'
-              : 'Real banks never ask for OTP or password over phone calls.'}
-          </p>
-        </div>
+        {/* Feedback Modal */}
+        {showFeedback && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1B2440]/60 backdrop-blur-xs animate-fadeIn">
+            <div className="w-full max-w-md bg-white border-[2.5px] border-[#1B2440] rounded-3xl p-6 flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <div className={`w-12 h-12 rounded-2xl border-[2px] border-[#1B2440] flex items-center justify-center ${
+                  userDecision === 'reject' ? 'bg-[#B8F2D0] text-[#1B2440]' : 'bg-[#FFE8E5] text-[#BA1A1A]'
+                }`}>
+                  {userDecision === 'reject' ? (
+                    <CheckCircle2 className="w-6 h-6" />
+                  ) : (
+                    <AlertTriangle className="w-6 h-6" />
+                  )}
+                </div>
+                <div>
+                  <h3 className="font-space font-extrabold text-lg text-[#1B2440]">
+                    {userDecision === 'reject' ? scenario.feedback.scamTitle : scenario.feedback.safeTitle}
+                  </h3>
+                  <span className="text-xs font-bold text-[#1B2440]/60">
+                    Simulation Feedback
+                  </span>
+                </div>
+              </div>
+
+              <p className="text-sm font-bold text-[#1B2440]/80 leading-relaxed">
+                {userDecision === 'reject' ? scenario.feedback.scamDesc : scenario.feedback.safeDesc}
+              </p>
+
+              <div className="bg-[#B8F2D0]/50 border-[2px] border-[#1B2440] rounded-xl p-3 text-xs font-bold text-[#1B2440]">
+                {isUrdu 
+                  ? "💡 سنہری اصول: اصلی بینک کبھی بھی فون کال پر او ٹی پی یا پن نہیں مانگتا۔" 
+                  : "💡 Golden Rule: Real banks NEVER ask for your OTP or PIN over a phone call."}
+              </div>
+
+              <div className="flex gap-2 pt-2">
+                <button
+                  onClick={() => {
+                    soundEffects.playClick();
+                    setCallState('incoming');
+                    setShowFeedback(false);
+                    setUserDecision(null);
+                    setIsPlaying(false);
+                  }}
+                  className="flex-1 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border-[2px] border-[#1B2440] text-xs font-space font-extrabold cursor-pointer transition-all"
+                >
+                  {isUrdu ? 'دوبارہ ٹیسٹ کریں' : 'Try Again'}
+                </button>
+                <button
+                  onClick={onGoHome}
+                  className="flex-1 py-2.5 rounded-xl bg-[#B8F2D0] hover:bg-[#a6e6bf] border-[2px] border-[#1B2440] text-xs font-space font-extrabold cursor-pointer transition-all"
+                >
+                  {isUrdu ? 'ہوم پر جائیں' : 'Back to Home'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
