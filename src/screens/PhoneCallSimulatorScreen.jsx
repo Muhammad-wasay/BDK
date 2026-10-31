@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { TRANSLATIONS } from '../data/translations';
 import soundEffects from '../utils/soundEffects';
+import { HBLLogo } from '../components/BrandLogos';
 
 export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, language = 'roman' }) {
   const [callState, setCallState] = useState('incoming'); // 'incoming' | 'connected' | 'ended'
@@ -141,8 +142,11 @@ export default function PhoneCallSimulatorScreen({ onGoHome, babaJiMode, languag
           <div className="bg-gradient-to-b from-[#2D3A5E] to-[#1B2440] rounded-[32px] p-6 flex flex-col items-center gap-6 text-white">
             {/* Caller Info */}
             <div className="text-center">
-              <div className="w-20 h-20 rounded-full bg-[#D4C5F9] border-[3px] border-white/30 flex items-center justify-center text-3xl mb-4">
-                👨‍💼
+              <div className="flex flex-col items-center gap-2 mb-4">
+                <div className="w-20 h-20 rounded-full bg-[#D4C5F9] border-[3px] border-white/30 flex items-center justify-center text-3xl">
+                  👨‍💼
+                </div>
+                <HBLLogo className="h-6 w-auto bg-white px-2 py-0.5 rounded-lg" />
               </div>
               <h2 className="font-space font-extrabold text-xl mb-1">
                 {scenario.caller}

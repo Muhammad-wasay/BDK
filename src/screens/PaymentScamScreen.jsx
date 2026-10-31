@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { TRANSLATIONS } from '../data/translations';
 import soundEffects from '../utils/soundEffects';
+import { EasyPaisaLogo, JazzCashLogo } from '../components/BrandLogos';
 
 export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'roman' }) {
   const [showDetails, setShowDetails] = useState(false);
@@ -129,7 +130,7 @@ export default function PaymentScamScreen({ onGoHome, babaJiMode, language = 'ro
           {/* Header */}
           <div className="bg-[#00A651] p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Smartphone className="w-6 h-6 text-white" />
+              <EasyPaisaLogo className="h-7 w-auto bg-white/95 p-1 rounded-lg" />
               <span className="font-space font-black text-white">{scenario.sender}</span>
             </div>
             <span className="text-xs font-bold text-white/80">
