@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>BinaDarKe • Solo Practice Mode</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&amp;family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,700&amp;family=Space+Grotesk:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            navy: "#1B2440",
+            cream: "#FFF4E0",
+            mint: "#B8F2D0",
+            "mint-dark": "#33694E",
+            coral: "#FF6B6B",
+            butter: "#FFE680",
+            peach: "#FFD3B6",
+            surface: "#FFFDF9",
+            "surface-dim": "#F4ECE1",
+          },
+          fontFamily: {
+            display: ["'Space Grotesk'", "sans-serif"],
+            body: ["'Nunito Sans'", "sans-serif"],
+            hand: ["'Caveat'", "cursive"],
+          },
+          boxShadow: {
+            'brutal-sm': '3px 3px 0px #1B2440',
+            'brutal': '6px 6px 0px #1B2440',
+            'brutal-lg': '8px 8px 0px #1B2440',
+            'brutal-pressed': '1px 1px 0px #1B2440',
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #FFF4E0;
+        color: #1B2440;
+      }
+      body {
+        background-image: radial-gradient(#1B2440 1.2px, transparent 1.2px);
+        background-size: 24px 24px;
+        background-color: #FFF4E0;
+      }
+    }
+    .wavy-underline {
+      text-decoration-line: underline;
+      text-decoration-style: wavy;
+      text-decoration-color: #FF6B6B;
+      text-decoration-thickness: 3px;
+    }
+  </style>
+</head>
+<body class="font-body text-[18px] text-navy antialiased min-h-screen flex flex-col">
+<!-- Top Reassurance Banner Strip -->
+<div class="bg-butter border-b-[3px] border-navy py-2 px-4 sticky top-0 z-50">
+<div class="max-w-[1100px] mx-auto flex items-center justify-center gap-2 text-center text-sm md:text-base font-bold font-display">
+<span class="text-xl">🛡️</span>
+<span>Yahan ghalti karne par koi paisa nahi katega. Bilkul azaadi se seekhein!</span>
+<span class="hidden sm:inline bg-navy text-butter px-2 py-0.5 rounded-full text-xs font-black uppercase tracking-wider ml-1">100% Mehfooz</span>
+</div>
+</div>
+<!-- Primary Header & Navigation Bar -->
+<header class="bg-[#FFFDF9] border-b-[3px] border-navy sticky top-[37px] z-40">
+<div class="max-w-[1100px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
+<!-- Brand Logo -->
+<a class="flex items-center gap-3 group" href="#">
+<div class="w-12 h-12 rounded-2xl bg-mint border-[3px] border-navy shadow-brutal-sm flex items-center justify-center transform group-hover:-rotate-3 transition-transform">
+<span class="material-symbols-outlined text-navy text-3xl font-black">shield_person</span>
+</div>
+<div class="flex flex-col">
+<span class="font-display font-extrabold text-2xl tracking-tight leading-none text-navy">BinaDarKe</span>
+<span class="font-hand text-lg text-[#D94F4F] font-bold tracking-wide -mt-0.5">بغیر ڈر کے • Senior Safe Sandbox</span>
+</div>
+</a>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-2">
+<a class="px-4 py-2 font-display font-bold text-base rounded-xl text-navy/80 hover:text-navy hover:bg-butter/50 transition-colors" href="#">Home</a>
+<a class="px-4 py-2 font-display font-bold text-base rounded-xl text-navy/80 hover:text-navy hover:bg-butter/50 transition-colors" href="#">Guided Practice</a>
+<a aria-current="page" class="px-4 py-2 bg-mint text-navy font-display font-black text-base rounded-xl border-[3px] border-navy shadow-brutal-sm transform -translate-y-0.5" href="#">Solo Practice</a>
+<a class="px-4 py-2 font-display font-bold text-base rounded-xl text-navy/80 hover:text-navy hover:bg-butter/50 transition-colors" href="#">Nateeja</a>
+</nav>
+<!-- Right Support & Mode Info -->
+<div class="flex items-center gap-3">
+<div class="hidden lg:flex flex-col items-end">
+<span class="font-display text-xs font-black text-navy flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-[#FF6B6B]">phone_in_talk</span> 0800-BINA-DARR
+          </span>
+<span class="text-xs font-bold text-navy/60">Madad Helpline</span>
+</div>
+<div class="flex items-center gap-2 bg-butter border-[3px] border-navy rounded-2xl px-3 py-1.5 shadow-brutal-sm">
+<span class="text-2xl">👴🏽</span>
+<span class="font-display text-sm font-black text-navy hidden sm:inline">Baba Ji Mode</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Practice Viewport -->
+<main class="flex-1 max-w-[1100px] w-full mx-auto px-4 sm:px-6 py-6 md:py-8 flex flex-col gap-6">
+<!-- Top Card: Progress & Audio Assist Pill -->
+<div class="w-full bg-butter border-[3px] border-navy rounded-[20px] p-4 sm:p-5 shadow-brutal flex flex-col md:flex-row items-center justify-between gap-4 relative overflow-hidden">
+<!-- Left: Counter & Segmented Progress -->
+<div class="flex flex-col gap-2.5 w-full md:w-auto">
+<div class="flex items-center justify-between md:justify-start gap-4">
+<div class="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-xl border-[2px] border-navy shadow-brutal-sm">
+<span class="material-symbols-outlined text-navy font-black text-xl">quiz</span>
+<span class="font-display font-extrabold text-navy text-lg">Sawal / Message 2 of 5</span>
+</div>
+<span class="md:hidden font-display text-xs font-black bg-mint text-navy px-3 py-1 rounded-xl border-[2px] border-navy shadow-brutal-sm">
+            Score: 1/1 Sahi ⭐
+          </span>
+</div>
+<!-- Chunky Segmented Bars -->
+<div class="flex items-center gap-2.5 w-full md:w-96">
+<!-- Segment 1: Completed -->
+<div class="h-4 flex-1 bg-mint border-[3px] border-navy rounded-lg shadow-[2px_2px_0px_#1B2440]"></div>
+<!-- Segment 2: Current (Active pulsating) -->
+<div class="h-4 flex-1 bg-[#6AE29B] border-[3px] border-navy rounded-lg shadow-[2px_2px_0px_#1B2440] relative overflow-hidden">
+<div class="absolute inset-0 bg-white/40 animate-pulse"></div>
+</div>
+<!-- Segment 3: Pending -->
+<div class="h-4 flex-1 bg-white/70 border-[2px] border-navy/60 rounded-lg"></div>
+<!-- Segment 4: Pending -->
+<div class="h-4 flex-1 bg-white/70 border-[2px] border-navy/60 rounded-lg"></div>
+<!-- Segment 5: Pending -->
+<div class="h-4 flex-1 bg-white/70 border-[2px] border-navy/60 rounded-lg"></div>
+</div>
+</div>
+<!-- Right: Live Score & Audio Reader Button -->
+<div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+<div class="hidden md:flex items-center gap-2 bg-white border-[3px] border-navy rounded-2xl px-4 py-2 shadow-brutal-sm">
+<span class="font-display font-bold text-navy text-sm">Aapka Score:</span>
+<span class="font-display font-black text-mint-dark text-base bg-mint px-2.5 py-0.5 rounded-lg border border-navy">1/1 Sahi ⭐</span>
+</div>
+<!-- Voice Assistant Button -->
+<button class="w-full sm:w-auto flex items-center justify-center gap-2 bg-white hover:bg-peach active:translate-x-0.5 active:translate-y-0.5 border-[3px] border-navy rounded-2xl px-5 py-2.5 shadow-brutal-sm hover:shadow-brutal transition-all cursor-pointer font-display font-black text-navy group" id="voice-read-btn" type="button">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform" id="speaker-icon">volume_up</span>
+<span id="speaker-text">🔊 Sawal Parh Kar Sunain</span>
+</button>
+</div>
+</div>
+<!-- Instruction Bar with Emoji -->
+<div class="bg-white border-[3px] border-navy rounded-[20px] px-5 py-3.5 shadow-brutal flex items-center gap-3">
+<span class="text-3xl">🧐</span>
+<h1 class="font-display font-extrabold text-navy text-xl sm:text-2xl tracking-tight">
+        Neechay diya gaya SMS ghor se parhein aur faisla karein:
+      </h1>
+</div>
+<!-- Workspace Grid: Phone Shell + Interactive Decision Column -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+<!-- LEFT: Neobrutalist Realistic Smartphone Shell (Col 6) -->
+<div class="lg:col-span-6 flex flex-col items-center justify-center w-full">
+<!-- Phone Exterior Case -->
+<div class="w-full max-w-[420px] bg-navy border-[4px] border-navy rounded-[44px] p-3 sm:p-4 shadow-brutal-lg relative">
+<!-- Stitched Yellow Caution Ribbon Over Top Bezel -->
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 z-20 transform -rotate-1 bg-butter border-[3px] border-navy px-4 py-1 rounded-xl shadow-brutal-sm font-display font-black text-xs sm:text-sm tracking-wider uppercase flex items-center gap-1.5 whitespace-nowrap text-navy">
+<span class="text-amber-600">⭐</span>
+<span>PRACTICE MODE (0% Real Risk)</span>
+<span class="text-amber-600">⭐</span>
+</div>
+<!-- Realistic Phone Notch & Camera -->
+<div class="w-full flex items-center justify-center gap-2 pt-2 pb-2">
+<div class="w-16 h-2 bg-slate-800 rounded-full"></div>
+<div class="w-2.5 h-2.5 bg-slate-800 rounded-full border border-slate-700"></div>
+</div>
+<!-- Phone Inner Screen Canvas -->
+<div class="w-full bg-[#FFFDF9] border-[3px] border-navy rounded-[30px] overflow-hidden flex flex-col min-h-[500px]">
+<!-- Phone Status Bar -->
+<div class="w-full bg-cream px-4 py-1.5 border-b-[2px] border-navy/20 flex items-center justify-between text-navy font-display text-xs font-bold">
+<span>02:45 PM</span>
+<div class="flex items-center gap-1.5 text-navy">
+<span class="material-symbols-outlined text-xs">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-xs">wifi</span>
+<span class="material-symbols-outlined text-xs">battery_5_bar</span>
+</div>
+</div>
+<!-- SMS App Header -->
+<div class="w-full bg-white px-4 py-3 border-b-[3px] border-navy flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl bg-coral border-[2px] border-navy text-white flex items-center justify-center font-display font-black text-xl shadow-brutal-sm">
+                  H
+                </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-display font-extrabold text-navy text-base leading-tight">HBL-Alert</span>
+<span class="bg-[#FFEAEA] text-[#D92D20] text-[11px] font-display font-black px-1.5 py-0.5 rounded border border-[#FDA29B]">
+                      Ghair Tasdeeq Shuda / Unknown
+                    </span>
+</div>
+<span class="font-display text-xs text-navy/70 font-bold tracking-tight">+92 345 0098112</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-navy text-2xl">more_vert</span>
+</div>
+<!-- SMS Inbox Canvas -->
+<div class="flex-1 p-4 bg-[#F8F5EE] flex flex-col justify-end space-y-4">
+<!-- Timestamp Pill -->
+<div class="self-center bg-white border-[2px] border-navy px-3 py-0.5 rounded-full shadow-[2px_2px_0px_#1B2440]">
+<span class="font-display text-xs font-bold text-navy/70">Aaj • 02:45 PM</span>
+</div>
+<!-- Suspicious Message Bubble -->
+<div class="self-start w-full bg-white border-[3px] border-navy rounded-2xl rounded-tl-sm p-4 shadow-brutal-sm transition-all relative" id="sms-bubble">
+<div class="flex items-center justify-between mb-2">
+<span class="inline-flex items-center gap-1 font-display font-black text-xs text-[#D92D20] uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm font-black">sms</span> SMS Moosool Hua
+                  </span>
+<span class="text-xs font-bold text-navy/50">SIM 1</span>
+</div>
+<!-- Chat Body Content with highlight pills -->
+<p class="font-body text-[17px] text-navy font-bold leading-relaxed">
+                  “Moaziz Sarif! Aapka Bank Account 
+                  <span class="bg-[#FFD3B6] px-1 border-b-2 border-[#FF6B6B] font-extrabold text-navy">mashkook transaction</span> 
+                  ki waja se 24 ghante mein block kiya ja raha hai. Account bahal rakhne ke liye abhi call karein: 
+                  <span class="bg-[#FF6B6B]/20 text-[#D92D20] font-black wavy-underline text-lg inline-block px-1">0345-0098112</span> 
+                  ya apna CNIC aur OTP verify karein.”
+                </p>
+<!-- Warning Tag Pill inside Bubble -->
+<div class="mt-3 pt-2.5 border-t-[2px] border-navy/15 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 bg-[#FEE4E2] text-[#B42318] border-[2px] border-[#F04438] rounded-lg px-2 py-0.5 text-xs font-display font-extrabold">
+<span class="material-symbols-outlined text-sm font-bold">warning</span> ⚠️ Block Dhamki • Urgent Dabaao
+                  </span>
+<span class="text-xs font-hand text-navy/70 font-bold text-sm">Ghor se dekhein!</span>
+</div>
+</div>
+<!-- Dummy Inactive Reply Field -->
+<div class="w-full bg-white border-[2px] border-navy rounded-xl p-2.5 flex items-center justify-between opacity-80 shadow-[2px_2px_0px_#1B2440]">
+<span class="font-display text-xs text-navy/40 font-bold">Jawab na dein (Sandbox mode)...</span>
+<span class="material-symbols-outlined text-navy/40 text-lg">send</span>
+</div>
+</div>
+</div>
+<!-- Bottom Home Bar -->
+<div class="w-28 h-1 bg-white/80 rounded-full mx-auto mt-2.5"></div>
+</div>
+</div>
+<!-- RIGHT: Interactive Decision Workspace (Col 6) -->
+<div class="lg:col-span-6 flex flex-col gap-4 w-full">
+<!-- Baba Ji / Ustaad Helper Bubble Card -->
+<div class="bg-white border-[3px] border-navy rounded-[20px] p-4 sm:p-5 shadow-brutal relative">
+<!-- Sticker Badge -->
+<div class="absolute -top-3.5 right-4 bg-butter border-[2px] border-navy rounded-full px-3 py-0.5 shadow-brutal-sm font-display font-black text-xs uppercase tracking-wider text-navy flex items-center gap-1">
+<span>✨</span> Baba Ji Guide / Ustaad
+          </div>
+<div class="flex items-start gap-3.5">
+<div class="w-14 h-14 rounded-2xl bg-mint border-[3px] border-navy flex-shrink-0 flex items-center justify-center text-3xl shadow-brutal-sm">
+              👴🏽
+            </div>
+<div class="flex flex-col">
+<span class="font-display font-black text-navy text-lg leading-tight">Baba Ji ka Mashwara:</span>
+<p class="font-body text-base text-navy font-bold mt-1 leading-snug">
+                “Ghor se dekhein! Asli bank kabhi aam mobile number se call karne ko nahi kehta aur na hi 24 ghante ki dhamki deta hai.”
+              </p>
+</div>
+</div>
+</div>
+<!-- Big Prompt Label -->
+<div class="bg-cream border-[3px] border-navy rounded-[20px] px-5 py-3 shadow-brutal-sm">
+<p class="font-display font-extrabold text-navy text-lg">Aapka Faisla Kya Hai? Faisla karein:</p>
+</div>
+<!-- TWO EXTRA LARGE DECISION BUTTONS -->
+<div class="flex flex-col gap-3.5">
+<!-- 1. SAFE OPTION (Green Neobrutalist Button) -->
+<button class="w-full bg-mint hover:bg-[#A3E9BF] active:translate-x-1 active:translate-y-1 text-navy border-[3px] border-navy rounded-[20px] p-4 sm:p-5 shadow-brutal active:shadow-brutal-pressed transition-all text-left flex items-center gap-4 cursor-pointer group" id="btn-choice-safe" type="button">
+<div class="w-14 h-14 rounded-2xl bg-white border-[3px] border-navy flex items-center justify-center flex-shrink-0 shadow-brutal-sm group-hover:scale-105 group-hover:rotate-3 transition-transform">
+<span class="material-symbols-outlined text-[#1B8754] text-4xl font-black">check_circle</span>
+</div>
+<div class="flex flex-col">
+<span class="font-display font-black text-2xl text-navy leading-none tracking-tight">
+                🟢 MEHFOOZ HAI (Safe)
+              </span>
+<span class="font-body text-sm sm:text-base font-bold text-navy/80 mt-1">
+                (Asli bank ka message lag raha hai)
+              </span>
+</div>
+</button>
+<!-- 2. SCAM OPTION (Coral / Red Neobrutalist Button) -->
+<button class="w-full bg-coral hover:bg-[#FF5252] active:translate-x-1 active:translate-y-1 text-white border-[3px] border-navy rounded-[20px] p-4 sm:p-5 shadow-brutal active:shadow-brutal-pressed transition-all text-left flex items-center gap-4 cursor-pointer group" id="btn-choice-scam" type="button">
+<div class="w-14 h-14 rounded-2xl bg-navy border-[3px] border-navy flex items-center justify-center flex-shrink-0 shadow-brutal-sm group-hover:scale-105 group-hover:-rotate-3 transition-transform">
+<span class="material-symbols-outlined text-coral text-4xl font-black">crisis_alert</span>
+</div>
+<div class="flex flex-col">
+<span class="font-display font-black text-2xl text-white leading-none tracking-tight">
+                🔴 DHOKA HAI (Scam!)
+              </span>
+<span class="font-body text-sm sm:text-base font-extrabold text-white/90 mt-1">
+                (OTP aur block ka daraya ja raha hai!)
+              </span>
+</div>
+</button>
+</div>
+<!-- Secondary Utility Row: Hint + Skip -->
+<div class="flex items-center gap-3 pt-1">
+<button class="flex-1 bg-butter hover:bg-[#FCD34D] active:translate-x-0.5 active:translate-y-0.5 text-navy border-[3px] border-navy rounded-[18px] py-3 px-4 shadow-brutal transition-all font-display font-black text-base flex items-center justify-center gap-2 cursor-pointer" id="hint-toggle-btn" type="button">
+<span class="material-symbols-outlined text-xl font-bold">lightbulb</span>
+<span>💡 Hint / Ishara Dekhein</span>
+</button>
+<button class="bg-white hover:bg-cream active:translate-x-0.5 active:translate-y-0.5 text-navy border-[3px] border-navy rounded-[18px] py-3 px-5 shadow-brutal transition-all font-display font-bold text-base flex items-center justify-center gap-1.5 cursor-pointer" id="skip-btn" type="button">
+<span>Agay Barhein / Skip</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+<!-- Clue / Hint Drawer (Hidden initially) -->
+<div class="hidden bg-butter border-[3px] border-navy rounded-[20px] p-4 shadow-brutal transition-all" id="hint-card">
+<div class="flex items-center gap-2 mb-1.5">
+<span class="bg-navy text-butter px-2 py-0.5 rounded-md font-display text-xs font-black">DHAYAN DEIN</span>
+<span class="font-display font-black text-navy text-base">Chupa Hua Ishara:</span>
+</div>
+<p class="font-body text-[16px] text-navy font-bold leading-normal">
+            Asli Banks (jaise HBL, UBL, Meezan) aam mobile number (<span class="underline font-black text-[#D92D20]">0345...</span>) se call karne ya apna <strong>OTP / CNIC</strong> batane ka kabhi nahi kehte!
+          </p>
+</div>
+</div>
+</div>
+<!-- Interactive Feedback Panel (Shows on click) -->
+<div class="hidden w-full border-[3px] border-navy rounded-[20px] p-5 sm:p-6 shadow-brutal transition-all" id="feedback-panel">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-2xl border-[3px] border-navy flex items-center justify-center flex-shrink-0 shadow-brutal-sm" id="feedback-icon-box">
+<span class="material-symbols-outlined text-4xl font-black" id="feedback-icon"></span>
+</div>
+<div class="flex flex-col">
+<span class="font-display text-2xl sm:text-3xl font-black leading-tight" id="feedback-title"></span>
+<p class="font-body text-lg font-bold mt-1 text-navy" id="feedback-desc"></p>
+<div class="flex flex-wrap gap-2 mt-3" id="feedback-clues"></div>
+</div>
+</div>
+<button class="w-full md:w-auto min-w-[200px] h-14 bg-navy text-white hover:bg-slate-800 border-[3px] border-navy rounded-2xl px-6 shadow-brutal active:translate-x-1 active:translate-y-1 font-display text-xl font-black flex items-center justify-center gap-2 cursor-pointer transition-all flex-shrink-0" id="btn-next-question" type="button">
+<span>Agla Sawal</span>
+<span class="material-symbols-outlined text-2xl font-black">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Bottom Reassurance Banner with Tape Visual -->
+<div class="w-full bg-mint border-[3px] border-navy rounded-[20px] p-4 sm:p-5 shadow-brutal relative flex items-center justify-center text-center gap-3">
+<!-- Tape visual tabs -->
+<div class="hidden sm:block absolute -top-3 left-8 w-16 h-6 bg-butter/90 border-[2px] border-navy rotate-[-4deg]"></div>
+<div class="hidden sm:block absolute -top-3 right-8 w-16 h-6 bg-butter/90 border-[2px] border-navy rotate-[3deg]"></div>
+<span class="text-3xl flex-shrink-0">🛡️</span>
+<p class="font-display font-extrabold text-navy text-base sm:text-lg">
+        Yaad rakhein: Ye 100% mehfooz sandbox hai. Ghalt jawab par koi paisa nahi katega, sirf seekhnay ko milega!
+      </p>
+</div>
+</main>
+<!-- Neobrutalist Footer -->
+<footer class="w-full bg-cream border-t-[3px] border-navy py-8 px-4 sm:px-6 mt-6">
+<div class="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+<div class="flex flex-col">
+<span class="font-display font-black text-navy text-xl">BinaDarKe • بغیر ڈر کے</span>
+<p class="font-body text-sm font-bold text-navy/70 mt-0.5">
+          Seekho. Practice karo. Bina darr ke. Safe digital literacy sandbox for elders &amp; parents.
+        </p>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-white border-[2px] border-navy rounded-xl px-3.5 py-1.5 shadow-brutal-sm flex items-center gap-1.5 font-display text-xs font-black text-navy">
+<span>🛡️</span> Zero Real Money Risk
+        </div>
+<span class="font-display text-xs font-bold text-navy/70">© 2024 BinaDarKe</span>
+</div>
+</div>
+</footer>
+<!-- Script for Voice Reader & Decision Feedback -->
+<script>
+    (function initSoloPractice() {
+      const voiceBtn = document.getElementById('voice-read-btn');
+      const speakerIcon = document.getElementById('speaker-icon');
+      const speakerText = document.getElementById('speaker-text');
+      const hintToggle = document.getElementById('hint-toggle-btn');
+      const hintCard = document.getElementById('hint-card');
+      const safeBtn = document.getElementById('btn-choice-safe');
+      const scamBtn = document.getElementById('btn-choice-scam');
+      const skipBtn = document.getElementById('skip-btn');
+      const feedbackPanel = document.getElementById('feedback-panel');
+      const feedbackIconBox = document.getElementById('feedback-icon-box');
+      const feedbackIcon = document.getElementById('feedback-icon');
+      const feedbackTitle = document.getElementById('feedback-title');
+      const feedbackDesc = document.getElementById('feedback-desc');
+      const feedbackClues = document.getElementById('feedback-clues');
+      const nextBtn = document.getElementById('btn-next-question');
+      const smsBubble = document.getElementById('sms-bubble');
+
+      let isSpeaking = false;
+
+      // Voice read toggle
+      voiceBtn.addEventListener('click', function() {
+        if ('speechSynthesis' in window) {
+          if (isSpeaking) {
+            window.speechSynthesis.cancel();
+            isSpeaking = false;
+            speakerIcon.textContent = 'volume_up';
+            speakerText.textContent = '🔊 Sawal Parh Kar Sunain';
+            voiceBtn.classList.remove('bg-butter');
+          } else {
+            const textToRead = "Sawal number do. SMS aya hai: Moaziz Sarif! Aapka Bank Account mashkook transaction ki waja se chobees ghante mein block kiya ja raha hai. Account bahal rakhne ke liye abhi call karein ya apna OTP verify karein. Faisla karein: Mehfooz hai ya Dhoka?";
+            const utterance = new SpeechSynthesisUtterance(textToRead);
+            utterance.lang = 'ur-PK';
+            utterance.rate = 0.85;
+
+            utterance.onend = function() {
+              isSpeaking = false;
+              speakerIcon.textContent = 'volume_up';
+              speakerText.textContent = '🔊 Sawal Parh Kar Sunain';
+              voiceBtn.classList.remove('bg-butter');
+            };
+
+            window.speechSynthesis.speak(utterance);
+            isSpeaking = true;
+            speakerIcon.textContent = 'graphic_eq';
+            speakerText.textContent = 'Suno (Parh rahe hain...)';
+            voiceBtn.classList.add('bg-butter');
+          }
+        } else {
+          alert("Aapke browser mein audio assistant ki sahulat dastyaab nahi hai.");
+        }
+      });
+
+      // Hint Toggle
+      hintToggle.addEventListener('click', function() {
+        const isHidden = hintCard.classList.contains('hidden');
+        if (isHidden) {
+          hintCard.classList.remove('hidden');
+        } else {
+          hintCard.classList.add('hidden');
+        }
+      });
+
+      // Handling Scam Choice (Correct Answer)
+      scamBtn.addEventListener('click', function() {
+        renderFeedback(true);
+      });
+
+      // Handling Safe Choice (Mistake - Kind encouragement)
+      safeBtn.addEventListener('click', function() {
+        renderFeedback(false);
+      });
+
+      // Skip Button
+      skipBtn.addEventListener('click', function() {
+        renderFeedback(null);
+      });
+
+      function renderFeedback(isCorrect) {
+        feedbackPanel.classList.remove('hidden');
+
+        if (isCorrect === true) {
+          // Shaabash State (Green Neobrutalist)
+          feedbackPanel.className = 'w-full bg-mint border-[3px] border-navy rounded-[20px] p-5 sm:p-6 shadow-brutal transition-all';
+          feedbackIconBox.className = 'w-16 h-16 rounded-2xl bg-white border-[3px] border-navy flex items-center justify-center flex-shrink-0 shadow-brutal-sm';
+          feedbackIcon.className = 'material-symbols-outlined text-[#1B8754] text-4xl font-black';
+          feedbackIcon.textContent = 'verified';
+          feedbackTitle.className = 'font-display text-2xl sm:text-3xl font-black text-navy leading-tight';
+          feedbackTitle.textContent = '🎉 Shaabash! Aapne 100% Sahi Pakda!';
+          feedbackDesc.textContent = 'Ye bilkul FAKE aur SCAM message tha. Koi bhi bank WhatsApp ya aam number se account band karne ki dhamki de kar OTP nahi maangta.';
+          feedbackClues.innerHTML = `
+            <span class="bg-white border-[2px] border-navy px-3 py-1 rounded-xl font-display text-xs font-black text-navy shadow-brutal-sm">🚩 Niji Mobile Number</span>
+            <span class="bg-white border-[2px] border-navy px-3 py-1 rounded-xl font-display text-xs font-black text-navy shadow-brutal-sm">🚩 Block Ka Khauf</span>
+            <span class="bg-white border-[2px] border-navy px-3 py-1 rounded-xl font-display text-xs font-black text-navy shadow-brutal-sm">🚩 OTP Maangna</span>
+          `;
+          smsBubble.classList.add('bg-red-50');
+        } else if (isCorrect === false) {
+          // Encouraging Mistake State (Butter Yellow - Zero Shame)
+          feedbackPanel.className = 'w-full bg-butter border-[3px] border-navy rounded-[20px] p-5 sm:p-6 shadow-brutal transition-all';
+          feedbackIconBox.className = 'w-16 h-16 rounded-2xl bg-white border-[3px] border-navy flex items-center justify-center flex-shrink-0 shadow-brutal-sm';
+          feedbackIcon.className = 'material-symbols-outlined text-navy text-4xl font-black';
+          feedbackIcon.textContent = 'school';
+          feedbackTitle.className = 'font-display text-2xl sm:text-3xl font-black text-navy leading-tight';
+          feedbackTitle.textContent = 'Koi Baat Nahi! Yahan Seekhna Aasaan Hai.';
+          feedbackDesc.textContent = 'Asal mein ye SCAM tha. Scammers "24 ghante mein block" likh kar darr paida karte hain taake log bina soche apna OTP aur CNIC bata dein.';
+          feedbackClues.innerHTML = `
+            <span class="bg-white border-[2px] border-navy px-3 py-1 rounded-xl font-display text-xs font-black text-navy shadow-brutal-sm">💡 Golden Rule: OTP kisi ko na dein</span>
+          `;
+        } else {
+          // Skipped State
+          feedbackPanel.className = 'w-full bg-cream border-[3px] border-navy rounded-[20px] p-5 sm:p-6 shadow-brutal transition-all';
+          feedbackIconBox.className = 'w-16 h-16 rounded-2xl bg-white border-[3px] border-navy flex items-center justify-center flex-shrink-0 shadow-brutal-sm';
+          feedbackIcon.className = 'material-symbols-outlined text-navy text-4xl font-black';
+          feedbackIcon.textContent = 'fast_forward';
+          feedbackTitle.className = 'font-display text-2xl sm:text-3xl font-black text-navy leading-tight';
+          feedbackTitle.textContent = 'Aapne Agla Sawal Chun Liya';
+          feedbackDesc.textContent = 'Hamesha yaad rakhein: Kisi anjaan number par foran call mat karein.';
+          feedbackClues.innerHTML = '';
+        }
+
+        feedbackPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // Next Question action
+      nextBtn.addEventListener('click', function() {
+        feedbackPanel.classList.add('hidden');
+        smsBubble.classList.remove('bg-red-50');
+        alert("Agla Sawal (Message 3 of 5) load ho raha hai...");
+      });
+    })();
+  </script>
+</body></html>

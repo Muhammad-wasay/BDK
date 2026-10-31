@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>BinaDarKe - Guided Practice Sandbox</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&amp;family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        overscroll-behavior: none;
+        background-color: #FFF4E0;
+        background-image: radial-gradient(#1B2440 1.2px, transparent 1.2px);
+        background-size: 24px 24px;
+      }
+    }
+    .font-handwriting {
+      font-family: 'Caveat', cursive;
+    }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "navy": "#1B2440",
+            "cream": "#FFF4E0",
+            "mint": "#B8F2D0",
+            "mint-dark": "#33694E",
+            "peach": "#FFDCC5",
+            "lavender": "#D9CAFE",
+            "butter": "#FEF08A",
+            "coral": "#FFDAD6",
+            "coral-dark": "#BA1A1A",
+            "surface-pure": "#FFFFFF"
+          },
+          fontFamily: {
+            "sans": ["Nunito", "sans-serif"],
+            "display": ["Space Grotesk", "sans-serif"],
+            "hand": ["Caveat", "cursive"]
+          },
+          boxShadow: {
+            "brutal-sm": "3px 3px 0px #1B2440",
+            "brutal": "6px 6px 0px #1B2440",
+            "brutal-lg": "8px 8px 0px #1B2440",
+            "brutal-hover": "4px 4px 0px #1B2440"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-cream font-sans text-navy antialiased selection:bg-butter selection:text-navy min-h-screen flex flex-col">
+<!-- TOP BANNER NOTIFICATION -->
+<div class="w-full bg-butter border-b-[3px] border-navy py-2 px-4 shadow-sm z-50">
+<div class="max-w-6xl mx-auto flex items-center justify-center gap-2 text-center text-navy font-bold text-sm sm:text-base">
+<span class="text-xl">🛡️</span>
+<span>Yahan ghalti karne par koi paisa nahi katega. <strong>Bilkul azaadi se seekhein!</strong></span>
+<span class="hidden md:inline font-handwriting text-lg text-coral-dark font-extrabold rotate-[-2deg] ml-1">(100% Mehfooz Sandbox)</span>
+</div>
+</div>
+<!-- NAVIGATION HEADER -->
+<header class="sticky top-0 z-40 bg-surface-pure border-b-[3px] border-navy shadow-[0_4px_0_0_#1B2440]">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
+<!-- Brand Logo & Subtitle -->
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-mint border-[3px] border-navy shadow-brutal-sm flex items-center justify-center transform -rotate-2">
+<span class="material-symbols-outlined text-navy text-2xl font-bold" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div class="flex flex-col">
+<span class="font-display font-black text-2xl tracking-tight text-navy leading-none">BinaDarKe</span>
+<span class="font-bold text-xs text-navy/70 mt-0.5 tracking-wide">بغیر ڈر کے • Safe Digital Academy</span>
+</div>
+</div>
+<!-- Navigation Pills -->
+<nav class="hidden lg:flex items-center gap-2 bg-cream p-1.5 rounded-full border-[3px] border-navy shadow-brutal-sm">
+<a class="px-5 py-2 rounded-full font-display font-bold text-sm text-navy hover:bg-white transition-all" href="#">Home</a>
+<a aria-current="page" class="px-5 py-2 rounded-full font-display font-bold text-sm bg-mint text-navy border-[2px] border-navy shadow-[2px_2px_0_0_#1B2440]" href="#">Guided Practice</a>
+<a class="px-5 py-2 rounded-full font-display font-bold text-sm text-navy hover:bg-white transition-all" href="#">Solo Practice</a>
+<a class="px-5 py-2 rounded-full font-display font-bold text-sm text-navy hover:bg-white transition-all" href="#">Nateeja</a>
+</nav>
+<!-- Right Action: Elder Mode & Helpline -->
+<div class="flex items-center gap-3">
+<div class="hidden sm:flex flex-col items-end mr-1">
+<span class="font-display font-bold text-xs text-navy flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-mint-dark">call</span> 0800-BINA-DARR
+          </span>
+<span class="text-[11px] font-bold text-navy/60">Muft Madad Helpline</span>
+</div>
+<div class="flex items-center gap-2 bg-butter border-[3px] border-navy rounded-full px-3 py-1.5 shadow-brutal-sm">
+<div class="w-8 h-8 rounded-full bg-cream border-[2px] border-navy overflow-hidden flex items-center justify-center font-bold text-sm">
+            👴
+          </div>
+<span class="font-display font-bold text-sm text-navy hidden md:inline">Baba Ji Mode</span>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN INTERACTIVE WORKSPACE -->
+<main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
+<!-- Top Lesson Badges & Narration Controls -->
+<div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-6">
+<!-- Lesson Tracker & Info Badge -->
+<div class="flex flex-wrap items-center gap-3">
+<div class="inline-flex items-center gap-2 bg-butter border-[3px] border-navy px-4 py-2 rounded-2xl shadow-brutal-sm transform -rotate-1">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="font-display font-black text-sm tracking-wide">Practice Mode • Sabaq 1</span>
+</div>
+<div class="inline-flex items-center gap-2 bg-surface-pure border-[3px] border-navy px-4 py-2 rounded-2xl shadow-brutal-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-coral-dark animate-ping"></span>
+<span class="font-bold text-sm text-navy">Anjana Link aur Inaam Scam</span>
+</div>
+</div>
+<!-- Play Voice Guide Button -->
+<button class="group inline-flex items-center justify-center gap-2.5 bg-surface-pure hover:bg-butter border-[3px] border-navy px-5 py-2.5 rounded-2xl shadow-brutal active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all cursor-pointer" id="voiceNarratorBtn" onclick="toggleVoiceGuide()">
+<span class="material-symbols-outlined text-coral-dark text-2xl animate-pulse" id="voiceIcon" style="font-variation-settings: 'FILL' 1;">volume_up</span>
+<div class="flex flex-col items-start text-left">
+<span class="font-display font-black text-sm text-navy leading-tight" id="voiceText">Sabaq ki Awaz Sunain</span>
+<span class="text-[11px] font-bold text-navy/70 leading-none">Play Urdu Voice Guide</span>
+</div>
+</button>
+</div>
+<!-- Progress Meter -->
+<div class="w-full bg-surface-pure border-[3px] border-navy rounded-2xl p-3 mb-8 shadow-brutal">
+<div class="flex items-center justify-between mb-2 px-1">
+<span class="font-display font-black text-sm text-navy flex items-center gap-1.5">
+<span class="text-base">🎯</span> Marhala 1: Khatray ki Nishaniyan Pehchanna
+        </span>
+<span class="font-display font-black text-xs bg-mint px-2.5 py-0.5 rounded-full border-[2px] border-navy">
+          33% Mukammal
+        </span>
+</div>
+<div class="w-full h-3.5 bg-cream rounded-full border-[2px] border-navy overflow-hidden p-0.5">
+<div class="h-full bg-mint rounded-full border-[1.5px] border-navy transition-all duration-700" style="width: 35%;"></div>
+</div>
+</div>
+<!-- SPLIT WORKSPACE: PHONE SANDBOX + EXPLANATION CARDS -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- LEFT COLUMN: Realistic Smartphone Screen (5 cols on lg) -->
+<div class="lg:col-span-5 flex flex-col items-center">
+<!-- Phone Frame Container -->
+<div class="relative w-full max-w-[370px]">
+<!-- Angled PRACTICE MODE Tape Ribbon -->
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30 bg-butter border-[3px] border-navy px-4 py-1 rounded-md shadow-brutal-sm transform -rotate-2 select-none">
+<span class="font-display font-black text-xs text-navy tracking-widest flex items-center gap-1">
+              ⚠️ SAFE SANDBOX • TEST SCREEN
+            </span>
+</div>
+<!-- Handwritten Note Arrow -->
+<div class="hidden xl:block absolute -left-20 top-36 z-20 pointer-events-none transform -rotate-12">
+<span class="font-handwriting text-2xl text-coral-dark font-black">Yahan click karo! ➔</span>
+</div>
+<!-- Phone Chassis -->
+<div class="w-full bg-navy rounded-[38px] p-2.5 shadow-brutal-lg border-[3px] border-navy">
+<div class="w-full bg-surface-pure rounded-[30px] overflow-hidden border-[3px] border-navy flex flex-col min-h-[580px]">
+<!-- Speaker Notch & Top Status Bar -->
+<div class="bg-[#EDEDED] border-b-[2px] border-navy pt-2 pb-1.5 px-5 flex items-center justify-between">
+<span class="font-display font-extrabold text-xs text-navy">10:14 AM</span>
+<!-- Notch -->
+<div class="w-16 h-3 bg-navy rounded-full"></div>
+<div class="flex items-center gap-1 text-navy">
+<span class="material-symbols-outlined text-xs">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-xs">wifi</span>
+<span class="material-symbols-outlined text-xs">battery_full</span>
+</div>
+</div>
+<!-- WhatsApp Chat Header -->
+<div class="bg-[#075E54] text-white p-3 flex items-center justify-between border-b-[2px] border-navy">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-lg cursor-pointer">arrow_back</span>
+<div class="w-9 h-9 rounded-full bg-coral border-[2px] border-navy flex items-center justify-center font-bold text-coral-dark text-lg flex-shrink-0 shadow-sm">
+                    ?
+                  </div>
+<div class="flex flex-col min-w-0">
+<span class="font-bold text-sm tracking-tight truncate leading-snug">+92 312 9845120</span>
+<span class="inline-flex items-center gap-1 text-[11px] text-[#FFA8A8] font-black">
+<span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> Na-Maloom Sender
+                    </span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-white/90">
+<span class="material-symbols-outlined text-lg">videocam</span>
+<span class="material-symbols-outlined text-lg">call</span>
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</div>
+</div>
+<!-- Chat Message Bubble Canvas -->
+<div class="flex-1 bg-[#EFEAE2] p-3 space-y-3 flex flex-col justify-between" style="background-image: radial-gradient(#1B2440 0.8px, transparent 0.8px); background-size: 16px 16px;">
+<div>
+<!-- Date Badge -->
+<div class="flex justify-center mb-3">
+<span class="bg-white/80 border-[1.5px] border-navy/40 px-2.5 py-0.5 rounded-full text-[11px] font-bold text-navy shadow-sm">
+                      Aaj (Subah 10:14)
+                    </span>
+</div>
+<!-- Suspect Message Bubble with 4 Interactive Callouts -->
+<div class="bg-surface-pure border-[2.5px] border-navy rounded-2xl rounded-tl-sm p-3.5 shadow-brutal-sm relative space-y-2.5 text-navy">
+<!-- Callout 1: 50,000 Cash Prize -->
+<p class="text-[15px] leading-relaxed font-semibold">
+                      Mubarak ho! 🎉 Aapka BISP aur Ehsaas Scheme mein 
+                      <button class="group inline-flex items-center align-middle bg-peach border-[2px] border-dashed border-coral-dark px-1.5 py-0.5 rounded-lg font-black text-coral-dark shadow-[1px_1px_0_0_#1B2440] hover:scale-105 active:scale-95 transition-all text-[14px]" onclick="highlightClue('card-lalach')">
+<span>Rs. 50,000 cash prize</span>
+<span class="ml-1 text-[10px] bg-coral-dark text-white rounded px-1 font-bold">1</span>
+</button>
+                      nikla hai!
+                    </p>
+<!-- Callout 2 & 3: ATM PIN + Cancellation Fear -->
+<p class="text-[15px] leading-relaxed font-semibold">
+                      Abhi foran is link par click kar ke apna Bank account aur 
+                      <button class="group inline-flex items-center align-middle bg-lavender border-[2px] border-dashed border-navy px-1.5 py-0.5 rounded-lg font-black text-navy shadow-[1px_1px_0_0_#1B2440] hover:scale-105 active:scale-95 transition-all text-[14px]" onclick="highlightClue('card-pin')">
+<span>ATM PIN darj karain</span>
+<span class="ml-1 text-[10px] bg-navy text-white rounded px-1 font-bold">2</span>
+</button>
+<button class="group inline-flex items-center align-middle bg-coral border-[2px] border-dashed border-coral-dark px-1.5 py-0.5 rounded-lg font-black text-coral-dark shadow-[1px_1px_0_0_#1B2440] hover:scale-105 active:scale-95 transition-all text-[14px]" onclick="highlightClue('card-jaldi')">
+<span>warna inaam cancel ho jayega:</span>
+<span class="ml-1 text-[10px] bg-coral-dark text-white rounded px-1 font-bold">3</span>
+</button>
+</p>
+<!-- Callout 4: Fake Link Interactive Target -->
+<div class="pt-1">
+<button class="w-full text-left bg-butter hover:bg-peach border-[2.5px] border-dashed border-coral-dark p-2 rounded-xl shadow-[2px_2px_0_0_#1B2440] transition-all group" onclick="simulateFakeLinkClick()">
+<div class="flex items-center justify-between">
+<span class="font-mono text-xs sm:text-[13px] font-black text-coral-dark underline break-all flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">link</span>
+                            http://bit.ly/ehsaas-inam-claim-2025
+                          </span>
+<span class="text-[10px] bg-coral-dark text-white rounded px-1 font-bold">4</span>
+</div>
+<span class="block text-[11px] font-extrabold text-navy/80 mt-1 flex items-center gap-1">
+                          👉 <span class="underline">Yahan click karke sandbox dekhein</span>
+</span>
+</button>
+</div>
+<div class="flex justify-end items-center gap-1 text-[11px] text-navy/60 font-bold pt-1">
+<span>10:14 AM</span>
+<span class="material-symbols-outlined text-xs">done_all</span>
+</div>
+</div>
+<!-- Safe Sandbox Alert Pop (triggered on click) -->
+<div class="hidden mt-3 bg-coral border-[2.5px] border-navy p-3 rounded-xl shadow-brutal-sm animate-bounce" id="simulatedWarning">
+<div class="flex items-start gap-2">
+<span class="text-xl">🛑</span>
+<div>
+<span class="font-display font-black text-xs text-coral-dark block">Khabardar! (Safe Sandbox Alert)</span>
+<p class="text-xs font-bold text-navy leading-snug mt-0.5">
+                          Asli mobile mein is link par click karne se sara paisa ya account hack ho sakta tha!
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat Footer -->
+<div class="flex items-center gap-2 bg-surface-pure border-[2px] border-navy p-1.5 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-navy/60 text-lg ml-1">mood</span>
+<span class="text-xs font-bold text-navy/40 flex-1">Message likhein...</span>
+<span class="material-symbols-outlined text-navy/60 text-lg mr-1">mic</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class="font-handwriting text-xl text-navy font-bold mt-4 text-center">
+          👆 Screen ke rang-barangay lafzon ko chhoo kar dekhein!
+        </p>
+</div>
+<!-- RIGHT COLUMN: Explanation Cards & Friendly Avatar Guide (7 cols on lg) -->
+<div class="lg:col-span-7 flex flex-col gap-5">
+<!-- Teacher Card Header -->
+<div class="bg-surface-pure border-[3px] border-navy rounded-[20px] p-5 sm:p-6 shadow-brutal">
+<div class="flex items-center justify-between gap-3 mb-3">
+<div class="inline-flex items-center gap-2 bg-mint border-[2px] border-navy px-3 py-1 rounded-full shadow-[2px_2px_0_0_#1B2440]">
+<span class="material-symbols-outlined text-base font-bold">lightbulb</span>
+<span class="font-display font-black text-xs text-navy tracking-wide">Ustaad ki Naseehat</span>
+</div>
+<!-- Friendly Elder Avatar Guide -->
+<div class="flex items-center gap-2 bg-cream border-[2px] border-navy px-2.5 py-1 rounded-full">
+<span class="text-lg">👳🏽‍♂️</span>
+<span class="font-display font-bold text-xs text-navy">Chacha Rafiq Guide</span>
+</div>
+</div>
+<h2 class="font-display font-black text-2xl sm:text-3xl text-navy leading-tight mb-2">
+            💡 Is Message mein Dhoka Kahan Hai?
+          </h2>
+<p class="text-navy/80 font-bold text-base leading-relaxed">
+            Ghor se dekhein! Fraud karne walay aksar ye <strong>4 aasan hathkanday</strong> istemal kar ke seedhay-saaday logon ko phansatay hain:
+          </p>
+<!-- 4 NEOBRUTALIST PASTEL CARDS -->
+<div class="grid grid-cols-1 gap-3.5 mt-5">
+<!-- Card 1: Peach (Lalach) -->
+<div class="clue-card bg-peach border-[3px] border-navy rounded-2xl p-4 shadow-brutal-sm hover:shadow-brutal transition-all" id="card-lalach">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-xl bg-surface-pure border-[2px] border-navy flex items-center justify-center font-display font-black text-navy text-sm flex-shrink-0 shadow-sm">
+                  1
+                </div>
+<div class="flex-1">
+<div class="flex items-center justify-between flex-wrap gap-1 mb-1">
+<h3 class="font-display font-black text-base text-navy">Ghair-Mamooli Inaam (Lalach Dena)</h3>
+<span class="bg-coral-dark text-white text-[11px] font-black px-2 py-0.5 rounded-full border border-navy">
+                      🚨 Khatra
+                    </span>
+</div>
+<p class="text-sm font-semibold text-navy/90 leading-snug">
+                    Aap ne kisi scheme mein hissa nahi liya tha, to 50,000 kahan se aye? <strong>Muft mein koi paisa nahi deta.</strong>
+</p>
+</div>
+</div>
+</div>
+<!-- Card 2: Lavender (PIN Mangna) -->
+<div class="clue-card bg-lavender border-[3px] border-navy rounded-2xl p-4 shadow-brutal-sm hover:shadow-brutal transition-all" id="card-pin">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-xl bg-surface-pure border-[2px] border-navy flex items-center justify-center font-display font-black text-navy text-sm flex-shrink-0 shadow-sm">
+                  2
+                </div>
+<div class="flex-1">
+<div class="flex items-center justify-between flex-wrap gap-1 mb-1">
+<h3 class="font-display font-black text-base text-navy">Khufia PIN Mangna (Secret PIN)</h3>
+<span class="bg-coral text-coral-dark text-[11px] font-black px-2 py-0.5 rounded-full border border-navy">
+                      🛑 Sakht Mana
+                    </span>
+</div>
+<p class="text-sm font-semibold text-navy/90 leading-snug">
+                    Bank ka manager bhi phone ya SMS par <strong>ATM PIN ya OTP code</strong> nahi maang sakta. Ye maangna 100% fraud hai.
+                  </p>
+</div>
+</div>
+</div>
+<!-- Card 3: Butter Yellow (Jaldbazi) -->
+<div class="clue-card bg-butter border-[3px] border-navy rounded-2xl p-4 shadow-brutal-sm hover:shadow-brutal transition-all" id="card-jaldi">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-xl bg-surface-pure border-[2px] border-navy flex items-center justify-center font-display font-black text-navy text-sm flex-shrink-0 shadow-sm">
+                  3
+                </div>
+<div class="flex-1">
+<div class="flex items-center justify-between flex-wrap gap-1 mb-1">
+<h3 class="font-display font-black text-base text-navy">Jaldbazi aur Darr Paida Karna</h3>
+<span class="bg-surface-pure text-navy text-[11px] font-black px-2 py-0.5 rounded-full border border-navy">
+                      ⏳ Dabaao
+                    </span>
+</div>
+<p class="text-sm font-semibold text-navy/90 leading-snug">
+<em>'Warna abhi cancel ho jayega'</em> keh kar ghabrahat mein ghalti karwane ki chaal hai taake aap kisi se mashwara na kar sakein.
+                  </p>
+</div>
+</div>
+</div>
+<!-- Card 4: Mint (Fake Link) -->
+<div class="clue-card bg-mint border-[3px] border-navy rounded-2xl p-4 shadow-brutal-sm hover:shadow-brutal transition-all" id="card-link">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-xl bg-surface-pure border-[2px] border-navy flex items-center justify-center font-display font-black text-navy text-sm flex-shrink-0 shadow-sm">
+                  4
+                </div>
+<div class="flex-1">
+<div class="flex items-center justify-between flex-wrap gap-1 mb-1">
+<h3 class="font-display font-black text-base text-navy">Naqli Web Link (Fake URL)</h3>
+<span class="bg-navy text-white text-[11px] font-black px-2 py-0.5 rounded-full border border-navy">
+                      ⚠️ Mashkook
+                    </span>
+</div>
+<p class="text-sm font-semibold text-navy/90 leading-snug">
+                    Asli sarkari websites hamesha <strong>.gov.pk</strong> par khatam hoti hain. <code class="bg-white/80 px-1.5 py-0.5 rounded border border-navy/40 font-mono text-xs">bit.ly</code> ya ajeeb naam walay links hamesha fraud hotay hain.
+                  </p>
+</div>
+</div>
+</div>
+</div>
+<!-- BinaDarKe Core Golden Rule Box -->
+<div class="mt-5 bg-mint border-[3px] border-navy p-4 rounded-2xl shadow-brutal-sm flex items-center gap-3">
+<span class="text-3xl flex-shrink-0">🌟</span>
+<div>
+<span class="font-display font-black text-xs uppercase tracking-wider text-mint-dark block">BinaDarKe Sunheri Asool:</span>
+<p class="font-display font-bold text-base sm:text-lg text-navy leading-tight mt-0.5">
+                "Rukain, Saans Lain, aur Bachon ya Helpline se Poochain!"
+              </p>
+</div>
+</div>
+</div>
+<!-- BIG NEOBRUTALIST CTA BUTTON -->
+<a class="w-full bg-mint hover:bg-mint/90 border-[3px] border-navy py-4 px-6 rounded-[20px] shadow-brutal active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all flex items-center justify-between group cursor-pointer text-decoration-none" href="#solo-practice">
+<div class="flex items-center gap-3">
+<span class="text-2xl group-hover:scale-125 transition-transform">🚀</span>
+<div class="flex flex-col text-left">
+<span class="font-display font-black text-lg sm:text-xl text-navy leading-none">Samajh Aa Gaya! Agli Practice par Chalein</span>
+<span class="text-xs font-bold text-navy/70 mt-1">Sabaq 2: Solo Practice Challenge shuru karein</span>
+</div>
+</div>
+<span class="w-10 h-10 rounded-xl bg-surface-pure border-[2.5px] border-navy flex items-center justify-center font-black text-navy text-xl group-hover:translate-x-1 transition-transform shadow-sm">
+            ➔
+          </span>
+</a>
+</div>
+</div>
+</main>
+<!-- PLAYFUL NEOBRUTALIST FOOTER -->
+<footer class="w-full bg-surface-pure border-t-[3px] border-navy mt-16 py-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-butter border-[2.5px] border-navy shadow-brutal-sm flex items-center justify-center font-bold text-lg">
+          🛡️
+        </div>
+<div class="flex flex-col">
+<span class="font-display font-black text-lg text-navy leading-none">BinaDarKe • بغیر ڈر کے</span>
+<p class="text-xs font-bold text-navy/70 mt-1">Seekho. Practice karo. Bina darr ke. Safe digital literacy for Pakistan.</p>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="flex flex-wrap items-center justify-center gap-3">
+<div class="inline-flex items-center gap-1.5 bg-mint border-[2px] border-navy px-3 py-1.5 rounded-xl shadow-brutal-sm text-xs font-display font-black">
+<span>✅</span> Zero Real Money Risk
+        </div>
+<div class="inline-flex items-center gap-1.5 bg-cream border-[2px] border-navy px-3 py-1.5 rounded-xl shadow-brutal-sm text-xs font-display font-black">
+<span>🇵🇰</span> Urdu &amp; Roman Urdu
+        </div>
+<span class="text-xs font-extrabold text-navy/60 ml-2">© 2024 BinaDarKe Academy</span>
+</div>
+</div>
+</footer>
+<!-- INTERACTIVITY LOGIC -->
+<script>
+    function highlightClue(cardId) {
+      // Remove previous highlights
+      document.querySelectorAll('.clue-card').forEach(card => {
+        card.classList.remove('ring-4', 'ring-navy', 'scale-[1.03]');
+      });
+      
+      const target = document.getElementById(cardId);
+      if (target) {
+        target.classList.add('ring-4', 'ring-navy', 'scale-[1.03]');
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function simulateFakeLinkClick() {
+      const warning = document.getElementById('simulatedWarning');
+      if (warning) {
+        warning.classList.remove('hidden');
+      }
+      highlightClue('card-link');
+    }
+
+    let isPlayingVoice = false;
+    function toggleVoiceGuide() {
+      const voiceText = document.getElementById('voiceText');
+      const voiceIcon = document.getElementById('voiceIcon');
+      isPlayingVoice = !isPlayingVoice;
+
+      if (isPlayingVoice) {
+        voiceText.innerText = "Awaz chal rahi hai (Rokain)";
+        voiceIcon.innerText = "pause_circle";
+        voiceIcon.classList.remove('text-coral-dark');
+        voiceIcon.classList.add('text-navy');
+
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const scriptText = "Sabaq number aik: Agar koi anjana number aapko inaam ka lalach de, ya ATM PIN maangay, to foran ruk jayiye. Yeh fraud ho sakta hai.";
+          const utterance = new SpeechSynthesisUtterance(scriptText);
+          utterance.lang = 'ur-PK';
+          utterance.rate = 0.88;
+          utterance.onend = () => {
+            resetVoiceState();
+          };
+          window.speechSynthesis.speak(utterance);
+        }
+      } else {
+        resetVoiceState();
+      }
+    }
+
+    function resetVoiceState() {
+      isPlayingVoice = false;
+      const voiceText = document.getElementById('voiceText');
+      const voiceIcon = document.getElementById('voiceIcon');
+      if (voiceText) voiceText.innerText = "Sabaq ki Awaz Sunain";
+      if (voiceIcon) {
+        voiceIcon.innerText = "volume_up";
+        voiceIcon.classList.add('text-coral-dark');
+        voiceIcon.classList.remove('text-navy');
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+  </script>
+</body></html>
