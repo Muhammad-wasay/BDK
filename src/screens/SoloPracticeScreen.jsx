@@ -6,7 +6,8 @@ import {
   AlertTriangle,
   Lightbulb,
   Lock,
-  X
+  X,
+  ShieldCheck
 } from 'lucide-react';
 import { SOLO_SCENARIOS_DATA } from '../data/scenarios';
 import { TRANSLATIONS } from '../data/translations';
@@ -19,10 +20,11 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
   const [showHintModal, setShowHintModal] = useState(false);
   const [userChoice, setUserChoice] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
+  const [selectedTeachBackOpt, setSelectedTeachBackOpt] = useState(null);
 
   const t = TRANSLATIONS[language] || TRANSLATIONS.roman;
   const scenarios = SOLO_SCENARIOS_DATA[language] || SOLO_SCENARIOS_DATA.roman;
-  const scenario = scenarios[currentIndex];
+  const scenario = scenarios[currentIndex] || scenarios[0];
   const totalQuestions = scenarios.length;
   const progressPercent = Math.round(((currentIndex + 1) / totalQuestions) * 100);
   const isUrdu = language === 'urdu';
@@ -59,6 +61,7 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
       setCurrentIndex((prev) => prev + 1);
       setUserChoice(null);
       setIsAnswered(false);
+      setSelectedTeachBackOpt(null);
       setShowHintModal(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
@@ -84,35 +87,35 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
               soundEffects.playNav();
               onGoHome();
             }}
-            className="w-10 h-10 rounded-2xl bg-white border-[2px] border-[#1B2440] hover:bg-[#FFF4E0] flex items-center justify-center text-[#1B2440] cursor-pointer transition-all active:scale-95"
+            className="w-12 h-12 rounded-2xl bg-white border-[2px] border-[#1B2440] hover:bg-[#FFF4E0] flex items-center justify-center text-[#1B2440] cursor-pointer transition-all active:scale-95"
             title="Back to Home"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-5 h-5" />
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-space font-extrabold uppercase tracking-wider bg-[#FFF1A8] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-2.5 py-0.5">
+              <span className="text-xs font-space font-extrabold uppercase tracking-wider bg-[#FFF1A8] text-[#1B2440] border-[1.5px] border-[#1B2440] rounded-full px-3 py-1">
                 {t.soloTag}
               </span>
-              <span className="text-xs text-[#1B2440]/70 font-bold">
-                {t.soloProgressLabel} {currentIndex + 1} {t.soloProgressOf} {totalQuestions}
+              <span className="text-xs sm:text-sm text-[#1B2440]/80 font-extrabold">
+                {t.soloProgressLabel || "Sawal"} {currentIndex + 1} {t.soloProgressOf || "of"} {totalQuestions}
               </span>
             </div>
-            <h1 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440] mt-0.5">
-              {scenario.title}
+            <h1 className="font-space font-extrabold text-lg sm:text-xl text-[#1B2440] mt-1">
+              {scenario.category}
             </h1>
           </div>
         </div>
 
         {/* Progress Pill Bar */}
-        <div className="flex items-center gap-2 w-full sm:w-auto">
-          <div className="w-full sm:w-36 h-3 bg-white border-[2px] border-[#1B2440] rounded-full overflow-hidden p-0.5">
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="w-full sm:w-40 h-4 bg-white border-[2px] border-[#1B2440] rounded-full overflow-hidden p-0.5">
             <div
               className="h-full bg-[#B8F2D0] rounded-full transition-all duration-300 border-r border-[#1B2440]"
               style={{ width: `${progressPercent}%` }}
             ></div>
           </div>
-          <span className="text-xs font-space font-black text-[#1B2440]">
+          <span className="text-xs sm:text-sm font-space font-black text-[#1B2440]">
             {progressPercent}%
           </span>
         </div>
@@ -122,61 +125,59 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left Column: Simulated Phone Container (5 cols) */}
         <div className="lg:col-span-5 flex flex-col items-center">
-          <div className="w-full max-w-[340px] bg-[#FFFDF9] border-[3px] border-[#1B2440] rounded-[36px] p-4 flex flex-col gap-3">
+          <div className="w-full max-w-[360px] bg-[#FFFDF9] border-[3px] border-[#1B2440] rounded-[36px] p-4 sm:p-5 flex flex-col gap-3.5 shadow-sm">
             {/* Phone Header */}
-            <div className="flex items-center justify-between pb-2 border-b-[2px] border-[#1B2440]/20">
+            <div className="flex items-center justify-between pb-2.5 border-b-[2px] border-[#1B2440]/20">
               <div className="flex items-center gap-1.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#FF6B6B] border border-[#1B2440]"></div>
-                <div className="w-2.5 h-2.5 rounded-full bg-[#FFF1A8] border border-[#1B2440]"></div>
-                <div className="w-2.5 h-2.5 rounded-full bg-[#B8F2D0] border border-[#1B2440]"></div>
+                <div className="w-3 h-3 rounded-full bg-[#FF6B6B] border border-[#1B2440]"></div>
+                <div className="w-3 h-3 rounded-full bg-[#FFF1A8] border border-[#1B2440]"></div>
+                <div className="w-3 h-3 rounded-full bg-[#B8F2D0] border border-[#1B2440]"></div>
               </div>
-              <span className="text-[11px] font-space font-black bg-[#FFF1A8] border-[1.5px] border-[#1B2440] px-2.5 py-0.5 rounded-full text-[#1B2440]">
-                {scenario.channel}
+              <span className="text-xs font-space font-black bg-[#FFF1A8] border-[1.5px] border-[#1B2440] px-3 py-0.5 rounded-full text-[#1B2440]">
+                {scenario.simInfo || "SMS Alert"}
               </span>
             </div>
 
             {/* Sender Badge */}
-            <div className="flex items-center justify-between bg-white border-[1.5px] border-[#1B2440] rounded-xl p-2.5">
+            <div className="flex items-center justify-between bg-white border-[1.5px] border-[#1B2440] rounded-xl p-3">
               <div>
-                <span className="text-[10px] font-space font-bold uppercase text-[#1B2440]/60 block">
-                  Sender / Rabta
+                <span className="text-xs font-space font-bold uppercase text-[#1B2440]/70 block">
+                  {isUrdu ? "بھیجنے والا (Sender)" : "Sender / Rabta"}
                 </span>
-                <span className="text-xs font-black text-[#1B2440]">
+                <span className="text-sm font-black text-[#1B2440]">
                   {scenario.sender}
                 </span>
               </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#FFE8E5] text-[#BA1A1A] border border-[#BA1A1A]/40">
-                Ghair-Tasdeeq Shuda
+              <span className={`text-xs font-bold px-2.5 py-1 rounded-full border ${
+                scenario.isScam
+                  ? 'bg-[#FFE8E5] text-[#BA1A1A] border-[#BA1A1A]/40'
+                  : 'bg-[#B8F2D0] text-[#0F5A3E] border-[#0F5A3E]/40'
+              }`}>
+                {scenario.senderStatus}
               </span>
             </div>
 
             {/* Message Bubble */}
             <div className="bg-[#FFF4E0] border-[2px] border-[#1B2440] rounded-2xl p-4 flex flex-col gap-2.5">
-              <p className="text-xs sm:text-sm font-bold text-[#1B2440] leading-relaxed whitespace-pre-line">
+              <p className="text-sm sm:text-base font-bold text-[#1B2440] leading-relaxed whitespace-pre-line">
                 {scenario.message}
               </p>
-
-              {scenario.link && (
-                <div className="bg-[#FFE3E3] border-[2px] border-dashed border-[#FF6B6B] rounded-xl p-2 text-[#BA1A1A] font-extrabold text-xs break-all">
-                  🔗 {scenario.link}
-                </div>
-              )}
             </div>
 
             {/* Micro safe note */}
-            <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#1B2440]/70 justify-center pt-1">
-              <Lock className="w-3.5 h-3.5" />
-              <span>100% Safe Sandbox Practice</span>
+            <div className="flex items-center gap-1.5 text-xs font-bold text-[#1B2440]/70 justify-center pt-1">
+              <Lock className="w-4 h-4" />
+              <span>{isUrdu ? "محفوظ پریکٹس سینڈ باکس • کوئی خطرہ نہیں" : "Practice Only: Zero Financial Risk"}</span>
             </div>
           </div>
         </div>
 
         {/* Right Column: Audio Guide + Decision Controls (7 cols) */}
         <div className="lg:col-span-7 flex flex-col gap-4">
-          {/* Ustaad Audio Guide with Live Word-by-Word Highlight */}
+          {/* Ustaad Audio Guide with Live Voiceover Bar */}
           <UrduVoiceoverBar
-            text={scenario.audioPrompt || scenario.message}
-            label={t.soloAudioGuideTitle}
+            text={scenario.audioText || scenario.message}
+            label={t.soloAudioGuideTitle || (isUrdu ? "آواز میں سنیں" : "Listen in Voice")}
             language={language}
           />
 
@@ -186,7 +187,7 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
             <button
               onClick={() => handleChoice('safe')}
               disabled={isAnswered}
-              className={`p-4 rounded-2xl border-[2.5px] border-[#1B2440] flex items-center gap-3 transition-all cursor-pointer text-left ${
+              className={`p-4 rounded-2xl border-[2.5px] border-[#1B2440] flex items-center gap-3 transition-all cursor-pointer text-left min-h-[56px] ${
                 isAnswered
                   ? userChoice === 'safe'
                     ? isCurrentCorrect
@@ -196,11 +197,11 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
                   : 'bg-white hover:bg-[#B8F2D0]/50 active:scale-98'
               }`}
             >
-              <div className="w-10 h-10 rounded-xl bg-[#B8F2D0] border-[1.5px] border-[#1B2440] flex items-center justify-center flex-shrink-0 text-emerald-800">
-                <CheckCircle2 className="w-5 h-5" />
+              <div className="w-11 h-11 rounded-xl bg-[#B8F2D0] border-[1.5px] border-[#1B2440] flex items-center justify-center flex-shrink-0 text-emerald-800">
+                <CheckCircle2 className="w-6 h-6" />
               </div>
               <div>
-                <span className="font-space font-black text-sm text-[#1B2440] block">
+                <span className="font-space font-black text-sm sm:text-base text-[#1B2440] block">
                   {t.soloChoiceSafe}
                 </span>
                 <span className="text-xs font-semibold text-[#1B2440]/70">
@@ -213,7 +214,7 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
             <button
               onClick={() => handleChoice('scam')}
               disabled={isAnswered}
-              className={`p-4 rounded-2xl border-[2.5px] border-[#1B2440] flex items-center gap-3 transition-all cursor-pointer text-left ${
+              className={`p-4 rounded-2xl border-[2.5px] border-[#1B2440] flex items-center gap-3 transition-all cursor-pointer text-left min-h-[56px] ${
                 isAnswered
                   ? userChoice === 'scam'
                     ? isCurrentCorrect
@@ -223,11 +224,11 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
                   : 'bg-[#FF6B6B] hover:bg-[#ff5555] text-white active:scale-98'
               }`}
             >
-              <div className="w-10 h-10 rounded-xl bg-white border-[1.5px] border-[#1B2440] flex items-center justify-center flex-shrink-0 text-[#BA1A1A]">
-                <AlertTriangle className="w-5 h-5" />
+              <div className="w-11 h-11 rounded-xl bg-white border-[1.5px] border-[#1B2440] flex items-center justify-center flex-shrink-0 text-[#BA1A1A]">
+                <AlertTriangle className="w-6 h-6" />
               </div>
               <div>
-                <span className="font-space font-black text-sm text-white block">
+                <span className="font-space font-black text-sm sm:text-base text-white block">
                   {t.soloChoiceScam}
                 </span>
                 <span className="text-xs font-semibold text-white/90">
@@ -237,7 +238,7 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
             </button>
           </div>
 
-          {/* Show Clue Button (Pops up Modal Dialog as requested!) */}
+          {/* Show Clue Button (Pops up Modal Dialog) */}
           {!isAnswered && (
             <button
               onClick={() => {
@@ -245,63 +246,123 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
                 setShowHintModal(true);
               }}
               type="button"
-              className="w-full flex items-center justify-center gap-2 bg-[#FFFDF9] hover:bg-[#FFF4E0] border-[2px] border-[#1B2440] rounded-xl py-2.5 px-3 text-xs font-space font-extrabold text-[#1B2440] cursor-pointer transition-all active:scale-98"
+              className="w-full flex items-center justify-center gap-2 bg-[#FFFDF9] hover:bg-[#FFF4E0] border-[2px] border-[#1B2440] rounded-xl py-3 px-4 text-xs sm:text-sm font-space font-extrabold text-[#1B2440] cursor-pointer transition-all active:scale-98 min-h-[48px]"
             >
-              <Lightbulb className="w-4 h-4 text-amber-600" />
-              <span>{t.soloHintBtn || "💡 Show Clue / Madad Dekhein"}</span>
+              <Lightbulb className="w-5 h-5 text-amber-600" />
+              <span>{t.soloHintBtn || (isUrdu ? "مددگار اشارہ دیکھیں" : "💡 Show Clue / Madad Dekhein")}</span>
             </button>
           )}
 
           {/* Instant Feedback Panel */}
           {isAnswered && (
-            <div className={`w-full border-[2.5px] border-[#1B2440] rounded-2xl p-4 animate-fadeIn transition-all ${
+            <div className={`w-full border-[2.5px] border-[#1B2440] rounded-2xl p-5 animate-fadeIn transition-all ${
               isCurrentCorrect ? 'bg-[#B8F2D0]' : 'bg-[#FFD3B6]'
             }`}>
-              <div className="flex items-start gap-2.5 mb-2.5">
+              <div className="flex items-start gap-3 mb-3">
                 <div className="mt-0.5">
                   {isCurrentCorrect ? (
-                    <CheckCircle2 className="w-5 h-5 text-[#1B2440]" />
+                    <CheckCircle2 className="w-6 h-6 text-[#1B2440]" />
                   ) : (
-                    <Lightbulb className="w-5 h-5 text-[#1B2440]" />
+                    <Lightbulb className="w-6 h-6 text-[#1B2440]" />
                   )}
                 </div>
                 <div>
-                  <h3 className="font-space font-black text-sm text-[#1B2440]">
+                  <h3 className="font-space font-black text-base text-[#1B2440]">
                     {isCurrentCorrect ? scenario.feedback.scamTitle : scenario.feedback.safeTitle}
                   </h3>
-                  <p className="text-xs text-[#1B2440]/90 font-bold mt-1 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#1B2440]/90 font-bold mt-1 leading-relaxed">
                     {isCurrentCorrect ? scenario.feedback.scamDesc : scenario.feedback.safeDesc}
                   </p>
                 </div>
               </div>
 
-              {/* Red flags */}
-              <div className="flex flex-wrap gap-1.5 mb-3">
+              {/* Red flags or genuine markers */}
+              <div className="flex flex-wrap gap-2 mb-3">
                 {scenario.feedback.redFlags.map((flag, idx) => (
                   <span
                     key={idx}
-                    className="text-[10px] font-black bg-white border border-[#1B2440] px-2 py-0.5 rounded-full text-[#1B2440]"
+                    className="text-xs font-black bg-white border border-[#1B2440] px-2.5 py-1 rounded-full text-[#1B2440]"
                   >
                     🔍 {flag}
                   </span>
                 ))}
               </div>
 
+              {/* What to do next */}
+              {scenario.feedback.whatToDoNext && (
+                <div className="bg-white/85 border-[1.5px] border-[#1B2440] rounded-xl p-3.5 mb-4">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <ShieldCheck className="w-4 h-4 text-[#0F5A3E]" />
+                    <span className="font-space font-black text-xs text-[#1B2440] uppercase">
+                      {isUrdu ? "اگلا قدم کیا ہونا چاہیے؟" : "What To Do Next / Agla Qadam:"}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm font-bold text-[#1B2440] leading-relaxed">
+                    {scenario.feedback.whatToDoNext}
+                  </p>
+                </div>
+              )}
+
+              {/* TEACH-BACK STAGE: Active Learning Loop */}
+              {scenario.teachBack && (
+                <div className="bg-[#FFFDF9] border-[2px] border-[#1B2440] rounded-2xl p-4 sm:p-5 mb-4 shadow-xs">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs font-space font-black uppercase tracking-wider bg-[#FFF1A8] text-[#1B2440] border border-[#1B2440] rounded-full px-3 py-0.5">
+                      {isUrdu ? "سبق کا نچوڑ (Teach-Back)" : "Teach-Back • Sabaq Ka Nichor"}
+                    </span>
+                  </div>
+                  <h4 className="font-space font-extrabold text-sm sm:text-base text-[#1B2440] mb-3">
+                    {scenario.teachBack.question}
+                  </h4>
+                  <div className="flex flex-col gap-2.5">
+                    {scenario.teachBack.options.map((opt) => {
+                      const isSelected = selectedTeachBackOpt === opt.id;
+                      return (
+                        <button
+                          key={opt.id}
+                          onClick={() => {
+                            setSelectedTeachBackOpt(opt.id);
+                            if (opt.isCorrect) soundEffects.playSuccess();
+                            else soundEffects.playClick();
+                          }}
+                          className={`w-full text-left p-3.5 rounded-xl border-[2px] transition-all cursor-pointer min-h-[50px] flex flex-col justify-center ${
+                            isSelected
+                              ? opt.isCorrect
+                                ? 'bg-[#B8F2D0] border-[#1B2440] ring-2 ring-emerald-600'
+                                : 'bg-[#FFE8E5] border-[#1B2440] ring-2 ring-red-500'
+                              : 'bg-white hover:bg-[#FFF4E0] border-[#1B2440]/40'
+                          }`}
+                        >
+                          <span className="text-xs sm:text-sm font-bold text-[#1B2440] leading-snug">
+                            {opt.text}
+                          </span>
+                          {isSelected && (
+                            <span className="text-xs font-extrabold text-[#1B2440] mt-2 pt-2 border-t border-[#1B2440]/20 block">
+                              {opt.isCorrect ? "✅ " : "💡 "} {opt.explanation}
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
               {/* Next Question / Finish Button */}
               <button
                 onClick={handleNext}
                 type="button"
-                className="w-full py-3 rounded-xl bg-[#1B2440] hover:bg-slate-800 text-white font-space font-black text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-98"
+                className="w-full py-3.5 rounded-xl bg-[#1B2440] hover:bg-slate-800 text-white font-space font-black text-sm sm:text-base flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-98 min-h-[48px]"
               >
                 <span>{currentIndex < totalQuestions - 1 ? t.soloNextBtn : t.soloFinishBtn}</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-5 h-5" />
               </button>
             </div>
           )}
         </div>
       </div>
 
-      {/* CLUE POPUP MODAL (As user requested: popup screen taake user asani se parh sake) */}
+      {/* CLUE POPUP MODAL */}
       {showHintModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1B2440]/60 backdrop-blur-xs animate-fadeIn">
           <div 
@@ -311,14 +372,14 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
             {/* Clue Header */}
             <div className="flex items-center justify-between pb-2 border-b-[2px] border-[#1B2440]/20">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-xl bg-[#FFF1A8] border-[1.5px] border-[#1B2440] flex items-center justify-center text-lg">
+                <div className="w-9 h-9 rounded-xl bg-[#FFF1A8] border-[1.5px] border-[#1B2440] flex items-center justify-center text-lg">
                   💡
                 </div>
                 <div>
                   <h3 className="font-space font-extrabold text-base text-[#1B2440]">
-                    {isUrdu ? "مددگار اشارہ (Expert Clue)" : "Expert Clue / Hidden Red-Flag"}
+                    {isUrdu ? "مددگار اشارہ" : "Expert Clue"}
                   </h3>
-                  <span className="text-[11px] font-bold text-[#1B2440]/60">
+                  <span className="text-xs font-bold text-[#1B2440]/70">
                     BinaDarKe Advisor Tip
                   </span>
                 </div>
@@ -328,9 +389,9 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
                   soundEffects.playClick();
                   setShowHintModal(false);
                 }}
-                className="w-8 h-8 rounded-xl bg-white border-[1.5px] border-[#1B2440] flex items-center justify-center text-[#1B2440] hover:bg-slate-100 cursor-pointer"
+                className="w-9 h-9 rounded-xl bg-white border-[1.5px] border-[#1B2440] flex items-center justify-center text-[#1B2440] hover:bg-slate-100 cursor-pointer"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
               </button>
             </div>
 
@@ -352,7 +413,7 @@ export default function SoloPracticeScreen({ onCompleteSolo, onGoHome, babaJiMod
                 soundEffects.playClick();
                 setShowHintModal(false);
               }}
-              className="w-full py-2.5 rounded-2xl bg-[#1B2440] text-white font-space font-extrabold text-sm border-[2px] border-[#1B2440] cursor-pointer hover:bg-slate-800 transition-all text-center"
+              className="w-full py-3 rounded-2xl bg-[#1B2440] text-white font-space font-extrabold text-sm sm:text-base border-[2px] border-[#1B2440] cursor-pointer hover:bg-slate-800 transition-all text-center min-h-[48px]"
             >
               {isUrdu ? "سمجھ گیا — جواب منتخب کریں" : "Got it — Choose Answer"}
             </button>
